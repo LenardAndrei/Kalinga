@@ -49,7 +49,7 @@ function Navbar() {
     textDecoration: "none",
     color: "#fff",
     fontWeight: "500",
-    padding: "7px 14px",       // ← Add this! Without it links have no hit area
+    padding: "7px 14px",     
     borderRadius: "20px",
     backgroundColor: isActive ? "#2A787C" : "transparent",
     transition: "background 0.3s"
