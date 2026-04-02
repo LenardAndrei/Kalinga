@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar"
 
 function ClientLayout() {
   return (
-    <div style={{ margin: 0, padding: 0, overflow: "hidden" }}>
+    <div>
       <Navbar />
       <Outlet />
     </div>

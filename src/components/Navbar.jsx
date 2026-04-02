@@ -5,7 +5,7 @@ import profile from "../assets/profile.svg";
 function Navbar() {
   const styles = {
     nav: {
-      padding: "15px 20px",
+      padding: "15px 30px",
       background: "transparent",
       position: "absolute",
       top: 0,
@@ -23,15 +23,16 @@ function Navbar() {
     },
     logoText: {
       fontSize: "2.0rem",
+      fontWeight: "800",
       color: "#D2E4E8",
       margin: 0
     },
     navLinks: {
       background: "#82ACAB",
       padding: "10px",
-      borderRadius: "20px",
+      borderRadius: "50px",
       display: "flex",
-      gap: "10px" 
+      gap: "7px" 
     },
     linkBase: {
       textDecoration: "none",
@@ -47,12 +48,13 @@ function Navbar() {
   const getLinkStyle = ({ isActive }) => ({
     ...styles.linkBase,
     textDecoration: "none",
-    color: "#fff",
-    fontWeight: "500",
+    color: "#000000",
+    fontWeight: "900",
     padding: "7px 14px",     
     borderRadius: "20px",
     backgroundColor: isActive ? "#2A787C" : "transparent",
-    transition: "background 0.3s"
+    transition: "background 0.3s",
+    fontSize: "15px"
   });
 
   return (
@@ -76,7 +78,10 @@ function Navbar() {
             Announcement
         </NavLink>
       </div>
-      <img src={profile} alt="Profile Button" style={{ width: "40px", marginRight: "10px" }} />
+
+      <div style={{ marginLeft: "20px" }} />
+        <img src={profile} alt="Profile Button" style={{ width: "40px", marginRight: "10px" }} />
+      <div/>
     </nav>
   );
 }
