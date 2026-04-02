@@ -28,8 +28,7 @@ function Navbar() {
       margin: 0
     },
     navLinks: {
-      background: "#82ACAB",
-      padding: "10px",
+      background: "#82ACAB",  
       borderRadius: "50px",
       display: "flex",
       gap: "7px" 
@@ -50,11 +49,11 @@ function Navbar() {
     textDecoration: "none",
     color: "#000000",
     fontWeight: "900",
-    padding: "7px 14px",     
-    borderRadius: "20px",
+    padding: "8px 34px",     
+    borderRadius: "50px",
     backgroundColor: isActive ? "#2A787C" : "transparent",
     transition: "background 0.3s",
-    fontSize: "15px"
+    fontSize: "20px",
   });
 
   return (
@@ -80,7 +79,7 @@ function Navbar() {
       </div>
 
       <div style={{ marginLeft: "20px" }} />
-        <img src={profile} alt="Profile Button" style={{ width: "40px", marginRight: "10px" }} />
+        <img src={profile} alt="Profile Button" style={{ width: "50px", marginRight: "10px" }} />
       <div/>
     </nav>
   );
