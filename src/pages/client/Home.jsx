@@ -1,5 +1,6 @@
 import bgBuilding from "../../assets/building.jpg";
 
+
 function Home() {
   const styles = {
     hero: {
@@ -91,6 +92,7 @@ function Home() {
         </button>
       </div>
     </div>
+
   );
 }
 
