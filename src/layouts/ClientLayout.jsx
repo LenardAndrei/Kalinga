@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "../components/client/Navbar"
-import ServiceSlider from "../components/client/ServiceSlider"
+import Footer from "../components/client/Footer"
 
 function ClientLayout() {
   return (
     <div>
       <Navbar />
       <Outlet />
-      <ServiceSlider />
+      <Footer />
     </div>
   )
 }

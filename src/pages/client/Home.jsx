@@ -1,5 +1,7 @@
 import bgBuilding from "../../assets/building.jpg";
-
+import ServiceSlider from "../../components/client/ServiceSlider";
+import AboutSection from "../../components/client/AboutSection";
+import CTASection from "../../components/client/CTASection";
 
 function Home() {
   const styles = {
@@ -73,7 +75,8 @@ function Home() {
   };
 
   return (
-    <div style={styles.hero}>
+    <>
+      <div style={styles.hero}>
       <div style={styles.bgImage} />
       <div style={styles.overlay} />
       <div style={styles.content}>
@@ -92,6 +95,11 @@ function Home() {
         </button>
       </div>
     </div>
+
+      <ServiceSlider />
+      <AboutSection />
+      <CTASection />
+    </>
 
   );
 }
