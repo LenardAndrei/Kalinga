@@ -22,14 +22,14 @@ function Home() {
       backgroundSize: "cover",
       backgroundPosition: "center",
       zIndex: 0,
-      borderRadius: "0 0 20px 20px",
+      borderRadius: "0 0 40px 40px",
     },
     overlay: {
       position: "absolute",
       inset: 0,
       background: "linear-gradient(to top, rgba(20,60,55,0.88) 3%, rgba(20,60,55,0.2))",
       zIndex: 1,
-      borderRadius: "0 0 20px 20px",
+      borderRadius: "0 0 40px 40px",
     },
     content: {
       position: "relative",
