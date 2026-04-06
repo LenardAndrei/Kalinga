@@ -282,3 +282,10 @@
   color: #999;
   font-size: 15px;
 }
+
+/* ── card link ── */
+.hc-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}

@@ -4,6 +4,7 @@ import ClientLayout from "./layouts/ClientLayout"
 import Home from "./pages/client/Home"
 import Map from "./pages/client/Map"
 import Healthcare from "./pages/client/Healthcare"
+import HealthCareDetails from "./pages/client/HealthCarePage"
 import Specialists from "./pages/client/Specialists"
 
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="home" element={<Home />} />
           <Route path="map" element={<Map />} />
           <Route path="healthcare" element={<Healthcare />} />
+          <Route path="healthcare/:id" element={<HealthCareDetails />} />
           <Route path="specialists" element={<Specialists />} />
         </Route>
 

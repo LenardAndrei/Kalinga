@@ -44,3 +44,16 @@ export function getHealthcareServices() {
     setTimeout(() => resolve(healthcareServices), 500)
   })
 }
+
+export function getServiceById(id) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const service = healthcareServices.find((s) => s.id === parseInt(id))
+      if (service) {
+        resolve(service)
+      } else {
+        reject(new Error("Service not found"))
+      }
+    }, 300)
+  })
+}

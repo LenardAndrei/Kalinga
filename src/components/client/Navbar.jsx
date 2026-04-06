@@ -1,5 +1,5 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";   // ← add useEffect, useRef
+import { useState, useEffect, useRef } from "react";   
 import logo from "../../assets/logo.svg";
 import coloredLogo from "../../assets/colored-logo.svg";
 import profile from "../../assets/profile.svg";

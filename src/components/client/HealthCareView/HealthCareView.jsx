@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import { getHealthcareServices } from "../../../services/healthcareService"
 import "./HealthCareView.css"
 
@@ -16,42 +17,46 @@ const FILTER_OPTIONS = {
 // ── OpenCard ──
 function OpenCard({ item }) {
   return (
-    <div className="hc-card">
-      <div className="hc-card-img-wrapper open">
-        <img src={item.image} alt={item.name} className="hc-card-img" />
-        <div className="hc-open-badge-wrapper">
-          <span className="hc-open-badge">Open Now</span>
+    <Link to={`/client/healthcare/${item.id}`} state={{ service: item }} className="hc-card-link">
+      <div className="hc-card">
+        <div className="hc-card-img-wrapper open">
+          <img src={item.image} alt={item.name} className="hc-card-img" />
+          <div className="hc-open-badge-wrapper">
+            <span className="hc-open-badge">Open Now</span>
+          </div>
+        </div>
+        <div className="hc-card-body open">
+          <p className="hc-card-name">{item.name}</p>
+          <p className="hc-card-location">{item.location}</p>
+          {item.time && <p className="hc-card-time">{item.time}</p>}
+          <p className="hc-card-services"><strong>Services:</strong> {item.services}</p>
         </div>
       </div>
-      <div className="hc-card-body open">
-        <p className="hc-card-name">{item.name}</p>
-        <p className="hc-card-location">{item.location}</p>
-        {item.time && <p className="hc-card-time">{item.time}</p>}
-        <p className="hc-card-services"><strong>Services:</strong> {item.services}</p>
-      </div>
-    </div>
+    </Link>
   )
 }
 
 // ── ClosingCard ──
 function ClosingCard({ item }) {
   return (
-    <div className="hc-card">
-      <div className="hc-card-img-wrapper closing">
-        <img src={item.image} alt={item.name} className="hc-card-img" />
-      </div>
-      <div className="hc-card-body closing">
-        <div>
-          <p className="hc-card-name">{item.name}</p>
-          <p className="hc-card-location">{item.location}</p>
-          {item.time && <p className="hc-card-time">{item.time}</p>}
-          <p className="hc-card-services"><strong>Services:</strong> {item.services}</p>
+    <Link to={`/client/healthcare/${item.id}`} state={{ service: item }} className="hc-card-link">
+      <div className="hc-card">
+        <div className="hc-card-img-wrapper closing">
+          <img src={item.image} alt={item.name} className="hc-card-img" />
         </div>
-        <div className="hc-closing-badge-wrapper">
-          <span className="hc-closing-badge">Closing soon</span>
+        <div className="hc-card-body closing">
+          <div>
+            <p className="hc-card-name">{item.name}</p>
+            <p className="hc-card-location">{item.location}</p>
+            {item.time && <p className="hc-card-time">{item.time}</p>}
+            <p className="hc-card-services"><strong>Services:</strong> {item.services}</p>
+          </div>
+          <div className="hc-closing-badge-wrapper">
+            <span className="hc-closing-badge">Closing soon</span>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 
