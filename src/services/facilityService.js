@@ -28,6 +28,6 @@ export const getFacilities = () => {
           lng: 121.0044,
         },
       ])
-    }, 500) // simulate loading
+    }, 500) 
   })
 }
