@@ -227,7 +227,7 @@ function LocationButton({ userLocation, setUserLocation }) {
       <div className="location-btn-wrapper">
         {error && <div className="location-error">⚠ {error}</div>}
         <button className="location-btn" onClick={handleLocate} disabled={loading} title="Go to my location">
-          {loading ? <div className="spinner" /> : <img src={locationIcon} alt="My location" style={{ width: "24px", height: "24px" }} />}
+          {loading ? <div className="spinner" /> : <img src={locationIcon} alt="My location" style={{ width: "44px", height: "34px" }} />}
         </button>
       </div>
     </>
