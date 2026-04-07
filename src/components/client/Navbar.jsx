@@ -1,20 +1,21 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";   
-import logo from "../../assets/logo.svg";
 import coloredLogo from "../../assets/colored-logo.svg";
 import profile from "../../assets/profile.svg";
 
 function Navbar() {
   const location = useLocation()
   const navigate = useNavigate()
-  const isHome = location.pathname === "/client/home"
+  const isTransparent = location.pathname === "/client/home" || location.pathname.includes("/client/healthcare/")
   const [servicesOpen, setServicesOpen] = useState(false)
   const dropdownRef = useRef(null)    // ← ref to detect outside clicks
 
 const isServicesActive =
   location.pathname.startsWith("/client/services") ||
   location.pathname === "/client/healthcare" ||
-  location.pathname === "/client/specialists"
+  location.pathname.includes("/client/healthcare/") ||
+  location.pathname === "/client/specialists" ||
+  location.pathname.includes("/client/healthcare/")
 
   // close dropdown when clicking anywhere outside of it
   useEffect(() => {
@@ -35,14 +36,14 @@ const isServicesActive =
   const styles = {
     nav: {
       padding: "15px 30px",
-      background: isHome ? "transparent" : "#fff",
-      position: isHome ? "absolute" : "relative",
+      background: isTransparent ? "transparent" : "#fff",
+      position: isTransparent ? "absolute" : "relative",
       top: 0, left: 0, right: 0,
       zIndex: 10,
       display: "flex",
       alignItems: "center",
       fontFamily: "sans-serif",
-      borderBottom: isHome ? "none" : "1px solid #eee",
+      borderBottom: isTransparent ? "none" : "1px solid #eee",
     },
     brand: {
       display: "flex",
@@ -52,7 +53,7 @@ const isServicesActive =
     logoText: {
       fontSize: "2.0rem",
       fontWeight: "800",
-      color: isHome ? "#D2E4E8" : "#0B4B54",
+      color: isTransparent ? "#0B4B54" : "#0B4B54",
     },
     navLinks: {
       background: "#82ACAB",
@@ -92,7 +93,7 @@ const isServicesActive =
     <nav style={styles.nav}>
       <div style={styles.brand}>
         <img
-          src={isHome ? logo : coloredLogo}
+          src={isTransparent ? coloredLogo : coloredLogo}
           alt="Kalinga Logo"
           style={{ width: "40px", marginRight: "10px" }}
         />

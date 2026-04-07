@@ -1,0 +1,57 @@
+.emergency-card {
+  background: #032932;
+  border-radius: 20px;
+  padding: 28px 36px;
+  margin: 24px 32px;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
+
+.emergency-title {
+  font-size: 22px;
+  font-weight: 900;
+  margin: 0 0 4px;
+}
+
+.emergency-subtitle {
+  font-size: 14px;
+  margin: 0 0 24px;
+  opacity: 0.8;
+}
+
+.emergency-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.emergency-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.emergency-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.emergency-label {
+  font-size: 15px;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+
+.emergency-value {
+  font-size: 14px;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.emergency-distance {
+  font-size: 13px;
+  font-style: italic;
+  margin: 2px 0 0;
+  opacity: 0.75;
+}

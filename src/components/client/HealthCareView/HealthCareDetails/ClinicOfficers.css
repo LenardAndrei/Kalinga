@@ -1,0 +1,51 @@
+.officers-wrapper {
+  padding: 24px 32px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.officers-title {
+  font-size: 26px;
+  font-weight: 900;
+  color: #032932;
+  margin: 0 0 16px;
+}
+
+.officers-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.officers-scroll::-webkit-scrollbar { display: none; }
+
+.officer-card {
+  flex-shrink: 0;
+  width: 160px;
+  text-align: center;
+}
+
+.officer-img {
+  width: 160px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 2px solid #7FA8A7;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.officer-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: #032932;
+  margin: 0 0 2px;
+}
+
+.officer-role {
+  font-size: 12px;
+  font-style: italic;
+  color: #666;
+  margin: 0;
+}

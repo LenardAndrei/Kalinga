@@ -1,4 +1,4 @@
-import HealthCareDetails from "../../components/client/HealthCareView/HealthCare Details/HealthCareDetails";
+import HealthCareDetails from "../../components/client/HealthCareView/HealthCareDetails/HealthCareDetails";
 
 function HealthCarePage() {
     return (

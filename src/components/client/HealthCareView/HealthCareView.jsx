@@ -62,7 +62,7 @@ function ClosingCard({ item }) {
 
 // ── ServiceCard ──
 function ServiceCard({ item }) {
-  return item.status === "closing"
+  return item.status === "Closing"
     ? <ClosingCard item={item} />
     : <OpenCard item={item} />
 }
