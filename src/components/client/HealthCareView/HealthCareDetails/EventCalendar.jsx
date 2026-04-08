@@ -8,10 +8,10 @@ function EventCalendar({ data }) {
 
       <div className="calendar-list">
         {data.events.map((event) => (
-          <div key={event.id} className="calendar-item">
-            <div className="calendar-date" style={{ borderLeft: `5px solid ${event.color}` }}>
-              <span className="calendar-day">{event.day}</span>
+          <div key={event.id} className="calendar-item" style={{ borderLeft: `18px solid ${event.color}` }}>
+            <div className="calendar-date">
               <span className="calendar-month-label">{event.month}</span>
+              <span className="calendar-day">{event.day}</span>
             </div>
             <div className="calendar-info">
               <p className="calendar-event-title">{event.title}</p>

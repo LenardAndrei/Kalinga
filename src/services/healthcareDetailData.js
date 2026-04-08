@@ -1,4 +1,4 @@
-import sanIsidroImg from "../assets/san_isidro.png"
+import sanIsidroImg from "../assets/san_isidro2.png"
 
 export const facilityData = {
   name: "Brgy. San Isidro Health Center",

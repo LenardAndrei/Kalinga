@@ -13,13 +13,13 @@ function ServicesOffered({ services }) {
                 : <div className="service-img-placeholder" />
               }
               <div className="service-overlay" />
-              <div className="service-info">
-                <p className="service-name">{s.name}</p>
-                <div className="service-tags">
-                  {s.tags.map((tag, i) => (
-                    <span key={i} className="service-tag">{tag}</span>
-                  ))}
-                </div>
+            </div>
+            <div className="service-info">
+              <p className="service-name">{s.name}</p>
+              <div className="service-tags">
+                {s.tags.map((tag, i) => (
+                  <span key={i} className="service-tag">{tag}</span>
+                ))}
               </div>
             </div>
           </div>

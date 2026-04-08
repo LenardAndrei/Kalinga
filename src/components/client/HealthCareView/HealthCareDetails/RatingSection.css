@@ -14,29 +14,29 @@
 }
 
 .rating-title {
-  font-size: 24px;
+  font-size: 36px;
   font-weight: 900;
   color: #032932;
   margin: 0;
 }
 
 .rating-avg {
-  font-size: 24px;
+  font-size: 34px;
   font-weight: 900;
   color: #032932;
 }
 
 .stars-row { display: flex; gap: 4px; }
 
-.star        { font-size: 22px; }
+.star        { font-size: 34px; }
 .star-filled { color: #f59e0b; }
 .star-empty  { color: #d1d5db; }
 
 .rating-count {
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 700;
   color: #032932;
-  margin: 0 0 16px;
+  margin: 0 20px 16px;
 }
 
 .review-list {
@@ -49,27 +49,28 @@
 .review-item {
   background: #fff;
   border-radius: 12px;
-  padding: 12px 16px;
+  padding: 8px 16px;
 }
 
 .review-top {
   display: flex;
   align-items: center;
   gap: 6px;
+  margin-top: -2px;
   margin-bottom: 4px;
 }
 
-.review-stars     { font-size: 16px; font-weight: 800; color: #032932; }
-.review-star-icon { color: #f59e0b; font-size: 16px; }
-.review-name      { font-size: 16px; font-weight: 800; color: #032932; }
+.review-stars     { font-size: 28px; font-weight: 800; color: #032932; }
+.review-star-icon { color: #f59e0b; font-size: 34px; }
+.review-name      { font-size: 24px; font-weight: 800; color: #032932; }
 
 .review-comment {
-  font-size: 13px;
+  font-size: 16px;
   color: #555;
-  margin: 0;
+  margin: 0 60px 0;
 }
 
-.add-review { margin-top: 8px; }
+.add-review { margin-top: 6px; }
 
 .add-review-header {
   display: flex;
@@ -79,14 +80,14 @@
 }
 
 .add-review-title {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 800;
   color: #032932;
   margin: 0;
 }
 
 .add-rating-label {
-  font-size: 12px;
+  font-size: 18px;
   color: #666;
   margin: 0 0 4px;
   text-align: right;
@@ -104,7 +105,7 @@
   width: 100%;
   border: none;
   border-radius: 50px;
-  padding: 14px 20px;
+  padding: 16px 20px;
   font-size: 14px;
   font-family: 'Poppins', sans-serif;
   background: #fff;
@@ -123,10 +124,10 @@
   background: #2A787C;
   color: #fff;
   border: none;
-  border-radius: 50px;
+  border-radius: 20px;
   padding: 12px 60px;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 900;
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
   transition: background 0.2s;

@@ -1,14 +1,27 @@
 ﻿.hero-wrapper {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 95vh;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: #f0f4f4;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
+}
+
+/* ── image blur — pseudo element so blur doesn't affect content ── */
+.hero-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: inherit;       /* inherits the backgroundImage from parent */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(1px) brightness(1);   /* ← blur here, not on the container */
+  transform: scale(1);              /* ← prevents white blur edges */
+  z-index: 0;
 }
 
 .hero-back-btn {
@@ -33,14 +46,39 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 860px;
   padding: 0 32px 40px;
+}
+
+/* ── title + badge on same row ── */
+.hero-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: nowrap;
+}
+
+.hero-title {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2.2rem, 3.5vw, 4rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;               /* keeps title on one line */
 }
 
 .hero-badge {
@@ -48,66 +86,35 @@
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  padding: 10px 22px;
-  font-size: 1.00rem;
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
-
-.hero-badge.open {
-  background: #22c55e;
-  color: #000000;
-}
-
-.hero-badge.closing {
-  background: #f97316;
-  color: #000000;
-}
-
-.hero-title {
-  margin: 0;
+  padding: 8px 20px;
+  font-size: 0.95rem;
+  font-weight: 800;
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(2.75rem, 2vw, 4.5rem);
-  font-weight: 900;
-  line-height: 0.98;
-  color: #ffffff;
-  text-shadow: 0 20px 35px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+  flex-shrink: 0;                    /* badge never shrinks */
 }
+
+.hero-badge.open    { background: #22c55e; color: #000000; }
+.hero-badge.closing { background: #f97316; color: #fff; }
 
 .hero-location {
-  margin: 14px 0 0;
+  margin: 12px 0 0;
   font-family: 'Poppins', sans-serif;
-  font-size: 1.7rem;
+  font-size: clamp(1rem, 2vw, 1.6rem);
   font-weight: 600;
   font-style: italic;
   color: rgba(255, 255, 255, 0.92);
   line-height: 1.4;
-  max-width: 720px;
 }
 
 @media (max-width: 768px) {
-  .hero-wrapper {
-    min-height: 420px;
-  }
+  .hero-wrapper { min-height: 420px; }
 
-  .hero-back-btn {
-    top: 18px;
-    left: 18px;
-    width: 42px;
-    height: 42px;
-  }
+  .hero-back-btn { top: 18px; left: 18px; width: 42px; height: 42px; }
 
-  .hero-content {
-    padding: 0 20px 28px;
-  }
+  .hero-content { padding: 0 20px 28px; }
 
-  .hero-title {
-    font-size: clamp(2.25rem, 8vw, 3.5rem);
-  }
+  .hero-title-row { flex-wrap: wrap; }
 
-  .hero-location {
-    font-size: 1rem;
-  }
+  .hero-title { font-size: clamp(1.8rem, 7vw, 2.5rem); white-space: normal; }
 }

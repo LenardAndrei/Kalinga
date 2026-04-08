@@ -19,7 +19,7 @@ import {
 
 function HealthcareDetail() {
   return (
-    <div style={{ background: "#f0f4f4", minHeight: "100vh", paddingBottom: "40px" }}>
+    <div style={{ background: "#fff", minHeight: "100vh", paddingBottom: "40px" }}>
       <HeroSection      facility={facilityData} />
       <InfoSection      facility={facilityData} />
       <ServicesOffered  services={servicesData} />

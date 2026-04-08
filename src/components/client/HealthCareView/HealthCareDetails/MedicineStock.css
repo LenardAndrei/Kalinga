@@ -1,13 +1,13 @@
 .medicine-wrapper {
-  background: linear-gradient(to right, #9DBDBC, #e8f4f3);
+  background: linear-gradient(to right, #82ACAB, #E8FFFE);
   border-radius: 20px;
-  padding: 28px 32px;
+  padding: 24px 28px;
   margin: 24px 32px;
   font-family: 'Poppins', sans-serif;
 }
 
 .medicine-title {
-  font-size: 22px;
+  font-size: 36px;
   font-weight: 900;
   color: #fff;
   margin: 0 0 20px;
@@ -15,7 +15,7 @@
 
 .medicine-scroll {
   display: flex;
-  gap: 16px;
+  gap: 68px;
   overflow-x: auto;
   padding-bottom: 4px;
   scrollbar-width: none;
@@ -27,8 +27,9 @@
   flex-shrink: 0;
   background: #fff;
   border-radius: 16px;
-  padding: 16px;
-  width: 130px;
+  padding: 8px;
+  width: 180px;
+  height: 200px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -37,25 +38,26 @@
 }
 
 .medicine-img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 20px;
 }
 
 .medicine-name {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 800;
   color: #032932;
   margin: 0;
 }
 
 .medicine-badge {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 10px;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 3px 12px;
   border-radius: 50px;
   font-family: 'Poppins', sans-serif;
 }
 
-.medicine-badge.available { background: #dcfce7; color: #16a34a; }
-.medicine-badge.out       { background: #fee2e2; color: #dc2626; }
+.medicine-badge.available { background: #A5D07A; color: #313D24; }
+.medicine-badge.out       { background: #D76C6C; color: #313D24; }

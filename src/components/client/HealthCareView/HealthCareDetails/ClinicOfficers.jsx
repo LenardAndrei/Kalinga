@@ -7,9 +7,14 @@ function ClinicOfficers({ officers }) {
       <div className="officers-scroll">
         {officers.map((o) => (
           <div key={o.id} className="officer-card">
-            <img src={o.image} alt={o.name} className="officer-img" />
-            <p className="officer-name">{o.name}</p>
-            <p className="officer-role">{o.role}</p>
+            <div className="officer-img-wrapper">
+              <img src={o.image} alt={o.name} className="officer-img" />
+              <div className="officer-overlay" />
+            </div>
+            <div className="officer-content">
+              <p className="officer-name">{o.name}</p>
+              <p className="officer-role">{o.role}</p>
+            </div>
           </div>
         ))}
       </div>
