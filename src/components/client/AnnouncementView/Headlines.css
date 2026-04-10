@@ -5,10 +5,10 @@
 }
 
 .headlines-title {
-  font-size: 32px;
+  font-size: 38px;
   font-weight: 900;
   color: #032932;
-  margin: 0 0 24px 0;
+  margin: 0 0 24px 80px;
 }
 
 .headlines-carousel {
@@ -21,8 +21,7 @@
 /* Slide */
 .headlines-slide {
   flex: 1;
-  height: 300px;
-  border-radius: 16px;
+  height: 360px;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -38,7 +37,7 @@
 .headlines-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
   z-index: 1;
 }
 
@@ -54,7 +53,7 @@
 }
 
 .headlines-slide-title {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 900;
   margin: 0 0 12px 0;
   line-height: 1.3;
@@ -62,7 +61,7 @@
 }
 
 .headlines-slide-description {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   margin: 0 0 20px 0;
   line-height: 1.6;
@@ -71,13 +70,13 @@
 }
 
 .headlines-read-more {
-  align-self: flex-start;
+  align-self: flex-end;
   background: #2A787C;
   color: #fff;
   border: none;
   border-radius: 50px;
-  padding: 10px 28px;
-  font-size: 14px;
+  padding: 10px 30px;
+  font-size: 18px;
   font-weight: 700;
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
