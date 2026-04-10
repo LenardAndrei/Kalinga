@@ -15,7 +15,7 @@ const isServicesActive =
   location.pathname === "/client/healthcare" ||
   location.pathname.includes("/client/healthcare/") ||
   location.pathname === "/client/specialists" ||
-  location.pathname.includes("/client/healthcare/")
+  location.pathname.includes("/client/specialists/")
 
   // close dropdown when clicking anywhere outside of it
   useEffect(() => {
@@ -106,7 +106,7 @@ const isServicesActive =
 
         {/* ── Services with click dropdown ── */}
         <div
-          ref={dropdownRef}       // ← attach ref here to detect outside clicks
+          ref={dropdownRef}      
           style={{ position: "relative" }}
         >
           <div

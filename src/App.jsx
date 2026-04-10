@@ -7,8 +7,6 @@ import Healthcare from "./pages/client/Healthcare"
 import HealthCareDetails from "./pages/client/HealthCarePage"
 import Specialists from "./pages/client/Specialists"
 
-
-
 function App() {
   return (
     <BrowserRouter>
