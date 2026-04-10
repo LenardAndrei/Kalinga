@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function CTASection() {
+  const navigate = useNavigate(); 
+
   const styles = {
     section: {
       background: "#032932",
@@ -36,22 +40,31 @@ function CTASection() {
       cursor: "pointer",
       whiteSpace: "nowrap",
     },
-  }
+  };
 
   return (
     <div style={styles.section}>
-      <h2 style={styles.title}>
-        Ready to Prioritize your Health?
-      </h2>
+      <h2 style={styles.title}>Ready to Prioritize your Health?</h2>
       <p style={styles.subtitle}>
         Explore your community's health services or meet specialists today.
       </p>
       <div style={styles.btnRow}>
-        <button style={styles.btn}>Open the Health Map</button>
-        <button style={styles.btn}>Meet our Specialists</button>
+        <button 
+          style={styles.btn} 
+          onClick={() => navigate("/client/map")}
+        >
+          Open the Health Map
+        </button>
+
+        <button 
+          style={styles.btn} 
+          onClick={() => navigate("/client/specialists")}
+        >
+          Meet our Specialists
+        </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default CTASection
+export default CTASection;

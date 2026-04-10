@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import { getSpecialists, specialistCategories } from "../../../services/specialistsData"
 import "./SpecialistsView.css"
 
@@ -7,19 +8,21 @@ const ITEMS_PER_PAGE = 9
 // ── SpecialistCard ──
 function SpecialistCard({ specialist }) {
   return (
-    <div className="sp-card">
-      <div className="sp-card-img-wrapper">
-        <img src={specialist.image} alt={specialist.name} className="sp-card-img" />
+    <Link to={`/client/specialists/${specialist.id}`} className="sp-card-link">
+      <div className="sp-card">
+        <div className="sp-card-img-wrapper">
+          <img src={specialist.image} alt={specialist.name} className="sp-card-img" />
+        </div>
+        <div className="sp-card-body">
+          <p className="sp-card-name">
+            <span className="sp-label">Name: </span>{specialist.name}
+          </p>
+          <p className="sp-card-specialist">
+            <span className="sp-label">Specialist: </span>{specialist.specialist}
+          </p>
+        </div>
       </div>
-      <div className="sp-card-body">
-        <p className="sp-card-name">
-          <span className="sp-label">Name: </span>{specialist.name}
-        </p>
-        <p className="sp-card-specialist">
-          <span className="sp-label">Specialist: </span>{specialist.specialist}
-        </p>
-      </div>
-    </div>
+    </Link>
   )
 }
 
