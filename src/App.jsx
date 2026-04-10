@@ -7,6 +7,7 @@ import Healthcare from "./pages/client/Healthcare"
 import HealthCareDetails from "./pages/client/HealthCarePage"
 import Specialists from "./pages/client/Specialists"
 import SpecialistsPage from "./pages/client/SpecialistsPage"
+import Announcement from "./pages/client/Announcement"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="healthcare/:id" element={<HealthCareDetails />} />
           <Route path="specialists" element={<Specialists />} />
           <Route path="specialists/:id" element={<SpecialistsPage />} />
+          <Route path="announcement" element={<Announcement />} />
         </Route>
 
       </Routes>
