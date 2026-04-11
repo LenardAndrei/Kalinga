@@ -1,0 +1,20 @@
+
+.doctor-layout {
+    display: flex;
+    position: relative;
+    z-index: 10;
+    box-sizing: border-box;
+    min-height: 100vh;
+    height: 100%;
+}
+
+.doctor-layout__content {
+    box-sizing: border-box;
+    margin-left: 250px;
+    z-index: -1;
+    flex: 1;
+    padding: 2.5rem 2.5rem 0 3rem;
+    width: calc(100% - 250px);
+    background-color: white;
+    height: 100%;
+}
