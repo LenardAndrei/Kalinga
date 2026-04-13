@@ -8,11 +8,15 @@ import HealthCareDetails from "./pages/client/HealthCarePage"
 import Specialists from "./pages/client/Specialists"
 import SpecialistsPage from "./pages/client/SpecialistsPage"
 import Announcement from "./pages/client/Announcement"
+import Login from "./pages/login_registration/Login"
+import SelectRole from "./pages/login_registration/SelectRole"
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<SelectRole />} />
 
         <Route path="/client" element={<ClientLayout />}>
           <Route path="home" element={<Home />} />
