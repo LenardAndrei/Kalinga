@@ -1,7 +1,6 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState, useEffect, useCallback } from "react"
+import { useNavigate, useOutletContext } from "react-router-dom"
 import "./SelectRole.css"
-import logo from "../../assets/LOGO.svg"
 import userRoleImg from "../../assets/role-user.png"      // replace with your image
 import doctorRoleImg from "../../assets/role-doctor.png"  // replace with your image
 import clinicRoleImg from "../../assets/role-clinic.png"  // replace with your image
@@ -9,28 +8,35 @@ import clinicRoleImg from "../../assets/role-clinic.png"  // replace with your i
 const roles = [
   { id: "user",     label: "User",                     image: userRoleImg   },
   { id: "doctor",   label: "Doctor",                   image: doctorRoleImg },
-  { id: "provider", label: "Healthcare Service\nProvider", image: clinicRoleImg },
+  { id: "provider", label: "Healthcare Service Provider", image: clinicRoleImg },
 ]
 
 function SelectRole() {
   const navigate = useNavigate()
+  const setFooterConfig = useOutletContext()
   const [selected, setSelected] = useState("user")
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (!selected) return
-    // pass selected role to register page
     navigate(`/register/${selected}`)
-  }
+  }, [navigate, selected])
+
+  useEffect(() => {
+    if (typeof setFooterConfig === "function") {
+      setFooterConfig({
+        step: 1,
+        total: 3,
+        showPrevious: false,
+        previousLabel: "Previous",
+        nextLabel: "Next",
+        onPrevious: undefined,
+        onNext: handleNext,
+      })
+    }
+  }, [setFooterConfig, handleNext])
 
   return (
     <div className="sr-page">
-
-      {/* top bar */}
-      <div className="sr-topbar">
-        <img src={logo} alt="Kalinga" className="sr-logo" />
-        <span className="sr-brand">KALINGA</span>
-      </div>
-
       {/* white section */}
       <div className="sr-top-section">
         <h1 className="sr-title">Select your role</h1>
@@ -71,31 +77,6 @@ function SelectRole() {
         </div>
       </div>
 
-      {/* teal gradient bottom section */}
-      <div className="sr-bottom-section">
-
-        {/* step dots */}
-        <div className="sr-dots">
-          <div className="sr-dot active" />
-          <div className="sr-dot" />
-          <div className="sr-dot" />
-        </div>
-
-        {/* next button */}
-        <button
-          className="sr-next-btn"
-          onClick={handleNext}
-          disabled={!selected}
-        >
-          Next
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-            stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-            <polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </button>
-
-      </div>
     </div>
   )
 }

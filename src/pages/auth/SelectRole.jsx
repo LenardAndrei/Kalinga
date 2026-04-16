@@ -1,4 +1,4 @@
-import SelectRole from "../../components/login_registration/SelectRole";
+import SelectRole from "../../components/auth/SelectRole";
 
 function SelectRolePage() {
   return ( 
