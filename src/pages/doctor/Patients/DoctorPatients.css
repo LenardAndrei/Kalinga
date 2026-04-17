@@ -1,0 +1,116 @@
+
+.doctor-patients {
+    position: relative;
+    z-index: 10;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.doctor-patients__title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    background-image: linear-gradient(to right, #032932, #82ACAB);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    margin-bottom: 20px;
+}
+
+.doctor-patients-search__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.25rem 1rem;
+    width: fit-content;
+    background-color: white;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 2rem;
+}
+
+.doctor-patients-search__input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.doctor-patients-search__icon {
+    color: black;
+}
+
+.doctor-patients__table {
+    width: 100%;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+.doctor-patients__table th, td {
+    padding: 1rem;
+    text-align: center;
+}
+
+.doctor-patients__table td {
+    padding: 0.5rem 1rem;
+}
+
+.doctor-patients__table-header {
+    background-color: #2A787C;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.doctor-patients__table-header-row {
+    border-radius: 1rem 1rem 0 0;
+    outline: none;
+    color: white;
+}
+
+.doctor-patients__table-title {
+    outline: none;
+}
+
+.doctor-patients-table__entry {
+    border-bottom: 1px solid #BFBCBC;
+}
+
+.doctor-patients-table__entry:last-child {
+    border-bottom: none;
+}
+
+.doctor-patients-table__entry > td {
+    color: black;
+}
+
+.doctor-patients-table__entry-action-btn {
+    background-color: #032932;
+    color: #e6edf0;
+    border: none;
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.doctor-patients-table__entry-action-btn:hover {
+    background-color: #13404f;
+}
+
+.doctor-patients-table__entry-action-btn:active {
+    transform: scale(0.97);
+}
+
+.doctor-patients-table__entry-action-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(15, 47, 58, 0.3);
+}
