@@ -121,19 +121,60 @@
   border-color: #2A787C;
   background: rgba(42, 120, 124, 0.12);
 }
-
-/* -- bottom teal section -- */
+/* ── bottom gradient section ── */
 .sr-bottom-section {
+  flex: 1;
   background: transparent;
-  padding: 6px 48px 56px;
+  padding: 40px 48px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: relative;
+  margin-top: -20px;
+}
+
+/* ── step dots ── */
+.sr-dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 58px; 
+  display: flex;
+  gap: 10px;
+}
+
+.sr-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.sr-dot.active {
+  background: #032932;
+  width: 14px;
+  height: 14px;
+}
+
+/* ── next button ── */
+.sr-next-btn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: -36px;
-  min-height: 220px;
-  position: relative;
-  overflow: hidden;
+  gap: 10px;
+  background: #032932;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
 }
+
+.sr-next-btn:hover    { background: #054a5e; }
+.sr-next-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* -- responsive -- */
 @media (max-width: 960px) {

@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from "react"
 import { useNavigate, useOutletContext } from "react-router-dom"
 import "./SelectRole.css"
-import userRoleImg from "../../assets/role-user.png"      // replace with your image
-import doctorRoleImg from "../../assets/role-doctor.png"  // replace with your image
-import clinicRoleImg from "../../assets/role-clinic.png"  // replace with your image
+import userRoleImg from "../../assets/role-user.png"      
+import doctorRoleImg from "../../assets/role-doctor.png"  
+import clinicRoleImg from "../../assets/role-clinic.png" 
 
 const roles = [
   { id: "user",     label: "User",                     image: userRoleImg   },
@@ -13,12 +13,12 @@ const roles = [
 
 function SelectRole() {
   const navigate = useNavigate()
-  const setFooterConfig = useOutletContext()
+  const { setFooterConfig } = useOutletContext() || {}
   const [selected, setSelected] = useState("user")
 
   const handleNext = useCallback(() => {
     if (!selected) return
-    navigate(`/register/${selected}`)
+    navigate(`/register/${selected}/step1`)
   }, [navigate, selected])
 
   useEffect(() => {
@@ -76,7 +76,28 @@ function SelectRole() {
           ))}
         </div>
       </div>
+      
+      {/* ── bottom gradient section ── */}
+      <div className="sr-bottom-section">
+        <div className="sr-dots">
+          <div className="sr-dot active" />
+          <div className="sr-dot" />
+          <div className="sr-dot" />
+        </div>
 
+        <button
+          className="sr-next-btn"
+          onClick={handleNext}
+          disabled={!selected}
+        >
+          Next
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+      </div>
     </div>
   )
 }
