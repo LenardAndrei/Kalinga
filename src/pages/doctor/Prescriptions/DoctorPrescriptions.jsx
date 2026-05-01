@@ -4,6 +4,98 @@ import {useState} from "react";
 import DoctorDialog from "../../../components/doctor/dialog/DoctorDialog.jsx";
 
 
+function CreatePrescriptionDialog({onClose}) {
+
+    const [patient, setPatient] = useState("");
+    const [currentMed, setCurrentMed] = useState({ name: "", dosage: "", frequency: "", duration: "" });
+    const [notes, setNotes] = useState("");
+
+    return (
+        <DoctorDialog onClose={onClose}>
+            <div className="doctor-create-prescription">
+                <div className="doctor-create-prescription__card">
+
+                    <div className="doctor-create-prescription__header">
+                        <h1 className="doctor-create-prescription__title">Create Prescription</h1>
+                        <p className="doctor-create-prescription__subtitle">Create prescription for patient</p>
+                    </div>
+
+                    <div className="doctor-create-prescription__field">
+                        <span className="doctor-create-prescription__field-label">Patient</span>
+                        <div className="doctor-create-prescription__field-controls">
+                            <input
+                                type="text"
+                                className="doctor-create-prescription__input"
+                                placeholder="Input Patient's Name"
+                                value={patient}
+                                onChange={(e) => setPatient(e.target.value)}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="doctor-create-prescription__field">
+                        <span className="doctor-create-prescription__field-label">Medicine</span>
+                        <div className="doctor-create-prescription__field-controls">
+                            <div className="doctor-create-prescription__medicine-row">
+                                <input
+                                    type="text"
+                                    className="doctor-create-prescription__input"
+                                    placeholder="Medicine Name"
+                                    value={currentMed.name}
+                                    onChange={(e) => setCurrentMed((p) => ({ ...p, name: e.target.value }))}
+                                />
+                                <input
+                                    type="text"
+                                    className="doctor-create-prescription__input"
+                                    placeholder="Dosage"
+                                    value={currentMed.dosage}
+                                    onChange={(e) => setCurrentMed((p) => ({ ...p, dosage: e.target.value }))}
+                                />
+                                <input
+                                    type="text"
+                                    className="doctor-create-prescription__input doctor-create-prescription__input--frequency"
+                                    placeholder="Frequency"
+                                    value={currentMed.frequency}
+                                    onChange={(e) => setCurrentMed((p) => ({ ...p, frequency: e.target.value }))}
+                                />
+                                <input
+                                    type="text"
+                                    className="doctor-create-prescription__input doctor-create-prescription__input--duration"
+                                    placeholder="Duration"
+                                    value={currentMed.duration}
+                                    onChange={(e) => setCurrentMed((p) => ({ ...p, duration: e.target.value }))}
+                                />
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div className="doctor-create-prescription__notes-section">
+                        <p className="doctor-create-prescription__notes-label">Instructions / Notes</p>
+                        <textarea
+                            className="doctor-create-prescription__notes"
+                            placeholder="Write your instruction"
+                            value={notes}
+                            onChange={(e) => setNotes(e.target.value)}
+                        />
+                    </div>
+
+                    <button
+                        className="doctor-create-prescription__submit"
+                        onClick={() => {
+                            alert("Prescription created successfully!");
+                            onClose();
+                        }}>
+                        <span className="doctor-create-prescription__submit-icon">+</span>
+                        Create Prescription
+                    </button>
+
+                </div>
+            </div>
+        </DoctorDialog>
+    )
+}
+
 function ViewPrescriptionDialog({prescription, onClose}) {
     return (
         <DoctorDialog onClose={onClose}>
@@ -107,7 +199,9 @@ function DoctorPrescriptions() {
 
     const [searchTerm, setSearchTerm] = useState("");
 
-    // eslint-disable-next-line
+    const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+
+    // eslint-disable-next-line no-unused-vars
     const [prescriptions, setPrescriptions] = useState([
         {
             date: "2023-05-10",
@@ -211,7 +305,12 @@ function DoctorPrescriptions() {
 
             <div className="doctor-prescriptions__header">
                 <DoctorSearchBar onEdit={(e) => setSearchTerm(e.target.value.toLowerCase())}/>
-                <button className="doctor-prescriptions__add-btn">Add Prescription</button>
+                <button
+                    className="doctor-prescriptions__add-btn"
+                    onClick={() => setIsCreateDialogOpen(true)}
+                >
+                    + Add Prescription
+                </button>
             </div>
 
             <PrescriptionTable>
@@ -239,6 +338,10 @@ function DoctorPrescriptions() {
                     prescription={selectedPrescription}
                     onClose={() => setIsViewDialogOpen(false)}
                 />
+            }
+
+            {isCreateDialogOpen &&
+                <CreatePrescriptionDialog onClose={() => setIsCreateDialogOpen(false)}/>
             }
 
         </section>
