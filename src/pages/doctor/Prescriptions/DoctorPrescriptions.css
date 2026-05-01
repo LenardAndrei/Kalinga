@@ -209,3 +209,143 @@
     font-weight: 400;
     color: #cde8e8;
 }
+
+/* view prescription dialog styles */
+.doctor-view-prescriptions-dialog {
+    background-color: #ffffff;
+    padding: 1rem;
+    width: 100%;
+}
+
+.doctor-view-prescriptions-dialog__header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.doctor-view-prescriptions-dialog__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a2e35;
+    letter-spacing: -0.5px;
+}
+
+.doctor-view-prescriptions-dialog__subtitle {
+    font-size: 0.95rem;
+    color: #6b7f86;
+    margin-top: 6px;
+    font-weight: 400;
+}
+
+/* Patient Info Card */
+.doctor-view-prescriptions-dialog__patient-card {
+    background: linear-gradient(135deg, #1e4a56 0%, #2d7a72 100%);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    color: #ffffff;
+}
+
+.doctor-view-prescriptions-dialog__patient-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.2px;
+}
+
+.doctor-view-prescriptions-dialog__patient-field {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 8px;
+}
+
+.doctor-view-prescriptions-dialog__patient-field:last-child {
+    margin-bottom: 0;
+}
+
+.doctor-view-prescriptions-dialog__patient-label {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.75);
+    min-width: 100px;
+}
+
+.doctor-view-prescriptions-dialog__patient-value {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* Medicine Table */
+.doctor-view-prescriptions-dialog__table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.doctor-view-prescriptions-dialog__table-head {
+    background: linear-gradient(135deg, #1e4a56 0%, #2d7a72 100%);
+    border-radius: 10px 10px 0 0;
+}
+
+.doctor-view-prescriptions-dialog__table-head tr {
+    border-radius: 10px 10px 0 0;
+}
+
+.doctor-view-prescriptions-dialog__th {
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.doctor-view-prescriptions-dialog__th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.doctor-view-prescriptions-dialog__th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.doctor-view-prescriptions-dialog__table-body tr {
+    border-bottom: 1px solid #e8edf0;
+}
+
+.doctor-view-prescriptions-dialog__table-body tr:last-child {
+    border-bottom: none;
+}
+
+.doctor-view-prescriptions-dialog__td {
+    padding: 18px 20px;
+    font-size: 0.95rem;
+    color: #2c3e45;
+    font-weight: 400;
+}
+
+/* Footer Actions */
+.doctor-view-prescriptions-dialog__footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.doctor-view-prescriptions-dialog__edit-btn {
+    background: linear-gradient(135deg, #1e4a56 0%, #2d7a72 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 36px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.doctor-view-prescriptions-dialog__edit-btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+}
+
+.doctor-view-prescriptions-dialog__edit-btn:active {
+    transform: translateY(0);
+    opacity: 1;
+}
