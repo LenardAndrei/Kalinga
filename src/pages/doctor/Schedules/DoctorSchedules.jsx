@@ -2,6 +2,7 @@ import "./DoctorSchedules.css"
 import EditIcon from "../../../components/doctor/icons/EditIcon.jsx";
 import ScheduleCalendar from "../../../components/doctor/schedule-calendar/ScheduleCalendar.jsx";
 import {useState} from "react";
+import DoctorAvailabilityDialog from "../../../components/doctor/availability-dialog/DoctorAvailabilityDialog.jsx";
 
 
 function AppointmentSummary({appointments}) {
@@ -15,7 +16,7 @@ function AppointmentSummary({appointments}) {
                     <ul className="doctor-schedules__summary__list">
                         {appointments.map((appt, idx) => (
                             <>
-                                <li key={appt.id} className="doctor-schedules__summary__item">
+                                <li key={idx} className="doctor-schedules__summary__item">
                                     <span className="doctor-schedules__summary__item__time">{appt.time}</span>
                                     <span className="doctor-schedules__summary__item__name">{appt.label}</span>
                                 </li>
@@ -33,14 +34,12 @@ function AppointmentSummary({appointments}) {
     );
 }
 
-
-
-function WeeklyAvailability({schedule}) {
+function WeeklyAvailability({schedule, onEdit}) {
     return (
         <div className="doctor-schedules__weekly">
             <div className="doctor-schedules__weekly__header">
                 <h2 className="doctor-schedules__weekly__title">Weekly Availability</h2>
-                <button className="doctor-schedules__weekly__edit-btn" aria-label="Edit">
+                <button className="doctor-schedules__weekly__edit-btn" aria-label="Edit" onClick={onEdit}>
                     <EditIcon className="doctor-schedules__weekly__edit-icon" />
                 </button>
             </div>
@@ -57,6 +56,7 @@ function WeeklyAvailability({schedule}) {
 }
 
 
+
 function DoctorSchedules() {
 
     // eslint-disable-next-line no-unused-vars
@@ -68,22 +68,43 @@ function DoctorSchedules() {
 
     // eslint-disable-next-line no-unused-vars
     const [schedule, setSchedule] = useState([
-        { day: "Monday", start: "10:00 AM", end: "4:00 PM" },
-        { day: "Wednesday", start: "10:00 AM", end: "4:00 PM" },
-        { day: "Friday", start: "10:00 AM", end: "4:00 PM" },
+        {id: 1, day: "Monday", start: "10:00 AM", end: "4:00 PM" },
+        {id: 2, day: "Wednesday", start: "10:00 AM", end: "4:00 PM" },
+        {id: 3, day: "Friday", start: "10:00 AM", end: "4:00 PM" },
     ]);
+
+    const [isAvailabilityDialogOpen, setIsAvailabilityDialogOpen] = useState(false)
 
     return (
         <section className="doctor-schedules">
             <div className="doctor-schedules__header">
                 <h1 className="doctor-schedules__title">Doctor Schedule</h1>
-                <button className="doctor-schedules__add-schedule-btn">+ Add Schedule</button>
+                <button
+                    className="doctor-schedules__add-schedule-btn"
+                >
+                    + Add Schedule
+                </button>
             </div>
             <div className="doctor-schedules__body">
                 <ScheduleCalendar onDateChange={() => {}}/>
                 <AppointmentSummary appointments={appointments}/>
-                <WeeklyAvailability schedule={schedule}/>
+                <WeeklyAvailability
+                    schedule={schedule}
+                    onEdit={() => {
+                        setIsAvailabilityDialogOpen(true)
+                    }}
+                />
             </div>
+
+            {isAvailabilityDialogOpen &&
+                <DoctorAvailabilityDialog
+                    schedules={schedule}
+                    onClose={() => setIsAvailabilityDialogOpen(false)}
+                    onSave={() => setIsAvailabilityDialogOpen(false)}
+                    onChange={() => {}}
+                />
+            }
+
         </section>
     )
 }
