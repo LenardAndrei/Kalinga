@@ -535,7 +535,7 @@
     width: 100%;
     max-width: 360px;
     margin: 0 auto;
-    background: #1e4e4e;
+    background-image: linear-gradient(to right, #82ACAB, #032932);
     color: #fff;
     border: none;
     border-radius: 999px;
@@ -564,7 +564,7 @@
     text-align: center;
     border-radius: 0.5rem;
     background: rgba(255,255,255,0.9);
-    color: #1e4e4e;
+    color: #5a7574;
     display: flex;
     align-items: center;
     justify-content: center;
