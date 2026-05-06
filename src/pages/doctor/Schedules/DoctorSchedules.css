@@ -209,3 +209,135 @@
     font-size: 1.1rem;
     font-weight: 400;
 }
+
+.doctor-schedules-add-schedule__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto 1rem;
+}
+
+.doctor-schedules-add-schedule__header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.doctor-schedules-add-schedule__title {
+    color: #1e4e4e;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 10px 0;
+}
+
+.doctor-schedules-add-schedule__subtitle {
+    color: #1a2e35;
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.doctor-schedules-add-schedule__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 700px;
+}
+
+.doctor-schedules-add-schedule__form-group {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    gap: 30px;
+}
+
+.doctor-schedules-add-schedule__label {
+    color: #1a2e35;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-align: left;
+}
+
+.doctor-schedules-add-schedule__input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.doctor-schedules-add-schedule__input-wrapper--short {
+    max-width: 300px;
+}
+
+.doctor-schedules-add-schedule__input {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    border: none;
+    background-color: #dfdfdf;
+    font-size: 1.1rem;
+    color: #333;
+    outline: none;
+}
+
+.doctor-schedules-add-schedule__input::placeholder {
+    color: #8c8c8c;
+}
+
+.doctor-schedules-add-schedule__icon {
+    position: absolute;
+    right: 20px;
+    width: 22px;
+    height: 22px;
+    color: #8c8c8c;
+    pointer-events: none;
+}
+
+.doctor-schedules-add-schedule__submit-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-left: 50px;
+}
+
+.doctor-schedules-add-schedule__submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #82ACAB, #032932);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 9999px;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    gap: 1rem;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    min-height: 60px;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.doctor-schedules-add-schedule__submit-btn:hover {
+    opacity: 0.9;
+}
+
+.doctor-schedules-add-schedule__submit-icon-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+}
+
+.doctor-schedules-add-schedule__submit-icon {
+    color: #4b7374;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1;
+    background-color: white;
+}
