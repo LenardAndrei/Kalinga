@@ -1,4 +1,5 @@
 import sanIsidroImg from "../assets/san_isidro.png"
+import pharmacyImg from "../assets/pharmacy.jpg"
 
 const healthcareServices = [
   {
@@ -15,15 +16,15 @@ const healthcareServices = [
   },
   {
     id: 2,
-    name: "Brgy. San Isidro Health Center",
-    location: "Quezon",
-    services: "Immunization, Consultation",
+    name: "Kalinga Pharmacy",
+    location: "Batangas City",
+    services: "Immunization, Pharmaceutical",
     time: "9:00 am - 5:00 pm",
     status: "Closing",
-    type: "Clinic",
+    type: "Pharmacy",
     cost: "Paid",
     rating: 3,
-    image: sanIsidroImg,
+    image: pharmacyImg,
   },
   {
     id: 3,

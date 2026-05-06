@@ -58,7 +58,12 @@
   display: grid;
   gap: 16px;
   margin-top: 4px;
-  padding-left: 32px;
+  padding-left: 33px;
+}
+
+.social-icon-img {
+  width: 24px;
+  height: 24px;
 }
 
 .info-social-link {

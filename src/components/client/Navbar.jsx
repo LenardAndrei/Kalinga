@@ -1,6 +1,7 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import coloredLogo from "../../assets/colored-logo.svg";
+import whiteLogo from "../../assets/white-logo.svg";
 import profile from "../../assets/profile.svg";
 
 function Navbar() {
@@ -8,9 +9,9 @@ function Navbar() {
   const navigate = useNavigate()
   const isTransparent = location.pathname === "/client/home" || location.pathname.includes("/client/healthcare/")
   const [servicesOpen, setServicesOpen] = useState(false)
-  const [profileOpen, setProfileOpen] = useState(false)   // ← add this
+  const [profileOpen, setProfileOpen] = useState(false)   
   const dropdownRef = useRef(null)
-  const profileRef = useRef(null)                          // ← add this
+  const profileRef = useRef(null)                         
 
   const isServicesActive =
     location.pathname.startsWith("/client/services") ||
@@ -77,7 +78,7 @@ function Navbar() {
     logoText: {
       fontSize: "2.0rem",
       fontWeight: "800",
-      color: "#0B4B54",
+      color: location.pathname === "/client/home" ? "#D2E4E8" : "#0B4B54",
     },
     navLinks: {
       background: "#82ACAB",
@@ -117,7 +118,7 @@ function Navbar() {
     <nav style={styles.nav}>
       <div style={styles.brand}>
         <img
-          src={coloredLogo}
+          src={location.pathname === "/client/home" ? whiteLogo : coloredLogo}  
           alt="Kalinga Logo"
           style={{ width: "40px", marginRight: "10px" }}
         />
@@ -224,7 +225,7 @@ function Navbar() {
             <button
               onClick={() => {
                 setProfileOpen(false)
-                navigate("/login")   // change to your login route
+                navigate("/login")   
               }}
               style={{
                 width: "100%",

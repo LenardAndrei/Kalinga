@@ -14,9 +14,6 @@ import Announcement from "./pages/client/Announcement"
 import Login from "./pages/auth/Login"
 import SelectRole from "./pages/auth/SelectRole"
 
-import UserStep1 from "./components/auth/user/UserStep1"
-import UserStep2 from "./components/auth/user/UserStep2"
-
 function App() {
   return (
     <BrowserRouter>
@@ -30,13 +27,6 @@ function App() {
 
           {/* default page */}
           <Route index element={<SelectRole />} />
-
-          {/* ROLE REGISTRATION STEPS */}
-          <Route path=":role">
-            <Route index element={<Navigate to="step1" replace />} />
-            <Route path="step1" element={<UserStep1 />} />
-            <Route path="step2" element={<UserStep2 />} />
-          </Route>
 
         </Route>
 

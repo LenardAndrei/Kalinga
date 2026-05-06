@@ -1,4 +1,6 @@
 import "./InfoSection.css"
+import facebookIcon from "../../../../assets/facebook.svg"
+import instagramIcon from "../../../../assets/instagram.svg"
 
 function InfoSection({ facility }) {
   return (
@@ -24,19 +26,12 @@ function InfoSection({ facility }) {
             </svg>
             <p className="info-text">{facility.email}</p>
           </div>
-
           <div className="info-social-row">
             <a href={facility.facebook} className="info-social-link">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-              </svg>
+              <img src={facebookIcon} alt="Facebook" className="social-icon-img" />
             </a>
             <a href={facility.instagram} className="info-social-link">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <circle cx="12" cy="12" r="4"/>
-                <circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/>
-              </svg>
+              <img src={instagramIcon} alt="Instagram" className="social-icon-img" />
             </a>
           </div>
         </div>

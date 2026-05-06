@@ -3,34 +3,32 @@
   width: 100%;
   height: 95vh;
   background-position: center;
-  background-size: cover;
+  background-size: 105% 105%;
   background-repeat: no-repeat;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
 }
 
-/* ── image blur — pseudo element so blur doesn't affect content ── */
 .hero-wrapper::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: inherit;       /* inherits the backgroundImage from parent */
+  background-image: inherit;      
   background-position: center;
-  background-size: cover;
+  background-size: 105% 105%;
   background-repeat: no-repeat;
-  filter: blur(1px) brightness(1);   /* ← blur here, not on the container */
-  transform: scale(1);              /* ← prevents white blur edges */
+  transform: scale(1);            
   z-index: 0;
 }
 
 .hero-back-btn {
   position: absolute;
-  top: 84px;
+  top: 90px;
   left: 24px;
   z-index: 10;
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: none;
   background: rgba(15, 23, 42, 0.45);

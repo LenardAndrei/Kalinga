@@ -1,4 +1,4 @@
-import logo from "../../assets/LOGO.svg"
+import logo from "../../assets/colored-logo.svg"
 import facebookIcon from "../../assets/facebook.svg"
 import instagramIcon from "../../assets/instagram.svg"
 import emailIcon from "../../assets/email.svg"

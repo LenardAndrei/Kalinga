@@ -1,4 +1,15 @@
 import sanIsidroImg from "../assets/san_isidro2.png"
+import vaccineImg from "../assets/vaccines.png"
+import consultationImg from "../assets/consultation.png"
+import familyPlanningImg from "../assets/family-planning.png"
+import firstAidImg from "../assets/first-aid.jpg"
+import dentalImg from "../assets/dental-service.jpg"
+import spongebobImg from "../assets/spongebob.png"
+import patrickImg from "../assets/patrick-star.png"
+import sandyImg from "../assets/sandy.png"
+import squidwardImg from "../assets/squidward.png"
+import krabsImg from "../assets/mrkrabs.png"
+import medicineImg from "../assets/medicine.png"
 
 export const facilityData = {
   name: "Brgy. San Isidro Health Center",
@@ -18,19 +29,19 @@ export const facilityData = {
 }
 
 export const servicesData = [
-  { id: 1, name: "Immunization",    tags: ["Anti-flu", "MMR", "..."],          image: null },
-  { id: 2, name: "Consultation",    tags: ["General Checkup", "Fever + Cough"], image: sanIsidroImg },
-  { id: 3, name: "Family Planning", tags: ["Birth Control", "Counseling"],      image: sanIsidroImg },
-  { id: 4, name: "Basic First Aid", tags: ["Wound Care", "Minor Burns"],        image: null },
-  { id: 5, name: "Dental Service",  tags: ["Wound Care", "Minor Burns"],        image: null },
+  { id: 1, name: "Immunization",    tags: ["Anti-flu", "MMR", "..."],          image: vaccineImg },
+  { id: 2, name: "Consultation",    tags: ["General Checkup", "Fever + Cough"], image: consultationImg },
+  { id: 3, name: "Family Planning", tags: ["Birth Control", "Counseling"],      image: familyPlanningImg },
+  { id: 4, name: "Basic First Aid", tags: ["Wound Care", "Minor Burns"],        image: firstAidImg },
+  { id: 5, name: "Dental Service",  tags: ["Wound Care", "Minor Burns"],        image: dentalImg },
 ]
 
 export const officersData = [
-  { id: 1, name: "Spongebob Squarpants", role: "General Physician",   image: sanIsidroImg },
-  { id: 2, name: "Patrick Star",         role: "Dentist",             image: sanIsidroImg },
-  { id: 3, name: "Sandy Cheeks",         role: "Public Health Nurse", image: sanIsidroImg },
-  { id: 4, name: "Squidward Tentacles",  role: "Clinic Receptionist", image: sanIsidroImg },
-  { id: 5, name: "Mr. Krabs",            role: "Clinic Administrator",image: sanIsidroImg },
+  { id: 1, name: "Spongebob Squarpants", role: "General Physician",   image: spongebobImg },
+  { id: 2, name: "Patrick Star",         role: "Dentist",             image: patrickImg },
+  { id: 3, name: "Sandy Cheeks",         role: "Public Health Nurse", image: sandyImg },
+  { id: 4, name: "Squidward Tentacles",  role: "Clinic Receptionist", image: squidwardImg },
+  { id: 5, name: "Mr. Krabs",            role: "Clinic Administrator",image: krabsImg },
 ]
 
 export const emergencyData = {
@@ -80,11 +91,11 @@ export const eventsData = {
 }
 
 export const medicinesData = [
-  { id: 1, name: "Amoxicillin",  available: true,  image: sanIsidroImg },
-  { id: 2, name: "Paracetamol",  available: true,  image: sanIsidroImg },
-  { id: 3, name: "Vitamin C",    available: false, image: sanIsidroImg },
-  { id: 4, name: "Ibuprofen",    available: true,  image: sanIsidroImg },
-  { id: 5, name: "ORS",          available: false, image: sanIsidroImg },
+  { id: 1, name: "Amoxicillin",  available: true,  image: medicineImg },
+  { id: 2, name: "Paracetamol",  available: true,  image: medicineImg },
+  { id: 3, name: "Vitamin C",    available: false, image: medicineImg },
+  { id: 4, name: "Ibuprofen",    available: true,  image: medicineImg },
+  { id: 5, name: "ORS",          available: false, image: medicineImg },
 ]
 
 export const ratingsData = {

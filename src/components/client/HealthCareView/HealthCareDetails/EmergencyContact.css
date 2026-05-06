@@ -8,17 +8,16 @@
 }
 
 .emergency-title {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 900;
   margin: 0 0 4px;
 }
 
 .emergency-subtitle {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 700;
   color: #fff;
   margin: 0 0 24px;
-  opacity: 0.8;
 }
 
 .emergency-grid {
@@ -34,26 +33,25 @@
 }
 
 .emergency-icon {
-  width: 46px;
-  height: 46px;
+  width: 50px;
+  height: 50px;
   flex-shrink: 0;
 }
 
 .emergency-label {
-  font-size: 17px;
-  font-weight: 800;
+  font-size: 22px;
+  font-weight: 600;
   margin: 0 0 4px;
 }
 
 .emergency-value {
-  font-size: 14px;
+  font-size: 22px;
   margin: 0;
   opacity: 0.9;
 }
 
 .emergency-distance {
-  font-size: 13px;
+  font-size: 20px;
   font-style: italic;
   margin: 2px 0 0;
-  opacity: 0.75;
 }
