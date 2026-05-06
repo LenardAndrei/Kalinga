@@ -14,6 +14,10 @@ import Announcement from "./pages/client/Announcement"
 import Login from "./pages/auth/Login"
 import SelectRole from "./pages/auth/SelectRole"
 
+import AdminLayout from "./layouts/admin/AdminLayout"
+import AdminDashboard from "./pages/admin/AdminDashboard"
+import Applications from "./pages/admin/Applications"
+
 function App() {
   return (
     <BrowserRouter>
@@ -39,6 +43,16 @@ function App() {
           <Route path="specialists" element={<Specialists />} />
           <Route path="specialists/:id" element={<SpecialistsPage />} />
           <Route path="announcement" element={<Announcement />} />
+        </Route>
+
+        {/* ADMIN */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="dashboard"    element={<AdminDashboard />} />
+          <Route path="applications" element={<Applications />} />
+          <Route path="doctors"      element={<div>Doctors</div>} />
+          <Route path="healthcare"   element={<div>Healthcare</div>} />
+          <Route path="patients"     element={<div>Patients</div>} />
+          <Route path="reviews"      element={<div>Reviews</div>} />
         </Route>
 
       </Routes>

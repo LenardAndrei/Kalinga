@@ -1,0 +1,110 @@
+.app-page {
+  font-family: 'Poppins', sans-serif;
+}
+
+.app-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #032932;
+  margin: 0 0 28px;
+}
+
+/* ── white card ── */
+.app-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+/* ── tabs ── */
+.app-tabs {
+  display: flex;
+  border-bottom: 2px solid #f0f0f0;
+  padding: 5px 24px;
+}
+
+.app-tab {
+  background: none;
+  border: none;
+  padding: 18px 20px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  color: #888;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.app-tab:hover { color: #2A787C; }
+
+.app-tab.active {
+  color: #2A787C;
+  border-bottom-color: #2A787C;
+}
+
+/* ── tab content ── */
+.app-tab-content { padding: 0; }
+
+/* ── table ── */
+.app-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Poppins', sans-serif;
+}
+
+.app-table thead tr { background: #2A787C; }
+
+.app-table thead th {
+  padding: 14px 24px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.app-table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+}
+
+.app-table tbody tr:last-child { border-bottom: none; }
+.app-table tbody tr:hover { background: #f8fafa; }
+
+.app-table tbody td {
+  padding: 16px 24px;
+  font-size: 14px;
+  color: #444;
+  vertical-align: middle;
+}
+
+.app-name     { font-weight: 700 !important; color: #032932 !important; }
+.app-specialty { color: #888 !important; }
+
+/* ── view button ── */
+.app-view-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  color: #032932;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.app-view-btn:hover { color: #2A787C; }
+
+/* ── loading / coming soon ── */
+.app-loading,
+.app-coming-soon {
+  padding: 48px;
+  text-align: center;
+  color: #999;
+  font-size: 15px;
+}

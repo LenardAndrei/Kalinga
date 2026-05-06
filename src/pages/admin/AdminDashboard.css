@@ -1,0 +1,115 @@
+.dash-page {
+  font-family: 'Poppins', sans-serif;
+}
+
+.dash-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #032932;
+  margin: 0 0 28px;
+}
+
+/* ── summary cards ── */
+.dash-cards-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.dash-card {
+  border-radius: 20px;
+  padding: 24px 28px;
+  color: #fff;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dash-card-label {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.dash-card-value {
+  font-size: 52px;
+  font-weight: 900;
+  margin: 0;
+  line-height: 1;
+}
+
+/* ── activity card ── */
+.dash-activity-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.dash-activity-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #032932;
+  margin: 0 0 20px;
+}
+
+.dash-activity-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-activity-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dash-activity-item:last-child { border-bottom: none; }
+
+.dash-activity-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.dash-activity-info { flex: 1; }
+
+.dash-activity-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #032932;
+  margin: 0 0 2px;
+}
+
+.dash-activity-sub {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+}
+
+.dash-activity-time {
+  font-size: 13px;
+  color: #aaa;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+/* ── responsive ── */
+@media (max-width: 900px) {
+  .dash-cards-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 500px) {
+  .dash-cards-row { grid-template-columns: 1fr; }
+}
