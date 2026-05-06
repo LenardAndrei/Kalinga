@@ -198,6 +198,89 @@
   padding: 0 4px;
 }
 
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .sp-page {
+    padding: 20px 10px;
+  }
+
+  .sp-title {
+    font-size: 1.5rem;
+  }
+
+  .sp-search-box {
+    width: 100%;
+    padding: 8px 15px;
+  }
+
+  .sp-search-input {
+    font-size: 14px;
+  }
+
+  .sp-categories {
+    gap: 8px;
+  }
+
+  .sp-cat-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .sp-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .sp-card {
+    width: 100%;
+    height: auto;
+  }
+
+  .sp-card-img-wrapper {
+    height: 200px;
+  }
+
+  .sp-card-body {
+    padding: 10px;
+  }
+
+  .sp-card-name,
+  .sp-card-specialist {
+    font-size: 14px;
+  }
+
+  .sp-pagination {
+    gap: 4px;
+  }
+
+  .sp-page-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .sp-page {
+    padding: 30px 20px;
+  }
+
+  .sp-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .sp-card {
+    width: 100%;
+  }
+
+  .sp-cat-btn {
+    padding: 7px 15px;
+    font-size: 14px;
+  }
+}
+
 /* ── loading ── */
 .sp-loading {
   text-align: center;

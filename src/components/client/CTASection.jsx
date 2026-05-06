@@ -6,12 +6,12 @@ function CTASection() {
   const styles = {
     section: {
       background: "#032932",
-      padding: "40px 40px",
+      padding: "clamp(20px, 10vw, 40px) clamp(20px, 10vw, 40px)",
       textAlign: "center",
       fontFamily: "'Poppins', sans-serif",
     },
     title: {
-      fontSize: "36px",
+      fontSize: "clamp(24px, 5vw, 36px)",
       fontWeight: "800",
       color: "#fff",
       margin: "0 0 16px 0",
@@ -23,21 +23,16 @@ function CTASection() {
       lineHeight: 1.6,
     },
     btnRow: {
-      display: "flex",
-      justifyContent: "center",
-      gap: "20px",
-      flexWrap: "wrap",
+      flexDirection: window.innerWidth < 768 ? "column" : "row",
     },
     btn: {
       background: "#fff",
       color: "#032932",
       border: "none",
-      padding: "12px 40px",
+      padding: "clamp(20px, 5vw, 40px)",
       borderRadius: "50px",
-      fontSize: "15px",
-      fontWeight: "800",
-      fontFamily: "'Poppins', sans-serif",
-      cursor: "pointer",
+      fontSize: "clamp(12px, 2vw, 15px)",
+      fontWeight: "clamp(10px, 3vw, 12px)",
       whiteSpace: "nowrap",
     },
   };

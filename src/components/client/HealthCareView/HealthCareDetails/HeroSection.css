@@ -116,3 +116,22 @@
 
   .hero-title { font-size: clamp(1.8rem, 7vw, 2.5rem); white-space: normal; }
 }
+
+/* Additional mobile responsiveness */
+@media (max-width: 480px) {
+  .hero-wrapper {
+    min-height: 350px;
+  }
+
+  .hero-content {
+    padding: 0 15px 20px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+}

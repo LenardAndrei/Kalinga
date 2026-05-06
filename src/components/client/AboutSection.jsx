@@ -5,13 +5,13 @@ function AboutSection() {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: "90px 40px",
+      padding: "clamp(50px, 15vw, 90px) clamp(20px, 10vw, 40px)",
       background: "#fff",
       fontFamily: "'Poppins', sans-serif",
     },
 
     title: {
-      fontSize: "40px",
+      fontSize: "clamp(24px, 5vw, 40px)",
       fontWeight: "800",
       color: "#1a1a1a",
       marginBottom: "32px",
@@ -20,7 +20,7 @@ function AboutSection() {
     wrapper: {
       position: "relative",
       width: "100%",
-      maxWidth: "1000px",
+      maxWidth: "min(1000px, 90vw)",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -29,10 +29,10 @@ function AboutSection() {
     topCard: {
       position: "relative",
       zIndex: 2,
-      width: "75%",
+      width: "min(75%, 90vw)",
       background: "#7FA8A7",
       borderRadius: "20px",
-      padding: "32px 48px",
+      padding: "clamp(16px, 5vw, 32px) clamp(24px, 10vw, 48px)",
       textAlign: "center",
       marginBottom: "-40px",
     },
@@ -58,14 +58,15 @@ function AboutSection() {
       width: "100%",
       background: "#D2E4E8",
       borderRadius: "20px",
-      padding: "65px 0px 36px",
+      padding: "clamp(40px, 10vw, 65px) 0px clamp(20px, 5vw, 36px)",
       display: "flex",
+      flexDirection: window.innerWidth < 768 ? "column" : "row",
       alignItems: "flex-start",
     },
 
     section: {
       flex: 1,
-      padding: "0 40px",
+      padding: "clamp(20px, 5vw, 40px) 40px",
       textAlign: "center",
     },
 
@@ -85,10 +86,11 @@ function AboutSection() {
     },
 
     divider: {
-      width: "1px",
+      width: window.innerWidth < 768 ? "80%" : "1px",
+      height: window.innerWidth < 768 ? "1px" : "auto",
       alignSelf: "stretch",
       background: "#032932",
-      margin: "8px 0",
+      margin: window.innerWidth < 768 ? "20px 0" : "8px 0",
     }
   }
 

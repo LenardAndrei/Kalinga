@@ -1,0 +1,234 @@
+.nav {
+  padding: 15px clamp(15px, 5vw, 30px);
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  font-family: sans-serif;
+  border-bottom: none;
+}
+
+.nav.opaque {
+  background: #fff;
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.logoText {
+  font-size: 2.0rem;
+  font-weight: 800;
+  color: #D2E4E8;
+}
+
+.logoText.opaque {
+  color: #0B4B54;
+}
+
+.navLinks {
+  background: #82ACAB;
+  border-radius: 50px;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #1a3a3a;
+  font-weight: 900;
+  padding: 8px 34px;
+  border-radius: 50px;
+  background-color: transparent;
+  transition: background 0.3s;
+  font-size: 20px;
+}
+
+.navLink.active {
+  background-color: #2A787C;
+}
+
+.servicesDropdown {
+  position: relative;
+}
+
+.servicesBtn {
+  text-decoration: none;
+  color: #1a3a3a;
+  font-weight: 900;
+  padding: 8px 34px;
+  border-radius: 50px;
+  background-color: transparent;
+  transition: background 0.3s;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.servicesBtn.active {
+  background-color: #2A787C;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 20;
+  min-width: 200px;
+  padding: 8px 0;
+}
+
+.dropdownItem {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.dropdownItem:hover {
+  background: #f5f5f5;
+}
+
+.profileDropdown {
+  position: relative;
+  margin-left: 10px;
+}
+
+.profileBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.profileImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.profileMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 20;
+  min-width: 150px;
+  padding: 8px 0;
+}
+
+.profileItem {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: background 0.2s;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.profileItem:hover {
+  background: #f5f5f5;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .nav {
+    padding: 8px 12px;
+  }
+
+  .logoText {
+    font-size: 1.2rem;
+  }
+
+  .navLinks {
+    display: none; /* Hide nav links on mobile, can add hamburger later */
+  }
+
+  .navLink,
+  .servicesBtn {
+    padding: 5px 16px;
+    font-size: 14px;
+  }
+
+  .dropdownMenu,
+  .profileMenu {
+    min-width: 160px;
+    right: 0;
+    left: auto;
+  }
+
+  .profileImg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .nav {
+    padding: 6px 10px;
+  }
+
+  .logoText {
+    font-size: 1.0rem;
+  }
+
+  .navLink,
+  .servicesBtn {
+    padding: 4px 12px;
+    font-size: 12px;
+  }
+
+  .dropdownMenu,
+  .profileMenu {
+    min-width: 140px;
+  }
+
+  .profileImg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .nav {
+    padding: 12px clamp(20px, 4vw, 25px);
+  }
+
+  .logoText {
+    font-size: 1.8rem;
+  }
+
+  .navLink,
+  .servicesBtn {
+    padding: 7px 28px;
+    font-size: 18px;
+  }
+}

@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import coloredLogo from "../../assets/colored-logo.svg";
 import whiteLogo from "../../assets/white-logo.svg";
 import profile from "../../assets/profile.svg";
+import "./Navbar.css";
 
 function Navbar() {
   const location = useLocation()
@@ -60,7 +61,7 @@ function Navbar() {
 
   const styles = {
     nav: {
-      padding: "15px 30px",
+      padding: "15px clamp(15px, 5vw, 30px)",
       background: isTransparent ? "transparent" : "#fff",
       position: isTransparent ? "absolute" : "relative",
       top: 0, left: 0, right: 0,
@@ -76,7 +77,7 @@ function Navbar() {
       marginRight: "auto",
     },
     logoText: {
-      fontSize: "2.0rem",
+      fontSize: "clamp(1.5rem, 4vw, 2.0rem)",
       fontWeight: "800",
       color: location.pathname === "/client/home" ? "#D2E4E8" : "#0B4B54",
     },
@@ -93,18 +94,18 @@ function Navbar() {
     textDecoration: "none",
     color: "#1a3a3a",
     fontWeight: "900",
-    padding: "8px 34px",
+    padding: "8px clamp(20px, 3vw, 34px)",
     borderRadius: "50px",
     backgroundColor: isActive ? "#2A787C" : "transparent",
     transition: "background 0.3s",
-    fontSize: "20px",
+    fontSize: "clamp(16px, 2vw, 20px)",
     cursor: "pointer",
   })
 
   const dropdownItemStyle = {
     padding: "14px 24px",
     fontFamily: "'Poppins', sans-serif",
-    fontSize: "15px",
+    fontSize: "clamp(14px, 1.5vw, 15px)",
     fontWeight: "700",
     color: "#1a3a3a",
     cursor: "pointer",
@@ -155,7 +156,7 @@ function Navbar() {
               flexDirection: "column",
               gap: "4px",
               zIndex: 100,
-              minWidth: "260px",
+              minWidth: "clamp(200px, 50vw, 260px)",
             }}>
               <div
                 style={dropdownItemStyle}

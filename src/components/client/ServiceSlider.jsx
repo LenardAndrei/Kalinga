@@ -47,7 +47,7 @@ function ServiceSlider() {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: "60px 0px",
+      padding: "clamp(30px, 10vw, 60px) 0px",
       background: "#fff",
     }}>
 
@@ -60,8 +60,8 @@ function ServiceSlider() {
       }}>
         {cards.map((card) => {
           const isCenter = card.offset === 0
-          const cardW = 230 + card.depth * 130   
-          const cardH = 320 + card.depth * 160  
+          const cardW = Math.min(230, window.innerWidth * 0.2) + card.depth * 130   
+          const cardH = Math.min(320, window.innerWidth * 0.25) + card.depth * 160  
 
           return (
             <div

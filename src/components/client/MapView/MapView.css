@@ -393,3 +393,94 @@
   width: 100%;
   height: calc(100vh - 70px);
 }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .map-page {
+    padding: 20px 10px;
+  }
+
+  .map-title {
+    font-size: 1.5rem;
+  }
+
+  .map-subtitle {
+    font-size: 14px;
+  }
+
+  .map-container {
+    height: 400px;
+  }
+
+  .search-wrapper {
+    left: 10px;
+    top: 10px;
+  }
+
+  .search-form {
+    width: 250px;
+    padding: 8px 15px;
+  }
+
+  .search-input {
+    font-size: 12px;
+  }
+
+  .filter-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .saved-list {
+    width: 200px;
+  }
+
+  .saved-item {
+    padding: 8px 12px;
+  }
+
+  .saved-item-name {
+    font-size: 12px;
+  }
+
+  .saved-item-coords {
+    font-size: 10px;
+  }
+
+  .add-modal {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .add-modal-input {
+    font-size: 12px;
+  }
+
+  .add-modal-btns button {
+    font-size: 12px;
+  }
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .map-page {
+    padding: 30px 20px;
+  }
+
+  .map-container {
+    height: 500px;
+  }
+
+  .search-form {
+    width: 280px;
+  }
+
+  .saved-list {
+    width: 250px;
+  }
+
+  .add-modal {
+    width: 80%;
+    max-width: 350px;
+  }
+}
