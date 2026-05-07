@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react"
 import { getDoctorApplications } from "../../../services/applicationsData"
 import StatusBadge from "./StatusBadge"
+import ReviewModal from "./ReviewModal"
 
 function DoctorApplicationsTable() {
   const [applications, setApplications] = useState([])
   const [loading, setLoading] = useState(true)
+  const [selectedApplication, setSelectedApplication] = useState(null)
 
   useEffect(() => {
     getDoctorApplications().then((data) => {
@@ -13,10 +15,38 @@ function DoctorApplicationsTable() {
     })
   }, [])
 
+  const openApplication = (app) => {
+    setSelectedApplication(app)
+  }
+
+  const closeApplication = () => {
+    setSelectedApplication(null)
+  }
+
+  const updateApplicationStatus = (id, status) => {
+    setApplications((prev) =>
+      prev.map((app) => (app.id === id ? { ...app, status } : app))
+    )
+    setSelectedApplication((prev) =>
+      prev && prev.id === id ? { ...prev, status } : prev
+    )
+  }
+
+  const handleAccept = (id) => {
+    updateApplicationStatus(id, "Accepted")
+    closeApplication()
+  }
+
+  const handleDecline = (id) => {
+    updateApplicationStatus(id, "Decline")
+    closeApplication()
+  }
+
   if (loading) return <div className="app-loading">Loading...</div>
 
   return (
-    <table className="app-table">
+    <>
+      <table className="app-table">
       <thead>
         <tr>
           <th>Name</th>
@@ -36,7 +66,7 @@ function DoctorApplicationsTable() {
             <td>
               <button
                 className="app-view-btn"
-                onClick={() => console.log("View:", app.id)}
+                onClick={() => openApplication(app)}
               >
                 View Details
               </button>
@@ -45,6 +75,15 @@ function DoctorApplicationsTable() {
         ))}
       </tbody>
     </table>
+
+    <ReviewModal
+      application={selectedApplication}
+      type="doctor"
+      onClose={closeApplication}
+      onAccept={handleAccept}
+      onDecline={handleDecline}
+    />
+  </>
   )
 }
 

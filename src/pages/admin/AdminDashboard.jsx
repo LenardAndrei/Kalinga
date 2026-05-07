@@ -1,16 +1,20 @@
 import "./AdminDashboard.css"
+import HealthcenterImg from "../../assets/healthcenter.png"
+import DoctorImg from "../../assets/doctorIcon.png" 
+import FailedApplicationImg from "../../assets/failed-application.png"
+import Star from "../../assets/star.png"
 
 const summaryCards = [
-  { label: "Total Patients",  value: 167, color: "#1a4a52" },
-  { label: "Active Doctors",  value: 67,  color: "#1e5c5a" },
-  { label: "Healthcare",      value: 31,  color: "#236e68" },
-  { label: "Appointments",    value: 18,  color: "#2a7c72" },
+  { label: "Total Patients",  value: 167, color: "linear-gradient(to top, #2A787C, #032932)" },
+  { label: "Active Doctors",  value: 67,  color: "linear-gradient(to top, #2A787C, #032932)" },
+  { label: "Healthcare",      value: 31,  color: "linear-gradient(to top, #2A787C, #032932)" },
+  { label: "Appointments",    value: 18,  color: "linear-gradient(to top, #2A787C, #032932)" },
 ]
 
 const activities = [
   {
     id: 1,
-    icon: "🏥",
+    image: HealthcenterImg,
     iconBg: "#e6f4f4",
     title: "New Healthcare Provider Added",
     subtitle: "Kalinga Pharmacy",
@@ -18,7 +22,7 @@ const activities = [
   },
   {
     id: 2,
-    icon: "🏥",
+    image: HealthcenterImg,
     iconBg: "#e6f4f4",
     title: "New Healthcare Provider Added",
     subtitle: "Barangay San Isidro Health Center",
@@ -26,7 +30,7 @@ const activities = [
   },
   {
     id: 3,
-    icon: "👩‍⚕️",
+    image: DoctorImg,
     iconBg: "#e6f4f4",
     title: "Dr. Ada Loveyou completed 3 appointments",
     subtitle: "OB-GYN",
@@ -34,7 +38,7 @@ const activities = [
   },
   {
     id: 4,
-    icon: "❌",
+    image: FailedApplicationImg,
     iconBg: "#fee2e2",
     title: "Dr. Luka Doncic application rejected",
     subtitle: "Pediatrician",
@@ -42,7 +46,7 @@ const activities = [
   },
   {
     id: 5,
-    icon: "⭐",
+    image: Star,
     iconBg: "#fef9c3",
     title: "New 5-star review received",
     subtitle: "Dr. Lenard Panganiban - Dentist",
@@ -80,7 +84,7 @@ function AdminDashboard() {
                 className="dash-activity-icon"
                 style={{ background: item.iconBg }}
               >
-                {item.icon}
+                <img src={item.image} alt={item.title} />
               </div>
               <div className="dash-activity-info">
                 <p className="dash-activity-name">{item.title}</p>
