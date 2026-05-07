@@ -71,9 +71,6 @@ function DoctorSidebar() {
                 <DoctorSidebarLink to="/doctors/prescriptions" Icon={AnnouncementIcon}>
                     Prescriptions
                 </DoctorSidebarLink>
-                <DoctorSidebarLink to="/doctors/records" Icon={ReviewIcon}>
-                    Medical Records
-                </DoctorSidebarLink>
             </div>
 
             <SidebarFooter name="Brgy. San Isidro Medical Center"/>
