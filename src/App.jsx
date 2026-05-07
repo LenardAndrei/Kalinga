@@ -17,6 +17,8 @@ import SelectRole from "./pages/auth/SelectRole"
 import AdminLayout from "./layouts/admin/AdminLayout"
 import AdminDashboard from "./pages/admin/AdminDashboard"
 import Applications from "./pages/admin/Applications"
+import Doctors from "./pages/admin/Doctors"
+import AdminHealthcare from "./pages/admin/Healthcare"
 
 function App() {
   return (
@@ -49,8 +51,8 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="dashboard"    element={<AdminDashboard />} />
           <Route path="applications" element={<Applications />} />
-          <Route path="doctors"      element={<div>Doctors</div>} />
-          <Route path="healthcare"   element={<div>Healthcare</div>} />
+          <Route path="doctors"      element={<Doctors />} />
+          <Route path="healthcare"   element={<AdminHealthcare />} />
           <Route path="patients"     element={<div>Patients</div>} />
           <Route path="reviews"      element={<div>Reviews</div>} />
         </Route>

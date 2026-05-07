@@ -75,7 +75,7 @@ const navItems = [
   },
 ]
 
-function AdminSidebar() {
+function AdminSidebar({ isOpen, onClose }) {
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -83,12 +83,15 @@ function AdminSidebar() {
   }
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? "open" : ""}`}>
 
       {/* brand */}
       <div className="sidebar-brand">
         <img src={logo} alt="Kalinga" className="sidebar-logo" />
         <span className="sidebar-brand-name">KALINGA</span>
+        <button className="sidebar-close-btn" type="button" onClick={onClose} aria-label="Close menu">
+          ×
+        </button>
       </div>
 
       {/* nav links */}

@@ -116,6 +116,18 @@
   .dash-cards-row { grid-template-columns: repeat(2, 1fr); }
 }
 
+@media (max-width: 720px) {
+  .dash-activity-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .dash-activity-time {
+    white-space: normal;
+  }
+}
+
 @media (max-width: 500px) {
   .dash-cards-row { grid-template-columns: 1fr; }
 }

@@ -313,3 +313,40 @@
   color: #032932;
   border-color: rgba(3, 41, 50, 0.12);
 }
+
+@media (max-width: 980px) {
+  .app-tabs {
+    flex-wrap: wrap;
+    padding: 5px 12px;
+  }
+
+  .app-tab {
+    flex: 1 1 45%;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-tab {
+    flex: 1 1 100%;
+  }
+
+  .app-table {
+    display: block;
+    overflow-x: auto;
+    min-width: 100%;
+  }
+
+  .app-table thead,
+  .app-table tbody,
+  .app-table tr {
+    display: table;
+    width: 100%;
+  }
+
+  .app-table th,
+  .app-table td {
+    padding: 12px 14px;
+  }
+}
