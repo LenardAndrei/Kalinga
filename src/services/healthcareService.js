@@ -1,11 +1,12 @@
 import sanIsidroImg from "../assets/san_isidro.png"
 import pharmacyImg from "../assets/pharmacy.jpg"
+import klinikImg from "../assets/klinik.jpg"
 
 const healthcareServices = [
   {
     id: 1,
     name: "Brgy. San Isidro Health Center",
-    location: "Mauban",
+    location: "Batangas",
     services: "General Consultation, Immunization, ...",
     time: "",
     status: "Open",
@@ -28,15 +29,15 @@ const healthcareServices = [
   },
   {
     id: 3,
-    name: "Brgy. San Isidro Health Center",
-    location: "Mauban",
-    services: "Immunization, Consultation",
+    name: "Klinik Clinic",
+    location: "Batangas",
+    services: "Immunization, Consultation, Child Care, BP Monitoring",
     time: "",
     status: "Open",
-    type: "Hospital",
+    type: "Clinic",
     cost: "Free",
     rating: 5,
-    image: sanIsidroImg,
+    image: klinikImg,
   },
 ]
 
