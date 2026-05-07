@@ -38,18 +38,20 @@ export default function DoctorProfile() {
     return (
         <section className="doctor-profile">
             <h1 className="doctor-profile__title">Doctor Profile</h1>
-            <DoctorInfoCard title="Contact Information">
-                <DoctorInfoField label="First Name" value="Doctor Name"/>
-                <DoctorInfoField label="Last Name" value="Doctor Type"/>
-                <DoctorInfoField label="Date of Birth" value="Doctor Field"/>
-                <DoctorInfoField label="Gender" value="Doctor Field"/>
-                <DoctorInfoField label="Nationality" value="Doctor Field"/>
+            <DoctorInfoCard title="Basic Information">
+                <DoctorInfoField label="First Name" value="San"/>
+                <DoctorInfoField label="Last Name" value="Isidro"/>
+                <DoctorInfoField label="Date of Birth" value="Brgy San Isidro, San Isidro, Batangas"/>
+                <DoctorInfoField label="Gender" value="Male"/>
+                <DoctorInfoField label="Nationality" value="Filipino"/>
                 <DoctorInfoImageField label="Profile Photo"/>
             </DoctorInfoCard>
 
             <DoctorInfoCard title="Contact Information">
-                <DoctorInfoField label="Email Address" value="Doctor Name"/>
-                <DoctorInfoField label="Contact Number" value="Doctor Type"/>
+                <DoctorInfoField label="Email Address" value="sanisidro-medical@ph.gov"/>
+                <DoctorInfoField label="Contact Number" value="0999 987 6767"/>
+                <DoctorInfoField label="Clinic Address" value="Brgy San Isidro, San Isidro, Batangas"/>
+                <DoctorInfoField label="Clinic No." value="0999 987 6767"/>
             </DoctorInfoCard>
         </section>
     )
