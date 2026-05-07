@@ -24,15 +24,18 @@ function CTASection() {
     },
     btnRow: {
       flexDirection: window.innerWidth < 768 ? "column" : "row",
+      gap: "20px",
+      display: "flex",
+      justifyContent: "center",
     },
     btn: {
       background: "#fff",
       color: "#032932",
       border: "none",
-      padding: "clamp(20px, 5vw, 40px)",
+      padding: "clamp(16px, 5vw, 20px)",
       borderRadius: "50px",
-      fontSize: "clamp(12px, 2vw, 15px)",
-      fontWeight: "clamp(10px, 3vw, 12px)",
+      fontSize: "clamp(13px, 5vw, 18px)",
+      fontWeight: "600",
       whiteSpace: "nowrap",
     },
   };
