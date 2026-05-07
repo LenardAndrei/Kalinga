@@ -1,0 +1,402 @@
+.doctor-dashboard {
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.doctor-dashboard__title {
+    font-size: 3rem;
+    font-weight: 700;
+    background-image: linear-gradient(to bottom, #032932, #2A787C);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    margin-bottom: 20px;
+}
+
+.doctor-dashboard__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Summary panel */
+.doctor-dashboard__summary {
+    background: linear-gradient(to top, #032932 0%, #82ACAB 100%);
+    border-radius: 20px;
+    padding: 28px 24px;
+}
+
+.doctor-dashboard__summary-date {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.doctor-dashboard__summary-date-main {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.doctor-dashboard__summary-date-divider {
+    width: 2px;
+    height: 26px;
+    background: white;
+    border-radius: 2px;
+    opacity: 0.6;
+}
+
+.doctor-dashboard__summary-date-day {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.04em;
+}
+
+.doctor-dashboard__summary-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Stat row: white pill, label left, dark circle badge right */
+.doctor-dashboard__stat-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    overflow: visible;
+}
+
+.doctor-dashboard__stat-label {
+    padding-right: 1.1rem;
+    width: calc(100% - 1rem);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.doctor-dashboard__stat-badge {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 58px;
+    height: 58px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #032932;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 800;
+}
+/* Appointments panel */
+.doctor-dashboard__appointments {
+    background: #2A787C;
+    border-radius: 20px;
+    padding: 26px 20px;
+}
+
+.doctor-dashboard__appointments-header {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 16px 0;
+}
+
+.doctor-dashboard__appointments-count {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 3rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 12px 20px;
+    margin-bottom: 12px;
+}
+
+.doctor-dashboard__appointments-count-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #032932;
+    line-height: 1;
+}
+
+.doctor-dashboard__appointments-count-label {
+    font-size: 1.4rem;
+    margin-right: 2.25rem;
+    font-weight: 700;
+    color: #032932;
+}
+
+.doctor-dashboard__appointment-item {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 14px;
+}
+
+.doctor-dashboard__appointment-time {
+    background: #032932;
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 16px 20px;
+    border-radius: 20px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    position: relative;
+    z-index: 2;
+}
+
+.doctor-dashboard__appointment-name {
+    background: #82ACAB;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 16px 40px 16px 40px;
+    border-radius: 0 20px 20px 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -50px;
+    z-index: 1;
+}
+
+.doctor-dashboard__appointments-cta {
+    display: block;
+    width: fit-content;
+    margin: 14px auto 0;
+    text-decoration: none;
+    padding: 13px 36px;
+    background: #032932;
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.doctor-dashboard__appointments-cta:hover { opacity: 0.85; }
+
+/* Queue panel */
+.doctor-dashboard__queue {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px 24px;
+    border: 1px solid rgba(130,172,171,0.2);
+}
+
+.doctor-dashboard__queue-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #000000;
+    text-align: center;
+    margin: 0 0 24px 0;
+}
+
+.doctor-dashboard__queue-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Row container */
+.doctor-dashboard__queue-row {
+    display: flex;
+    align-items: stretch;
+    background: transparent;
+    padding: 0;
+}
+
+.doctor-dashboard__queue-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    background: #4A7576;
+    min-width: 90px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0.5rem 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.doctor-dashboard__queue-label {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: #82ACAB;
+    border-radius: 0 20px 20px 0;
+    text-transform: capitalize;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 20px 16px 40px;
+    margin-left: -70px;
+    z-index: 1;
+}
+
+/* Notifications panel */
+.doctor-dashboard__notifications {
+    background: #82ACAB;
+    border-radius: 20px;
+    padding: 30px 24px;
+}
+
+.doctor-dashboard__notifications-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 24px 0;
+}
+
+.doctor-dashboard__notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.doctor-dashboard__notification-item {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1rem 24px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #000000;
+    text-align: center;
+}
+
+/* Calendar panel */
+.doctor-dashboard__calendar {
+    background: #032932;
+    border-radius: 20px;
+    padding: 32px 24px;
+}
+
+.doctor-dashboard__calendar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.doctor-dashboard__calendar-nav-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    width: auto;
+    height: auto;
+    font-size: 3rem;
+    font-weight: 900;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    line-height: 0.5;
+}
+
+.doctor-dashboard__calendar-nav-btn:hover {
+    background: transparent;
+    opacity: 0.8;
+}
+
+.doctor-dashboard__calendar-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.doctor-dashboard__calendar-month-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.doctor-dashboard__calendar-month-name,
+.doctor-dashboard__calendar-month-weekday {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+.doctor-dashboard__calendar-month-day {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 0.85;
+}
+
+.doctor-dashboard__calendar-events {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Event Row Container */
+.doctor-dashboard__calendar-event {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* This collectively centers the Name and Type text */
+    position: relative; /* Crucial: Allows us to pin the Time to the left side */
+    padding: 1.15rem 20px;
+    border-radius: 20px;
+    gap: 8px; /* Natural space between Name and Type */
+}
+
+/* The magic Zebra Striping (1st and 3rd items get the background, 2nd gets nothing) */
+.doctor-dashboard__calendar-event:nth-child(odd) {
+    background: #2A787C;
+}
+
+/* Time Block */
+.doctor-dashboard__calendar-event-time {
+    flex: 0.5;
+    background: transparent;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+.doctor-dashboard__calendar-event-name {
+    flex: 1;
+    text-align: center;
+}
+
+.doctor-dashboard__calendar-event-type {
+    text-align: right;
+    flex: 0.5;
+}
+
+
+/* Name and Type (Now acting as plain inline text inside the container) */
+.doctor-dashboard__calendar-event-name,
+.doctor-dashboard__calendar-event-type {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: transparent;
+    padding: 0;
+}
