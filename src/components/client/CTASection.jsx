@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react"; // Added useState
 
 function CTASection() {
   const navigate = useNavigate(); 
+  
+  // 1. Track hover state for each button
+  const [hoverMap, setHoverMap] = useState(false);
+  const [hoverSpec, setHoverSpec] = useState(false);
 
   const styles = {
     section: {
@@ -37,7 +42,9 @@ function CTASection() {
       fontSize: "clamp(13px, 5vw, 18px)",
       fontWeight: "600",
       whiteSpace: "nowrap",
-    },
+      cursor: "pointer", 
+      transition: "transform 0.3s ease", // Essential for smooth movement
+    }
   };
 
   return (
@@ -48,14 +55,24 @@ function CTASection() {
       </p>
       <div style={styles.btnRow}>
         <button 
-          style={styles.btn} 
+          style={{
+            ...styles.btn, 
+            transform: hoverMap ? "translateY(-5px)" : "translateY(0)" // Apply hover logic here
+          }} 
+          onMouseEnter={() => setHoverMap(true)}
+          onMouseLeave={() => setHoverMap(false)}
           onClick={() => navigate("/client/map")}
         >
           Open the Health Map
         </button>
 
         <button 
-          style={styles.btn} 
+          style={{
+            ...styles.btn, 
+            transform: hoverSpec ? "translateY(-5px)" : "translateY(0)" // Apply hover logic here
+          }} 
+          onMouseEnter={() => setHoverSpec(true)}
+          onMouseLeave={() => setHoverSpec(false)}
           onClick={() => navigate("/client/specialists")}
         >
           Meet our Specialists
