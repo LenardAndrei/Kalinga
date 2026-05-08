@@ -239,6 +239,58 @@
   font-family: 'Poppins', sans-serif;
 }
 
+@media (max-width: 768px) {
+  .search-wrapper {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: 520px;
+    z-index: 1000;
+  }
+
+  .search-form {
+    width: 100%;
+    padding: 10px 16px;
+  }
+
+  .saved-btn {
+    top: 90px;
+    right: 16px;
+  }
+
+  .saved-panel {
+    top: 130px;
+    right: 16px;
+    width: min(92vw, 340px);
+  }
+
+  .add-modal {
+    width: min(92vw, 340px);
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-wrapper {
+    width: calc(100% - 24px);
+    top: 14px;
+  }
+
+  .saved-panel {
+    width: min(96vw, 320px);
+    right: 10px;
+  }
+
+  .add-modal {
+    width: min(96vw, 320px);
+    bottom: 90px;
+  }
+}
+
 .add-modal-title {
   margin: 0 0 10px;
   font-weight: 700;

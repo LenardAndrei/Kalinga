@@ -134,3 +134,37 @@
 }
 
 .review-submit-btn:hover { background: #1e5c5f; }
+
+@media (max-width: 768px) {
+  .rating-wrapper {
+    padding: 20px 18px;
+    margin: 20px 18px;
+  }
+
+  .rating-title,
+  .add-review-title {
+    font-size: 1.6rem;
+  }
+
+  .rating-avg,
+  .review-name,
+  .review-stars,
+  .review-star-icon {
+    font-size: 1.4rem;
+  }
+
+  .review-comment {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .review-input {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+
+  .review-submit-btn {
+    padding: 10px 24px;
+    font-size: 16px;
+  }
+}

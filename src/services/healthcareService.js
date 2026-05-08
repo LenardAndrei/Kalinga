@@ -6,7 +6,7 @@ const healthcareServices = [
   {
     id: 1,
     name: "Brgy. San Isidro Health Center",
-    location: "Batangas",
+    location: "Bauan, Batangas",
     services: "General Consultation, Immunization, ...",
     time: "",
     status: "Open",
@@ -18,7 +18,7 @@ const healthcareServices = [
   {
     id: 2,
     name: "Kalinga Pharmacy",
-    location: "Batangas City",
+    location: "Alangilan, Batangas City",
     services: "Immunization, Pharmaceutical",
     time: "9:00 am - 5:00 pm",
     status: "Closing",
@@ -30,7 +30,7 @@ const healthcareServices = [
   {
     id: 3,
     name: "Klinik Clinic",
-    location: "Batangas",
+    location: "Bolbok, Batangas City",
     services: "Immunization, Consultation, Child Care, BP Monitoring",
     time: "",
     status: "Open",

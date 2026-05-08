@@ -59,48 +59,17 @@ function Navbar() {
     navigate("/client/profile")   // change to your profile route
   }
 
-  const styles = {
-    nav: {
-      padding: "15px clamp(15px, 5vw, 30px)",
-      background: isTransparent ? "transparent" : "#fff",
-      position: isTransparent ? "absolute" : "relative",
-      top: 0, left: 0, right: 0,
-      zIndex: 10,
-      display: "flex",
-      alignItems: "center",
-      fontFamily: "sans-serif",
-      borderBottom: isTransparent ? "none" : "1px solid #eee",
-    },
-    brand: {
-      display: "flex",
-      alignItems: "center",
-      marginRight: "auto",
-    },
-    logoText: {
-      fontSize: "clamp(1.5rem, 4vw, 2.0rem)",
-      fontWeight: "800",
-      color: location.pathname === "/client/home" ? "#D2E4E8" : "#0B4B54",
-    },
-    navLinks: {
-      background: "#82ACAB",
-      borderRadius: "50px",
-      display: "flex",
-      gap: "7px",
-      alignItems: "center",
-    },
-  }
+  const [menuOpen, setMenuOpen] = useState(false)
 
-  const getLinkStyle = ({ isActive }) => ({
-    textDecoration: "none",
-    color: "#1a3a3a",
-    fontWeight: "900",
-    padding: "8px clamp(20px, 3vw, 34px)",
-    borderRadius: "50px",
-    backgroundColor: isActive ? "#2A787C" : "transparent",
-    transition: "background 0.3s",
-    fontSize: "clamp(16px, 2vw, 20px)",
-    cursor: "pointer",
-  })
+  const getNavLinkClass = ({ isActive }) => (isActive ? "navLink active" : "navLink")
+  const serviceBtnClass = isServicesActive || servicesOpen ? "servicesBtn active" : "servicesBtn"
+  const logoTextClass = isTransparent ? "logoText" : "logoText opaque"
+
+  useEffect(() => {
+    setServicesOpen(false)
+    setProfileOpen(false)
+    setMenuOpen(false)
+  }, [location.pathname])
 
   const dropdownItemStyle = {
     padding: "14px 24px",
@@ -116,51 +85,48 @@ function Navbar() {
   }
 
   return (
-    <nav style={styles.nav}>
-      <div style={styles.brand}>
+    <nav className={`nav ${isTransparent ? "transparent" : "opaque"}`}>
+      <div className="brand">
         <img
-          src={location.pathname === "/client/home" ? whiteLogo : coloredLogo}  
+          src={location.pathname === "/client/home" ? whiteLogo : coloredLogo}
           alt="Kalinga Logo"
           style={{ width: "40px", marginRight: "10px" }}
         />
-        <h2 style={styles.logoText}>KALINGA</h2>
+        <h2 className={logoTextClass}>KALINGA</h2>
       </div>
 
-      <div style={styles.navLinks}>
-        <NavLink to="/client/home" style={getLinkStyle}>Home</NavLink>
-        <NavLink to="/client/map" style={getLinkStyle}>Map</NavLink>
+      <button
+        className={`nav-toggle ${menuOpen ? "active" : ""}`}
+        onClick={() => setMenuOpen((prev) => !prev)}
+        aria-label="Toggle navigation menu"
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      <div className={`navLinks ${menuOpen ? "mobileOpen" : ""}`}>
+        <NavLink to="/client/home" className={getNavLinkClass} onClick={() => setMenuOpen(false)}>
+          Home
+        </NavLink>
+        <NavLink to="/client/map" className={getNavLinkClass} onClick={() => setMenuOpen(false)}>
+          Map
+        </NavLink>
 
         {/* services dropdown */}
-        <div ref={dropdownRef} style={{ position: "relative" }}>
+        <div ref={dropdownRef} className="servicesDropdown">
           <div
-            style={{
-              ...getLinkStyle({ isActive: isServicesActive || servicesOpen }),
-              userSelect: "none",
-            }}
+            className={serviceBtnClass}
             onClick={() => setServicesOpen((prev) => !prev)}
           >
             Services
           </div>
 
           {servicesOpen && (
-            <div style={{
-              position: "absolute",
-              top: "calc(100% + 8px)",
-              left: "50%",
-              transform: "translateX(-50%)",
-              background: "#fff",
-              borderRadius: "16px",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
-              padding: "8px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "4px",
-              zIndex: 100,
-              minWidth: "clamp(200px, 50vw, 260px)",
-            }}>
+            <div className="dropdownMenu" style={{ minWidth: "clamp(200px, 50vw, 260px)" }}>
               <div
                 style={dropdownItemStyle}
-                onClick={() => { navigate("/client/healthcare"); setServicesOpen(false) }}
+                onClick={() => { navigate("/client/healthcare"); setServicesOpen(false); setMenuOpen(false) }}
                 onMouseEnter={(e) => e.currentTarget.style.background = "#AAC8C9"}
                 onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
               >
@@ -168,7 +134,7 @@ function Navbar() {
               </div>
               <div
                 style={dropdownItemStyle}
-                onClick={() => { navigate("/client/specialists"); setServicesOpen(false) }}
+                onClick={() => { navigate("/client/specialists"); setServicesOpen(false); setMenuOpen(false) }}
                 onMouseEnter={(e) => e.currentTarget.style.background = "#AAC8C9"}
                 onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
               >
@@ -178,78 +144,38 @@ function Navbar() {
           )}
         </div>
 
-        <NavLink to="/client/announcement" style={getLinkStyle}>Announcement</NavLink>
+        <NavLink to="/client/announcement" className={getNavLinkClass} onClick={() => setMenuOpen(false)}>
+          Announcement
+        </NavLink>
       </div>
 
-      <div style={{ marginLeft: "20px" }} />
-
-      {/* ── profile button + dropdown ── */}
-      <div ref={profileRef} style={{ position: "relative" }}>
-
-        {/* profile circle button */}
-        <div
+      <div className="profileDropdown" ref={profileRef}>
+        <button
+          type="button"
           onClick={() => setProfileOpen((prev) => !prev)}
-          style={{
-            width: "50px",
-            height: "50px",
-            borderRadius: "50%",
-            background: "#fff",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
-          }}
+          className="profileBtn"
         >
           <img
             src={profile}
             alt="Profile"
-            style={{ width: "50px", height: "50px", objectFit: "cover" }}
+            className="profileImg"
           />
-        </div>
+        </button>
 
-        {/* profile dropdown */}
         {profileOpen && (
-          <div style={{
-            position: "absolute",
-            top: "calc(100% + 10px)",
-            right: 0,
-            background: "#fff",
-            borderRadius: "20px",
-            boxShadow: "0 8px 24px rgba(0,0,0,0.14)",
-            padding: "10px",
-            zIndex: 100,
-            minWidth: "160px",
-            display: "flex",
-            justifyContent: "center",
-          }}>
+          <div className="profileMenu">
             <button
               onClick={() => {
                 setProfileOpen(false)
-                navigate("/login")   
+                navigate("/login")
               }}
-              style={{
-                width: "100%",
-                background: "#fff",
-                color: "#000",
-                border: "none",
-                borderRadius: "50px",
-                padding: "12px 28px",
-                fontSize: "15px",
-                fontWeight: "700",
-                fontFamily: "'Poppins', sans-serif",
-                cursor: "pointer",
-                transition: "background 0.2s",
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.background = "#f0f0f0"}
-              onMouseLeave={(e) => e.currentTarget.style.background = "#fff"}
+              className="profileItem"
             >
               Sign In
             </button>
           </div>
         )}
       </div>
-
     </nav>
   )
 }

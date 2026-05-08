@@ -85,3 +85,33 @@
   color: #555;
   margin: 4px 0;
 }
+
+@media (max-width: 768px) {
+  .calendar-wrapper {
+    padding: 18px 20px;
+  }
+
+  .calendar-title {
+    font-size: 1.6rem;
+  }
+
+  .calendar-item {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .calendar-date {
+    min-width: auto;
+    width: 100%;
+    padding: 14px 16px;
+  }
+
+  .calendar-month-label {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .calendar-event-title {
+    font-size: 1.1rem;
+  }
+}

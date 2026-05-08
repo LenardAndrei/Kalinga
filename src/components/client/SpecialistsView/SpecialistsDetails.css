@@ -300,18 +300,24 @@
 .modal-submit-btn:hover { background: #1e5c5f; }
 
 /* ── responsive ── */
-@media (max-width: 600px) {
-  .modal-box { padding: 28px 24px; }
-  .modal-row { flex-direction: column; gap: 16px; }
-}
-
-/* ── responsive ── */
 @media (max-width: 768px) {
-  .sd-page { padding: 20px 20px 40px; }
+  .sd-page {
+    padding: 20px 16px 40px;
+  }
+
+  .sd-top-bar {
+    margin-bottom: 16px;
+  }
+
+  .sd-back-btn {
+    padding: 10px 28px;
+    font-size: 16px;
+  }
 
   .sd-profile-row {
     flex-direction: column;
     align-items: stretch;
+    gap: 20px;
   }
 
   .sd-photo-card {
@@ -319,9 +325,109 @@
     min-height: 240px;
   }
 
+  .sd-info-card {
+    padding: 18px 20px;
+  }
+
+  .sd-info-title {
+    font-size: 1.8rem;
+  }
+
+  .sd-info-item {
+    font-size: 14px;
+  }
+
   .sd-schedule-card {
     flex-direction: column;
     gap: 16px;
-    align-items: flex-start;
+    align-items: stretch;
+    padding: 20px 18px;
+    margin-bottom: 20px;
+  }
+
+  .sd-schedule-title {
+    font-size: 1.8rem;
+    margin: 0;
+  }
+
+  .sd-schedule-item {
+    font-size: 14px;
+  }
+
+  .sd-book-btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  .modal-box {
+    padding: 28px 20px;
+  }
+
+  .modal-title {
+    font-size: 1.6rem;
+  }
+
+  .modal-input,
+  .modal-select {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .modal-submit-btn {
+    padding: 12px 36px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sd-page {
+    padding: 16px 12px 32px;
+  }
+
+  .sd-back-btn {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+
+  .sd-info-card {
+    padding: 14px 16px;
+  }
+
+  .sd-info-title {
+    font-size: 1.4rem;
+  }
+
+  .sd-schedule-card {
+    padding: 16px 14px;
+  }
+
+  .sd-schedule-title {
+    font-size: 1.4rem;
+  }
+
+  .modal-box {
+    padding: 20px 16px;
+  }
+
+  .modal-title {
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
+
+  .modal-submit-btn {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal-box {
+    padding: 28px 20px;
+  }
+
+  .modal-row {
+    flex-direction: column;
+    gap: 16px;
   }
 }

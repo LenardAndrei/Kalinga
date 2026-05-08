@@ -142,18 +142,87 @@
   display: block;
   padding: 10px 20px;
   text-decoration: none;
-  color: #333;
+  color: #fff;
   font-weight: 500;
   transition: background 0.2s;
   cursor: pointer;
   border: none;
-  background: none;
+  background: #2A787C;
   width: 100%;
-  text-align: left;
+  text-align: center;
+  border-radius: 50px;
 }
 
 .profileItem:hover {
-  background: #f5f5f5;
+  background: #1e5c5f;
+}
+
+.nav-toggle {
+  display: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 16px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 24px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: 999px;
+  background: #2A787C;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav.transparent .nav-toggle span {
+  background: #fff;
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+.navLinks.mobileOpen {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 18px 16px 20px;
+  background: #fff;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  z-index: 11;
+}
+
+.navLinks.mobileOpen .navLink,
+.navLinks.mobileOpen .servicesBtn {
+  width: 100%;
+  padding: 12px 18px;
+  text-align: left;
+  border-radius: 20px;
+}
+
+.navLinks.mobileOpen .servicesDropdown {
+  width: 100%;
 }
 
 /* Mobile responsiveness */
@@ -164,6 +233,10 @@
 
   .logoText {
     font-size: 1.2rem;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
   }
 
   .navLinks {

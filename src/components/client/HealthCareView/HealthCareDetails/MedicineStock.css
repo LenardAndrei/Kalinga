@@ -61,3 +61,27 @@
 
 .medicine-badge.available { background: #A5D07A; color: #313D24; }
 .medicine-badge.out       { background: #D76C6C; color: #313D24; }
+
+@media (max-width: 768px) {
+  .medicine-wrapper {
+    padding: 18px 20px;
+  }
+
+  .medicine-title {
+    font-size: 1.6rem;
+  }
+
+  .medicine-scroll {
+    gap: 16px;
+    padding-bottom: 8px;
+  }
+
+  .medicine-card {
+    width: 160px;
+    height: 180px;
+  }
+
+  .medicine-img {
+    height: 140px;
+  }
+}

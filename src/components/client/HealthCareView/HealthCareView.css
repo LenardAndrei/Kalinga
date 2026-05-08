@@ -294,21 +294,25 @@
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .hc-page {
-    padding: 20px 10px;
+    padding: 20px 16px;
   }
 
   .hc-title {
     font-size: 1.5rem;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .hc-subtitle {
     font-size: 14px;
   }
 
+  .hc-search-wrapper {
+    margin-bottom: 16px;
+  }
+
   .hc-search-box {
     width: 100%;
-    padding: 8px 15px;
+    padding: 10px 16px;
   }
 
   .hc-search-input {
@@ -317,34 +321,43 @@
 
   .hc-filter-row {
     gap: 8px;
+    margin-bottom: 18px;
   }
 
   .hc-filter-btn {
-    padding: 6px 20px;
-    font-size: 14px;
-    gap: 20px;
+    padding: 8px 18px;
+    font-size: 13px;
+    gap: 16px;
   }
 
   .hc-grid {
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 16px;
+    margin-bottom: 24px;
   }
 
   .hc-card {
-    padding: 15px;
+    width: 100%;
+    height: auto;
   }
 
-  .hc-card-title {
+  .hc-card-img-wrapper.open,
+  .hc-card-img-wrapper.closing {
+    height: 200px;
+  }
+
+  .hc-card-body {
+    padding: 14px 14px 14px;
+  }
+
+  .hc-card-name {
     font-size: 16px;
   }
 
-  .hc-card-text {
-    font-size: 14px;
-  }
-
-  .hc-card-btn {
-    padding: 8px 16px;
-    font-size: 14px;
+  .hc-card-location,
+  .hc-card-time,
+  .hc-card-services {
+    font-size: 13px;
   }
 
   .hc-pagination {
@@ -354,7 +367,48 @@
   .hc-page-btn {
     width: 40px;
     height: 40px;
-    font-size: 18px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hc-page {
+    padding: 16px 12px;
+  }
+
+  .hc-title {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .hc-search-box {
+    padding: 8px 12px;
+  }
+
+  .hc-filter-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+    gap: 12px;
+  }
+
+  .hc-card-body {
+    padding: 12px 12px 12px;
+  }
+
+  .hc-card-name {
+    font-size: 14px;
+  }
+
+  .hc-card-location,
+  .hc-card-time,
+  .hc-card-services {
+    font-size: 12px;
+  }
+
+  .hc-page-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
   }
 }
 

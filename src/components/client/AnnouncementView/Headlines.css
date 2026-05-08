@@ -161,7 +161,7 @@
 
   .headlines-title {
     font-size: 24px;
-    margin-bottom: 16px;
+    margin: 0 0 16px;
   }
 
   .headlines-carousel {
@@ -197,7 +197,6 @@
     margin-left: 12px;
   }
 }
-
 @media (max-width: 480px) {
   .headlines-carousel {
     gap: 8px;
