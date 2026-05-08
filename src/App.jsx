@@ -19,6 +19,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard"
 import Applications from "./pages/admin/Applications"
 import Doctors from "./pages/admin/Doctors"
 import AdminHealthcare from "./pages/admin/Healthcare"
+import Patients from "./pages/admin/Patient"
 
 function App() {
   return (
@@ -53,7 +54,7 @@ function App() {
           <Route path="applications" element={<Applications />} />
           <Route path="doctors"      element={<Doctors />} />
           <Route path="healthcare"   element={<AdminHealthcare />} />
-          <Route path="patients"     element={<div>Patients</div>} />
+          <Route path="patients"     element={<Patients />} />
           <Route path="reviews"      element={<div>Reviews</div>} />
         </Route>
 
