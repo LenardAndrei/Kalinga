@@ -18,7 +18,7 @@
 
 .doctor-schedules__title {
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 900;
     background-image: linear-gradient(to bottom, #032932, #2A787C);
     color: transparent;
     background-clip: text;
@@ -65,7 +65,7 @@
 }
 
 .doctor-schedules__summary__header {
-    background: #3a8f84;
+    background: #2A787C;
     padding: 18px 24px;
     text-align: center;
 }
@@ -340,4 +340,286 @@
     font-weight: 800;
     line-height: 1;
     background-color: white;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .doctor-schedules__title {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .doctor-schedules__header {
+        gap: 1rem;
+    }
+
+    .doctor-schedules__add-schedule-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 1.2rem;
+    }
+
+    .doctor-schedules__body {
+        gap: 1.5rem;
+        grid-template-columns: 1.5fr 1fr;
+    }
+
+    .doctor-schedules__summary__title {
+        font-size: 1.1rem;
+    }
+
+    .doctor-schedules__summary__item__time {
+        font-size: 1rem;
+        min-width: 70px;
+    }
+
+    .doctor-schedules__summary__item__name {
+        font-size: 1rem;
+    }
+
+    .doctor-schedules__weekly {
+        padding: 20px 24px 24px;
+        width: 100%;
+    }
+
+    .doctor-schedules__weekly__title {
+        font-size: 1.4rem;
+    }
+
+    .doctor-schedules-add-schedule__title {
+        font-size: 2rem;
+    }
+
+    .doctor-schedules-add-schedule__label {
+        font-size: 1.2rem;
+    }
+
+    .doctor-schedules-add-schedule__input {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .doctor-schedules-add-schedule__submit-btn {
+        font-size: 1.1rem;
+        min-height: 50px;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+    .doctor-schedules__title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .doctor-schedules__header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .doctor-schedules__add-schedule-btn {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+
+    .doctor-schedules__body {
+        gap: 1.2rem;
+        grid-template-columns: 1fr;
+    }
+
+    .doctor-schedules__summary {
+        border-radius: 14px;
+    }
+
+    .doctor-schedules__summary__header {
+        padding: 14px 18px;
+    }
+
+    .doctor-schedules__summary__title {
+        font-size: 1rem;
+    }
+
+    .doctor-schedules__summary__body {
+        padding: 16px 20px 20px;
+    }
+
+    .doctor-schedules__summary__item {
+        gap: 16px;
+    }
+
+    .doctor-schedules__summary__item__time {
+        font-size: 0.9rem;
+        min-width: 60px;
+    }
+
+    .doctor-schedules__summary__item__name {
+        font-size: 0.95rem;
+    }
+
+    .doctor-schedules__summary__connector {
+        padding-left: 12.5%;
+        height: 18px;
+    }
+
+    .doctor-schedules__summary__connector__line {
+        height: 18px;
+    }
+
+    .doctor-schedules__weekly {
+        width: 100%;
+        padding: 16px 20px 20px;
+        border-radius: 16px;
+    }
+
+    .doctor-schedules__weekly__title {
+        font-size: 1.2rem;
+    }
+
+    .doctor-schedules__weekly__item__day {
+        font-size: 1rem;
+    }
+
+    .doctor-schedules__weekly__item__range {
+        font-size: 0.9rem;
+    }
+
+    .doctor-schedules-add-schedule__header {
+        margin-bottom: 30px;
+    }
+
+    .doctor-schedules-add-schedule__title {
+        font-size: 1.6rem;
+        margin-bottom: 8px;
+    }
+
+    .doctor-schedules-add-schedule__subtitle {
+        font-size: 1rem;
+    }
+
+    .doctor-schedules-add-schedule__form {
+        gap: 18px;
+        max-width: 100%;
+    }
+
+    .doctor-schedules-add-schedule__form-group {
+        grid-template-columns: 80px 1fr;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .doctor-schedules-add-schedule__label {
+        font-size: 1.1rem;
+        padding-top: 8px;
+    }
+
+    .doctor-schedules-add-schedule__input-wrapper--short {
+        max-width: 100%;
+    }
+
+    .doctor-schedules-add-schedule__input {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.95rem;
+    }
+
+    .doctor-schedules-add-schedule__submit-row {
+        padding-left: 0;
+        margin-top: 16px;
+    }
+
+    .doctor-schedules-add-schedule__submit-btn {
+        font-size: 1rem;
+        padding: 0.4rem 1.2rem;
+        min-height: 45px;
+        max-width: 100%;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .doctor-schedules__title {
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .doctor-schedules__header {
+        gap: 0.5rem;
+    }
+
+    .doctor-schedules__add-schedule-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .doctor-schedules__body {
+        gap: 1rem;
+    }
+
+    .doctor-schedules__summary__body {
+        padding: 12px 16px 16px;
+    }
+
+    .doctor-schedules__summary__item {
+        gap: 12px;
+    }
+
+    .doctor-schedules__summary__item__time {
+        font-size: 0.8rem;
+        min-width: 50px;
+    }
+
+    .doctor-schedules__summary__item__name {
+        font-size: 0.85rem;
+    }
+
+    .doctor-schedules__weekly {
+        padding: 14px 16px 18px;
+    }
+
+    .doctor-schedules__weekly__title {
+        font-size: 1rem;
+    }
+
+    .doctor-schedules__weekly__item__day {
+        font-size: 0.9rem;
+    }
+
+    .doctor-schedules__weekly__item__range {
+        font-size: 0.8rem;
+    }
+
+    .doctor-schedules-add-schedule__title {
+        font-size: 1.3rem;
+        margin-bottom: 6px;
+    }
+
+    .doctor-schedules-add-schedule__subtitle {
+        font-size: 0.9rem;
+    }
+
+    .doctor-schedules-add-schedule__form {
+        gap: 16px;
+    }
+
+    .doctor-schedules-add-schedule__form-group {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .doctor-schedules-add-schedule__label {
+        font-size: 0.9rem;
+        padding-top: 0;
+    }
+
+    .doctor-schedules-add-schedule__input {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .doctor-schedules-add-schedule__submit-btn {
+        font-size: 0.85rem;
+        padding: 0.35rem 1rem;
+        min-height: 40px;
+    }
 }

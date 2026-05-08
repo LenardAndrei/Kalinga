@@ -12,7 +12,7 @@
 
 .doctor-prescriptions__title {
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 900;
     background-image: linear-gradient(to bottom, #032932, #2A787C);
     color: transparent;
     background-clip: text;
@@ -218,6 +218,290 @@
     font-size: 1rem;
     font-weight: 400;
     color: #cde8e8;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .doctor-prescriptions__title {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .doctor-prescriptions__header {
+        gap: 1rem;
+    }
+
+    .doctor-prescriptions__add-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 1rem;
+    }
+
+    .doctor-prescriptions__table th, td {
+        padding: 0.8rem;
+    }
+
+    .doctor-prescriptions__table td {
+        padding: 0.4rem 0.8rem;
+    }
+
+    .doctor-prescriptions__table-title {
+        font-size: 1rem;
+    }
+
+    .doctor-prescriptions-table__entry-action-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 13px;
+    }
+
+    .doctor-prescriptions-card__title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .doctor-prescriptions-card__avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .doctor-prescriptions-card__avatar svg {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+    .doctor-prescriptions__title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .doctor-prescriptions__header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .doctor-prescriptions__add-btn {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .doctor-prescriptions__table {
+        font-size: 0.85rem;
+        margin-top: 1rem;
+    }
+
+    .doctor-prescriptions__table th, td {
+        padding: 0.6rem;
+    }
+
+    .doctor-prescriptions__table td {
+        padding: 0.3rem 0.6rem;
+    }
+
+    .doctor-prescriptions__table-title {
+        font-size: 0.85rem;
+    }
+
+    .doctor-prescriptions-table__entry-action-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 12px;
+    }
+
+    .doctor-prescriptions-card__title {
+        font-size: 1.5rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .doctor-prescriptions-card__profile {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .doctor-prescriptions-card__avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .doctor-prescriptions-card__avatar svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .doctor-prescriptions-card__profile-info {
+        width: 100%;
+        padding: 12px 16px;
+    }
+
+    .doctor-prescriptions-card__section {
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .doctor-prescriptions-card__section-title {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .doctor-prescriptions-card__info-label {
+        min-width: 70px;
+        font-size: 0.8rem;
+    }
+
+    .doctor-prescriptions-card__info-value {
+        font-size: 0.8rem;
+    }
+
+    .doctor-view-prescriptions-dialog__patient-field {
+        gap: 20px;
+    }
+
+    .doctor-view-prescriptions-dialog__patient-label {
+        min-width: 80px;
+        font-size: 0.9rem;
+    }
+
+    .doctor-view-prescriptions-dialog__patient-value {
+        font-size: 0.9rem;
+    }
+
+    .doctor-view-prescriptions-dialog__td {
+        padding: 12px 14px;
+        font-size: 0.85rem;
+    }
+
+    .doctor-view-prescriptions-dialog__th {
+        padding: 10px 14px;
+        font-size: 0.8rem;
+    }
+
+    .doctor-view-prescriptions-dialog__edit-btn {
+        padding: 10px 24px;
+        font-size: 0.85rem;
+    }
+
+    .doctor-create-prescription {
+        padding: 0 5%;
+    }
+
+    .doctor-create-prescription__title {
+        font-size: 1.6rem;
+    }
+
+    .doctor-create-prescription__field {
+        gap: 16px;
+        margin-bottom: 20px;
+    }
+
+    .doctor-create-prescription__field-label {
+        font-size: 0.9rem;
+        min-width: 90px;
+    }
+
+    .doctor-create-prescription__input,
+    .doctor-create-prescription__search {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+    }
+
+    .doctor-create-prescription__medicine-row {
+        grid-template-columns: 1fr 1fr auto;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .doctor-prescriptions__title {
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .doctor-prescriptions__header {
+        gap: 0.5rem;
+    }
+
+    .doctor-prescriptions__add-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .doctor-prescriptions__table {
+        font-size: 0.75rem;
+    }
+
+    .doctor-prescriptions__table th, td {
+        padding: 0.4rem;
+    }
+
+    .doctor-prescriptions__table td {
+        padding: 0.2rem 0.4rem;
+    }
+
+    .doctor-prescriptions-table__entry-action-btn {
+        padding: 0.2rem 0.5rem;
+        font-size: 10px;
+    }
+
+    .doctor-prescriptions-card__title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .doctor-prescriptions-card__avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .doctor-prescriptions-card__avatar svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .doctor-view-prescriptions-dialog__patient-field {
+        gap: 12px;
+    }
+
+    .doctor-view-prescriptions-dialog__patient-label {
+        font-size: 0.8rem;
+    }
+
+    .doctor-view-prescriptions-dialog__patient-value {
+        font-size: 0.8rem;
+    }
+
+    .doctor-create-prescription {
+        padding: 0 2%;
+    }
+
+    .doctor-create-prescription__title {
+        font-size: 1.2rem;
+    }
+
+    .doctor-create-prescription__field {
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .doctor-create-prescription__field-label {
+        font-size: 0.8rem;
+        min-width: auto;
+    }
+
+    .doctor-create-prescription__input,
+    .doctor-create-prescription__search {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .doctor-create-prescription__medicine-row {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* view prescription dialog styles */

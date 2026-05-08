@@ -12,7 +12,7 @@
 
 .doctor-patients__title {
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 900;
     background-image: linear-gradient(to bottom, #032932, #2A787C);
     color: transparent;
     background-clip: text;
@@ -184,4 +184,205 @@
     font-size: 1rem;
     font-weight: 400;
     color: #cde8e8;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .doctor-patients__title {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .doctor-patients__table th, td {
+        padding: 0.8rem;
+    }
+
+    .doctor-patients__table td {
+        padding: 0.4rem 0.8rem;
+    }
+
+    .doctor-patients__table-title {
+        font-size: 1rem;
+    }
+
+    .doctor-patients-table__entry-action-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 13px;
+    }
+
+    .doctor-patients-card__title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .doctor-patients-card__profile {
+        gap: 16px;
+        margin-bottom: 16px;
+    }
+
+    .doctor-patients-card__avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .doctor-patients-card__avatar svg {
+        width: 50px;
+        height: 50px;
+    }
+
+    .doctor-patients-card__section {
+        padding: 14px 18px;
+        margin-bottom: 12px;
+    }
+
+    .doctor-patients-card__info-label {
+        min-width: 80px;
+        font-size: 0.9rem;
+    }
+
+    .doctor-patients-card__info-value {
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+    .doctor-patients__title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .doctor-patients__table {
+        font-size: 0.85rem;
+    }
+
+    .doctor-patients__table th, td {
+        padding: 0.6rem;
+    }
+
+    .doctor-patients__table td {
+        padding: 0.3rem 0.6rem;
+    }
+
+    .doctor-patients__table-title {
+        font-size: 0.85rem;
+    }
+
+    .doctor-patients-table__entry-action-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 12px;
+    }
+
+    .doctor-patients-card__title {
+        font-size: 1.5rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .doctor-patients-card__profile {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .doctor-patients-card__avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .doctor-patients-card__avatar svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .doctor-patients-card__profile-info {
+        width: 100%;
+        padding: 12px 16px;
+    }
+
+    .doctor-patients-card__section {
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .doctor-patients-card__section-title {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .doctor-patients-card__info-row {
+        gap: 6px;
+        margin-bottom: 4px;
+        font-size: 12px;
+    }
+
+    .doctor-patients-card__info-label {
+        min-width: 70px;
+        font-size: 0.8rem;
+    }
+
+    .doctor-patients-card__info-value {
+        font-size: 0.8rem;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .doctor-patients__title {
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .doctor-patients__table {
+        font-size: 0.75rem;
+    }
+
+    .doctor-patients__table th, td {
+        padding: 0.4rem;
+    }
+
+    .doctor-patients__table td {
+        padding: 0.2rem 0.4rem;
+    }
+
+    .doctor-patients-table__entry-action-btn {
+        padding: 0.2rem 0.5rem;
+        font-size: 10px;
+    }
+
+    .doctor-patients-card__title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .doctor-patients-card__avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .doctor-patients-card__avatar svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .doctor-patients-card__section {
+        padding: 10px 12px;
+        margin-bottom: 8px;
+    }
+
+    .doctor-patients-card__section-title {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .doctor-patients-card__info-label {
+        min-width: 60px;
+        font-size: 0.75rem;
+    }
+
+    .doctor-patients-card__info-value {
+        font-size: 0.75rem;
+    }
 }

@@ -18,3 +18,31 @@
     background-color: white;
     height: 100%;
 }
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .doctor-layout__content {
+        margin-left: 250px;
+        width: calc(100% - 250px);
+        padding: 2rem 2rem 0 2.5rem;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+    .doctor-layout__content {
+        margin-left: 0;
+        width: 100%;
+        padding: 1.5rem 1rem 0 1rem;
+        z-index: 1;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .doctor-layout__content {
+        padding: 1rem 0.75rem 0 0.75rem;
+    }
+}

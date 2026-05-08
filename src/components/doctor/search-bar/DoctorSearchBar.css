@@ -24,3 +24,43 @@
     color: black;
 }
 
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .doctor-search__container {
+        padding: 0.2rem 0.8rem;
+    }
+
+    .doctor-search__input {
+        padding: 0.4rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+    .doctor-search__container {
+        width: 100%;
+        padding: 0.2rem 0.8rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .doctor-search__input {
+        padding: 0.35rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .doctor-search__container {
+        padding: 0.15rem 0.6rem;
+    }
+
+    .doctor-search__input {
+        padding: 0.3rem;
+        font-size: 0.8rem;
+    }
+}
+

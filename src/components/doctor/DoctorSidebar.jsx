@@ -1,5 +1,6 @@
 import {Link, useLocation} from "react-router-dom";
 import "./DoctorSidebar.css"
+import { useState } from "react";
 import AnnouncementIcon from "./icons/AnnouncementIcon.jsx";
 import AppointmentIcon from "./icons/AppointmentIcon.jsx";
 import CalendarIcon from "./icons/CalendarIcon.jsx";
@@ -10,10 +11,10 @@ import ReviewIcon from "./icons/ReviewIcon.jsx";
 
 
 /* eslint-disable-next-line no-unused-vars */
-function DoctorSidebarLink({to, Icon, children}){
+function DoctorSidebarLink({to, Icon, children, onClick}){
     const isActive = useLocation().pathname === to;
     return (
-        <Link to={to} className={`doctor-sidebar__link ${isActive ? "doctor-sidebar__link--active" : ""}`}>
+        <Link to={to} className={`doctor-sidebar__link ${isActive ? "doctor-sidebar__link--active" : ""}`} onClick={onClick}>
             <Icon className="doctor-sidebar-link__icon"/>
             <p className={`doctor-sidebar-link__text `}>
                 {children}
@@ -45,36 +46,59 @@ function SidebarFooter({ name }){
 }
 
 function DoctorSidebar() {
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    const handleMenuToggle = () => {
+        setMobileMenuOpen(!mobileMenuOpen);
+    };
+
+    const handleLinkClick = () => {
+        setMobileMenuOpen(false);
+    };
+
     return (
-        <div className="doctor-sidebar">
-            <div className="doctor-sidebar-logo__container">
-                <img src="/logo_white.png" alt="logo" className="doctor-sidebar-logo__image"/>
-                <h1 className="doctor-sidebar-logo__text">KALINGA</h1>
-            </div>
+        <>
+            {/* Hamburger Menu Button - visible on mobile */}
+            <button className="doctor-sidebar__hamburger" onClick={handleMenuToggle} aria-label="Toggle menu">
+                <span className={`hamburger-line ${mobileMenuOpen ? 'open' : ''}`}></span>
+                <span className={`hamburger-line ${mobileMenuOpen ? 'open' : ''}`}></span>
+                <span className={`hamburger-line ${mobileMenuOpen ? 'open' : ''}`}></span>
+            </button>
 
-            <div className="doctor-sidebar__links">
-                <DoctorSidebarLink to="/doctors/dashboard" Icon={HomeIcon}>
-                    Dashboard
-                </DoctorSidebarLink>
-                <DoctorSidebarLink to="/doctors/profile" Icon={ProfileIcon}>
-                    Doctor Profile
-                </DoctorSidebarLink>
-                <DoctorSidebarLink to="/doctors/patients" Icon={PeopleIcon}>
-                    Patients
-                </DoctorSidebarLink>
-                <DoctorSidebarLink to="/doctors/appointments" Icon={AppointmentIcon}>
-                    Appointments
-                </DoctorSidebarLink>
-                <DoctorSidebarLink to="/doctors/schedule" Icon={CalendarIcon}>
-                    Schedule
-                </DoctorSidebarLink>
-                <DoctorSidebarLink to="/doctors/prescriptions" Icon={AnnouncementIcon}>
-                    Prescriptions
-                </DoctorSidebarLink>
-            </div>
+            {/* Mobile menu overlay */}
+            {mobileMenuOpen && <div className="doctor-sidebar__overlay" onClick={handleMenuToggle}></div>}
 
-            <SidebarFooter name="Brgy. San Isidro Medical Center"/>
-        </div>
+            {/* Sidebar */}
+            <div className={`doctor-sidebar ${mobileMenuOpen ? 'doctor-sidebar--mobile-open' : ''}`}>
+                <div className="doctor-sidebar-logo__container">
+                    <img src="/logo_white.png" alt="logo" className="doctor-sidebar-logo__image"/>
+                    <h1 className="doctor-sidebar-logo__text">KALINGA</h1>
+                </div>
+
+                <div className="doctor-sidebar__links">
+                    <DoctorSidebarLink to="/doctors/dashboard" Icon={HomeIcon} onClick={handleLinkClick}>
+                        Dashboard
+                    </DoctorSidebarLink>
+                    <DoctorSidebarLink to="/doctors/profile" Icon={ProfileIcon} onClick={handleLinkClick}>
+                        Doctor Profile
+                    </DoctorSidebarLink>
+                    <DoctorSidebarLink to="/doctors/patients" Icon={PeopleIcon} onClick={handleLinkClick}>
+                        Patients
+                    </DoctorSidebarLink>
+                    <DoctorSidebarLink to="/doctors/appointments" Icon={AppointmentIcon} onClick={handleLinkClick}>
+                        Appointments
+                    </DoctorSidebarLink>
+                    <DoctorSidebarLink to="/doctors/schedule" Icon={CalendarIcon} onClick={handleLinkClick}>
+                        Schedule
+                    </DoctorSidebarLink>
+                    <DoctorSidebarLink to="/doctors/prescriptions" Icon={AnnouncementIcon} onClick={handleLinkClick}>
+                        Prescriptions
+                    </DoctorSidebarLink>
+                </div>
+
+                <SidebarFooter name="Brgy. San Isidro Medical Center"/>
+            </div>
+        </>
     )
 }
 

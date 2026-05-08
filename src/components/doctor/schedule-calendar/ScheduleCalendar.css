@@ -14,7 +14,7 @@
     line-height: 1;
 }
 .schedule-calendar .react-calendar__navigation {
-    background: #3a8f84;
+    background: #2A787C;
     display: flex;
     align-items: center;
     height: 64px;
@@ -137,4 +137,145 @@
     aspect-ratio: unset;
     padding: 12px 4px;
     font-size: 15px;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .schedule-calendar {
+        height: 450px;
+    }
+
+    .schedule-calendar .react-calendar__navigation {
+        height: 56px;
+        padding: 0 6px;
+    }
+
+    .schedule-calendar .react-calendar__navigation button {
+        min-width: 36px;
+        height: 36px;
+    }
+
+    .schedule-calendar__nav-icon {
+        font-size: 24px;
+    }
+
+    .schedule-calendar .react-calendar__navigation__label {
+        font-size: 18px;
+    }
+
+    .schedule-calendar .react-calendar__month-view {
+        padding: 10px 12px 16px;
+    }
+
+    .schedule-calendar .react-calendar__month-view__weekdays__weekday abbr {
+        font-size: 13px;
+    }
+
+    .schedule-calendar .react-calendar__tile {
+        font-size: 18px;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+    .schedule-calendar {
+        display: block;
+        height: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .schedule-calendar .react-calendar {
+        width: 100%;
+    }
+
+    .schedule-calendar .react-calendar__navigation {
+        height: 50px;
+        padding: 0 4px;
+    }
+
+    .schedule-calendar .react-calendar__navigation button {
+        min-width: 32px;
+        height: 32px;
+    }
+
+    .schedule-calendar__nav-icon {
+        font-size: 20px;
+    }
+
+    .schedule-calendar .react-calendar__navigation__label {
+        font-size: 16px;
+    }
+
+    .schedule-calendar .react-calendar__month-view {
+        padding: 8px 10px 12px;
+    }
+
+    .schedule-calendar .react-calendar__month-view__weekdays__weekday {
+        padding: 6px 0;
+    }
+
+    .schedule-calendar .react-calendar__month-view__weekdays__weekday abbr {
+        font-size: 12px;
+    }
+
+    .schedule-calendar .react-calendar__tile {
+        font-size: 16px;
+    }
+
+    .schedule-calendar .react-calendar__tile--today::after,
+    .schedule-calendar .schedule-calendar__tile--today::after {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .schedule-calendar {
+        height: auto;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .schedule-calendar .react-calendar__navigation {
+        height: 44px;
+        padding: 0 2px;
+    }
+
+    .schedule-calendar .react-calendar__navigation button {
+        min-width: 28px;
+        height: 28px;
+    }
+
+    .schedule-calendar__nav-icon {
+        font-size: 18px;
+    }
+
+    .schedule-calendar .react-calendar__navigation__label {
+        font-size: 14px;
+    }
+
+    .schedule-calendar .react-calendar__month-view {
+        padding: 6px 8px 10px;
+    }
+
+    .schedule-calendar .react-calendar__month-view__weekdays__weekday {
+        padding: 4px 0;
+    }
+
+    .schedule-calendar .react-calendar__month-view__weekdays__weekday abbr {
+        font-size: 10px;
+    }
+
+    .schedule-calendar .react-calendar__tile {
+        font-size: 14px;
+    }
+
+    .schedule-calendar .react-calendar__tile--today::after,
+    .schedule-calendar .schedule-calendar__tile--today::after {
+        width: 2rem;
+        height: 2rem;
+    }
 }
