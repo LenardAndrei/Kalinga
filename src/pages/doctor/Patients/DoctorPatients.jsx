@@ -78,15 +78,15 @@ function PatientInfoDialog({patient, onClose}){
                     <h2 className="doctor-patients-card__section-title">Health Information</h2>
                     <div className="doctor-patients-card__info-row">
                         <span className="doctor-patients-card__info-label">Blood Type:</span>
-                        <span className="doctor-patients-card__info-value">Moreno</span>
+                        <span className="doctor-patients-card__info-value">A+</span>
                     </div>
                     <div className="doctor-patients-card__info-row">
                         <span className="doctor-patients-card__info-label">Allergies:</span>
-                        <span className="doctor-patients-card__info-value">Babaero</span>
+                        <span className="doctor-patients-card__info-value">Seafood</span>
                     </div>
                     <div className="doctor-patients-card__info-row">
                         <span className="doctor-patients-card__info-label">Conditions:</span>
-                        <span className="doctor-patients-card__info-value">If Else Condition</span>
+                        <span className="doctor-patients-card__info-value">Diabetes</span>
                     </div>
                 </div>
             </div>
