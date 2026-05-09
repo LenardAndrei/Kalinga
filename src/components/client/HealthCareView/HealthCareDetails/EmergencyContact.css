@@ -55,3 +55,34 @@
   font-style: italic;
   margin: 2px 0 0;
 }
+
+@media (max-width: 768px) {
+  .emergency-card {
+    padding: 20px 22px;
+    margin: 20px 18px;
+  }
+
+  .emergency-title {
+    font-size: 1.6rem;
+  }
+
+  .emergency-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .emergency-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .emergency-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .emergency-label,
+  .emergency-value,
+  .emergency-distance {
+    font-size: 1rem;
+  }
+}

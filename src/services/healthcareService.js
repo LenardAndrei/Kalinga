@@ -1,11 +1,12 @@
 import sanIsidroImg from "../assets/san_isidro.png"
 import pharmacyImg from "../assets/pharmacy.jpg"
+import klinikImg from "../assets/klinik.jpg"
 
 const healthcareServices = [
   {
     id: 1,
     name: "Brgy. San Isidro Health Center",
-    location: "Mauban",
+    location: "Bauan, Batangas",
     services: "General Consultation, Immunization, ...",
     time: "",
     status: "Open",
@@ -17,7 +18,7 @@ const healthcareServices = [
   {
     id: 2,
     name: "Kalinga Pharmacy",
-    location: "Batangas City",
+    location: "Alangilan, Batangas City",
     services: "Immunization, Pharmaceutical",
     time: "9:00 am - 5:00 pm",
     status: "Closing",
@@ -28,15 +29,15 @@ const healthcareServices = [
   },
   {
     id: 3,
-    name: "Brgy. San Isidro Health Center",
-    location: "Mauban",
-    services: "Immunization, Consultation",
+    name: "Klinik Clinic",
+    location: "Bolbok, Batangas City",
+    services: "Immunization, Consultation, Child Care, BP Monitoring",
     time: "",
     status: "Open",
-    type: "Hospital",
+    type: "Clinic",
     cost: "Free",
     rating: 5,
-    image: sanIsidroImg,
+    image: klinikImg,
   },
 ]
 

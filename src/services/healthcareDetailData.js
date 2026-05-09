@@ -4,17 +4,17 @@ import consultationImg from "../assets/consultation.png"
 import familyPlanningImg from "../assets/family-planning.png"
 import firstAidImg from "../assets/first-aid.jpg"
 import dentalImg from "../assets/dental-service.jpg"
-import spongebobImg from "../assets/spongebob.png"
-import patrickImg from "../assets/patrick-star.png"
-import sandyImg from "../assets/sandy.png"
-import squidwardImg from "../assets/squidward.png"
-import krabsImg from "../assets/mrkrabs.png"
+import generalImg from "../assets/general-physician.jpg"
+import dentistImg from "../assets/dentist.jpg"
+import nurseImg from "../assets/nurse1.jpg"
+import receptionistImg from "../assets/receptionist.jpg"
+import clinicAdminImg from "../assets/clinic-admin.jpg"
 import medicineImg from "../assets/medicine.png"
 
 export const facilityData = {
   name: "Brgy. San Isidro Health Center",
   fullName: "San Isidro Barangay Health Center",
-  location: "Brgy. San Isidro, Mauban, Quezon",
+  location: "Brgy. San Isidro, Bauan, Batangas",
   status: "open",
   image: sanIsidroImg,
   phone: "(042) 555-2034",
@@ -37,11 +37,11 @@ export const servicesData = [
 ]
 
 export const officersData = [
-  { id: 1, name: "Spongebob Squarpants", role: "General Physician",   image: spongebobImg },
-  { id: 2, name: "Patrick Star",         role: "Dentist",             image: patrickImg },
-  { id: 3, name: "Sandy Cheeks",         role: "Public Health Nurse", image: sandyImg },
-  { id: 4, name: "Squidward Tentacles",  role: "Clinic Receptionist", image: squidwardImg },
-  { id: 5, name: "Mr. Krabs",            role: "Clinic Administrator",image: krabsImg },
+  { id: 1, name: "Nadine Satabi",        role: "General Physician",   image: generalImg },
+  { id: 2, name: "Kim Jennie",           role: "Dentist",             image: dentistImg },
+  { id: 3, name: "Edwin Rodriguez",         role: "Public Health Nurse", image: nurseImg },
+  { id: 4, name: "Lenard Andrei",        role: "Clinic Receptionist", image: receptionistImg },
+  { id: 5, name: "Olivia Rodrigo",            role: "Clinic Administrator",image: clinicAdminImg },
 ]
 
 export const emergencyData = {

@@ -143,7 +143,7 @@
   flex-direction: column;
   flex-shrink: 0;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  box-shadow:  0 8px 24px rgba(0,0,0,0.1);;
 }
 
 .hc-card:hover {
@@ -289,4 +289,146 @@
   text-decoration: none;
   color: inherit;
   display: block;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .hc-page {
+    padding: 20px 16px;
+  }
+
+  .hc-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+
+  .hc-subtitle {
+    font-size: 14px;
+  }
+
+  .hc-search-wrapper {
+    margin-bottom: 16px;
+  }
+
+  .hc-search-box {
+    width: 100%;
+    padding: 10px 16px;
+  }
+
+  .hc-search-input {
+    font-size: 14px;
+  }
+
+  .hc-filter-row {
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .hc-filter-btn {
+    padding: 8px 18px;
+    font-size: 13px;
+    gap: 16px;
+  }
+
+  .hc-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .hc-card {
+    width: 100%;
+    height: auto;
+  }
+
+  .hc-card-img-wrapper.open,
+  .hc-card-img-wrapper.closing {
+    height: 200px;
+  }
+
+  .hc-card-body {
+    padding: 14px 14px 14px;
+  }
+
+  .hc-card-name {
+    font-size: 16px;
+  }
+
+  .hc-card-location,
+  .hc-card-time,
+  .hc-card-services {
+    font-size: 13px;
+  }
+
+  .hc-pagination {
+    gap: 4px;
+  }
+
+  .hc-page-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hc-page {
+    padding: 16px 12px;
+  }
+
+  .hc-title {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .hc-search-box {
+    padding: 8px 12px;
+  }
+
+  .hc-filter-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+    gap: 12px;
+  }
+
+  .hc-card-body {
+    padding: 12px 12px 12px;
+  }
+
+  .hc-card-name {
+    font-size: 14px;
+  }
+
+  .hc-card-location,
+  .hc-card-time,
+  .hc-card-services {
+    font-size: 12px;
+  }
+
+  .hc-page-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .hc-page {
+    padding: 30px 20px;
+  }
+
+  .hc-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .hc-card {
+    padding: 20px;
+  }
+
+  .hc-filter-btn {
+    padding: 7px 25px;
+    font-size: 16px;
+  }
 }

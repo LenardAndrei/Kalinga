@@ -8,7 +8,7 @@ const ITEMS_PER_PAGE = 9
 // ── filter options ──
 const FILTER_OPTIONS = {
   "Service Type": ["All", "Health Center", "Clinic", "Hospital"],
-  "Location":     ["All", "Mauban", "Quezon"],
+  "Location":     ["All", "Alangilan", "Bauan", "Bolbok"],
   "Cost":         ["All", "Free", "Paid"],
   "Availability": ["All", "Open", "Closing"],
   "Rating":       ["All", "5", "4", "3", "2", "1"],

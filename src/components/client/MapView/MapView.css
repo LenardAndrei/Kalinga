@@ -393,3 +393,145 @@
   width: 100%;
   height: calc(100vh - 70px);
 }
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .map-page {
+    padding: 30px 20px;
+  }
+
+  .map-container {
+    height: 500px;
+  }
+
+  .search-form {
+    width: 280px;
+  }
+
+  .saved-list {
+    width: 250px;
+  }
+
+  .add-modal {
+    width: 80%;
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .search-wrapper {
+    position: absolute;
+    top: 20px;
+    left: 30%;
+    transform: translateX(-50%);
+    width: calc(60% - 24px);
+    max-width: 520px;
+    z-index: 9;
+  }
+
+  .search-form {
+    width: 100%;
+    padding: 10px 14px;
+  }
+
+  .search-input {
+    font-size: 13px;
+  }
+
+  .saved-btn {
+    top: 22px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .saved-panel {
+    top: 125px;
+    right: 12px;
+    width: min(92vw, 320px);
+    max-height: 55vh;
+  }
+
+  .saved-item-name {
+    font-size: 12px;
+  }
+
+  .saved-item-coords {
+    font-size: 10px;
+  }
+
+  .add-modal {
+    width: min(92vw, 320px);
+    bottom: 90px;
+    padding: 14px 16px;
+  }
+
+  .add-modal-input {
+    font-size: 12px;
+  }
+
+  .location-btn-wrapper {
+    bottom: 24px;
+    right: 14px;
+  }
+
+  .location-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .location-error {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+
+  .map-wrapper {
+    height: calc(100vh - 60px);
+  }
+}
+
+@media (max-width: 480px) {
+
+  .search-wrapper {
+    top: 12px;
+    width: calc(100% - 16px);
+  }
+
+  .search-form {
+    padding: 8px 12px;
+    border-radius: 40px;
+  }
+
+  .search-input {
+    font-size: 12px;
+  }
+
+  .saved-btn {
+    width: 36px;
+    height: 36px;
+    top: 76px;
+    right: 10px;
+  }
+
+  .saved-panel {
+    width: calc(100% - 20px);
+    right: 10px;
+    top: 118px;
+  }
+
+  .add-modal {
+    width: calc(100% - 20px);
+    bottom: 80px;
+  }
+
+  .location-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .spinner {
+    width: 16px;
+    height: 16px;
+  }
+}

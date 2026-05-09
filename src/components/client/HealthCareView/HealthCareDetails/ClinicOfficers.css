@@ -78,3 +78,25 @@
   text-align: center;
   font-style: italic;
 }
+
+@media (max-width: 768px) {
+  .officers-wrapper {
+    padding: 18px 20px;
+  }
+
+  .officers-title {
+    font-size: 1.6rem;
+  }
+
+  .officers-scroll {
+    gap: 12px;
+  }
+
+  .officer-card {
+    width: 200px;
+  }
+
+  .officer-img-wrapper {
+    height: 180px;
+  }
+}
