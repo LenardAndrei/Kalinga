@@ -220,6 +220,50 @@
     color: #cde8e8;
 }
 
+/* ── edit prescription medicine row ── */
+/* override grid to add + button column */
+.doctor-create-prescription__medicine-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 40px;
+  grid-template-rows: auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+/* frequency + duration sit on row 2 */
+.doctor-create-prescription__input--frequency {
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.doctor-create-prescription__input--duration {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+/* ── + add medicine button ── */
+.doctor-edit-prescription__add-med-btn {
+  grid-row: 1;
+  grid-column: 3;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #2A787C;
+  color: #fff;
+  border: none;
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+  align-self: center;
+}
+
+.doctor-edit-prescription__add-med-btn:hover { background: #205b5e; }
+
 /* ==================== RESPONSIVE DESIGN ==================== */
 
 /* Tablet (768px - 1024px) */

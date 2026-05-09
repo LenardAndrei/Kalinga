@@ -96,63 +96,221 @@ function CreatePrescriptionDialog({onClose}) {
     )
 }
 
-function ViewPrescriptionDialog({prescription, onClose}) {
-    return (
-        <DoctorDialog onClose={onClose}>
-            <div className="doctor-view-prescriptions-dialog">
+function ViewPrescriptionDialog({ prescription, onClose }) {
+  const [isEditOpen, setIsEditOpen] = useState(false)   // ← add this
 
-                <div className="doctor-view-prescriptions-dialog__header">
-                    <h1 className="doctor-view-prescriptions-dialog__title">Patient's Prescription</h1>
-                    <p className="doctor-view-prescriptions-dialog__subtitle">View patient's prescription details</p>
-                </div>
+  return (
+    <>
+      <DoctorDialog onClose={onClose}>
+        <div className="doctor-view-prescriptions-dialog">
 
-                <div className="doctor-view-prescriptions-dialog__patient-card">
-                    <p className="doctor-view-prescriptions-dialog__patient-card-title">Patient Info</p>
+          <div className="doctor-view-prescriptions-dialog__header">
+            <h1 className="doctor-view-prescriptions-dialog__title">
+              Patient's Prescription
+            </h1>
+            <p className="doctor-view-prescriptions-dialog__subtitle">
+              View patient's prescription details
+            </p>
+          </div>
 
-                    <div className="doctor-view-prescriptions-dialog__patient-field">
-                        <span className="doctor-view-prescriptions-dialog__patient-label">Name:</span>
-                        <span className="doctor-view-prescriptions-dialog__patient-value">
-                            {prescription.patient}
-                        </span>
-                    </div>
-
-                    <div className="doctor-view-prescriptions-dialog__patient-field">
-                        <span className="doctor-view-prescriptions-dialog__patient-label">Concern:</span>
-                        <span className="doctor-view-prescriptions-dialog__patient-value">
-                            {prescription.concern}
-                        </span>
-                    </div>
-                </div>
-
-
-                <table className="doctor-view-prescriptions-dialog__table">
-                    <thead className="doctor-view-prescriptions-dialog__table-head">
-                    <tr>
-                        <th className="doctor-view-prescriptions-dialog__th">Medicine</th>
-                        <th className="doctor-view-prescriptions-dialog__th">Dosage</th>
-                        <th className="doctor-view-prescriptions-dialog__th">Frequency</th>
-                        <th className="doctor-view-prescriptions-dialog__th">Duration</th>
-                    </tr>
-                    </thead>
-                    <tbody className="doctor-view-prescriptions-dialog__table-body">
-                        {prescription.medicine.map((med, index) => (
-                            <tr key={index}>
-                                <td>{med.name}</td>
-                                <td>{med.dosage}</td>
-                                <td>{med.frequency}</td>
-                                <td>{med.duration}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-
-                <div className="doctor-view-prescriptions-dialog__footer">
-                    <button className="doctor-view-prescriptions-dialog__edit-btn">Edit</button>
-                </div>
-
+          <div className="doctor-view-prescriptions-dialog__patient-card">
+            <p className="doctor-view-prescriptions-dialog__patient-card-title">
+              Patient Info
+            </p>
+            <div className="doctor-view-prescriptions-dialog__patient-field">
+              <span className="doctor-view-prescriptions-dialog__patient-label">Name:</span>
+              <span className="doctor-view-prescriptions-dialog__patient-value">
+                {prescription.patient}
+              </span>
             </div>
-        </DoctorDialog>
+            <div className="doctor-view-prescriptions-dialog__patient-field">
+              <span className="doctor-view-prescriptions-dialog__patient-label">Concern:</span>
+              <span className="doctor-view-prescriptions-dialog__patient-value">
+                {prescription.concern}
+              </span>
+            </div>
+          </div>
+
+          <table className="doctor-view-prescriptions-dialog__table">
+            <thead className="doctor-view-prescriptions-dialog__table-head">
+              <tr>
+                <th className="doctor-view-prescriptions-dialog__th">Medicine</th>
+                <th className="doctor-view-prescriptions-dialog__th">Dosage</th>
+                <th className="doctor-view-prescriptions-dialog__th">Frequency</th>
+                <th className="doctor-view-prescriptions-dialog__th">Duration</th>
+              </tr>
+            </thead>
+            <tbody className="doctor-view-prescriptions-dialog__table-body">
+              {prescription.medicine.map((med, index) => (
+                <tr key={index}>
+                  <td className="doctor-view-prescriptions-dialog__td">{med.name}</td>
+                  <td className="doctor-view-prescriptions-dialog__td">{med.dosage}</td>
+                  <td className="doctor-view-prescriptions-dialog__td">{med.frequency}</td>
+                  <td className="doctor-view-prescriptions-dialog__td">{med.duration}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div className="doctor-view-prescriptions-dialog__footer">
+            {/* ← wire edit button */}
+            <button
+              className="doctor-view-prescriptions-dialog__edit-btn"
+              onClick={() => setIsEditOpen(true)}
+            >
+              Edit
+            </button>
+          </div>
+
+        </div>
+      </DoctorDialog>
+
+      {/* edit dialog stacks on top of view dialog */}
+      {isEditOpen && (
+        <EditPrescriptionDialog
+          prescription={prescription}
+          onClose={() => setIsEditOpen(false)}
+        />
+      )}
+    </>
+  )
+}
+
+function EditPrescriptionDialog({ prescription, onClose }) {
+  const [patient, setPatient] = useState(prescription.patient)
+  const [medicines, setMedicines] = useState(
+    prescription.medicine.map((m) => ({ ...m }))
+  )
+  const [notes, setNotes] = useState(prescription.notes || "")
+
+  const updateMedicine = (index, field, value) => {
+    setMedicines((prev) =>
+      prev.map((m, i) => (i === index ? { ...m, [field]: value } : m))
     )
+  }
+
+  const addMedicine = () => {
+    setMedicines((prev) => [
+      ...prev,
+      { name: "", dosage: "", frequency: "", duration: "" },
+    ])
+  }
+
+  const handleSubmit = () => {
+    alert("Prescription updated successfully!")
+    onClose()
+  }
+
+  return (
+    <DoctorDialog onClose={onClose}>
+      <div className="doctor-create-prescription">
+        <div className="doctor-create-prescription__card">
+
+          {/* header */}
+          <div className="doctor-create-prescription__header">
+            <h1 className="doctor-create-prescription__title">Edit Prescription</h1>
+            <p className="doctor-create-prescription__subtitle">
+              Create prescription for patient
+            </p>
+          </div>
+
+          {/* patient field */}
+          <div className="doctor-create-prescription__field">
+            <span className="doctor-create-prescription__field-label">Patient</span>
+            <div className="doctor-create-prescription__field-controls">
+              <input
+                type="text"
+                className="doctor-create-prescription__input"
+                value={patient}
+                onChange={(e) => setPatient(e.target.value)}
+                placeholder="Patient's Name"
+              />
+            </div>
+          </div>
+
+          {/* medicine fields */}
+          <div className="doctor-create-prescription__field">
+            <span className="doctor-create-prescription__field-label">Medicine</span>
+            <div className="doctor-create-prescription__field-controls">
+              {medicines.map((med, index) => (
+                <div key={index} className="doctor-create-prescription__medicine-row">
+                  <input
+                    type="text"
+                    className="doctor-create-prescription__input"
+                    placeholder="Medicine Name"
+                    value={med.name}
+                    onChange={(e) => updateMedicine(index, "name", e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    className="doctor-create-prescription__input"
+                    placeholder="Dosage"
+                    value={med.dosage}
+                    onChange={(e) => updateMedicine(index, "dosage", e.target.value)}
+                  />
+
+                  {/* + button only on first row */}
+                  {index === 0 ? (
+                    <button
+                      type="button"
+                      className="doctor-edit-prescription__add-med-btn"
+                      onClick={addMedicine}
+                      title="Add another medicine"
+                    >
+                      +
+                    </button>
+                  ) : (
+                    <div style={{ width: "40px" }} />
+                  )}
+
+                  <input
+                    type="text"
+                    className="doctor-create-prescription__input doctor-create-prescription__input--frequency"
+                    placeholder="Frequency"
+                    value={med.frequency}
+                    onChange={(e) => updateMedicine(index, "frequency", e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    className="doctor-create-prescription__input doctor-create-prescription__input--duration"
+                    placeholder="Duration"
+                    value={med.duration}
+                    onChange={(e) => updateMedicine(index, "duration", e.target.value)}
+                  />
+
+                  {/* empty cell to align with + button column */}
+                  <div style={{ width: "40px" }} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* notes */}
+          <div className="doctor-create-prescription__notes-section">
+            <p className="doctor-create-prescription__notes-label">
+              Instructions / Notes
+            </p>
+            <textarea
+              className="doctor-create-prescription__notes"
+              placeholder="Write your instruction"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+            />
+          </div>
+
+          {/* submit */}
+          <button
+            className="doctor-create-prescription__submit"
+            onClick={handleSubmit}
+          >
+            <span className="doctor-create-prescription__submit-icon">+</span>
+            Edit Prescription
+          </button>
+
+        </div>
+      </div>
+    </DoctorDialog>
+  )
 }
 
 function PrescriptionTable({children}) {
