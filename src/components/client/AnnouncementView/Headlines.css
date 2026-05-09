@@ -1,0 +1,237 @@
+.headlines-container {
+  width: 100%;
+  padding: 40px 48px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.headlines-title {
+  font-size: 38px;
+  font-weight: 900;
+  color: #032932;
+  margin: 0 0 24px 80px;
+}
+
+.headlines-carousel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+/* Slide */
+.headlines-slide {
+  flex: 1;
+  height: 360px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.headlines-slide:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.headlines-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+  z-index: 1;
+}
+
+.headlines-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  color: #fff;
+  z-index: 2;
+}
+
+.headlines-slide-title {
+  font-size: 36px;
+  font-weight: 900;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.headlines-slide-description {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  max-width: 600px;
+}
+
+.headlines-read-more {
+  align-self: flex-end;
+  background: #2A787C;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 30px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.headlines-read-more:hover {
+  background: #1f575a;
+  transform: translateY(-2px);
+}
+
+/* Arrow Buttons */
+.headlines-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid #2A787C;
+  background: #fff;
+  color: #2A787C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.headlines-arrow:hover {
+  background: #2A787C;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.headlines-arrow:active {
+  transform: scale(0.95);
+}
+
+.headlines-arrow-left {
+  margin-right: 20px;
+}
+
+.headlines-arrow-right {
+  margin-left: 20px;
+}
+
+/* Indicators / Dots */
+.headlines-indicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.headlines-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.headlines-indicator:hover {
+  background: #bbb;
+  transform: scale(1.2);
+}
+
+.headlines-indicator.active {
+  background: #2A787C;
+  width: 28px;
+  border-radius: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .headlines-container {
+    padding: 30px 24px;
+  }
+
+  .headlines-title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .headlines-carousel {
+    gap: 12px;
+  }
+
+  .headlines-slide {
+    height: 240px;
+  }
+
+  .headlines-content {
+    padding: 24px;
+  }
+
+  .headlines-slide-title {
+    font-size: 22px;
+  }
+
+  .headlines-slide-description {
+    font-size: 14px;
+  }
+
+  .headlines-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .headlines-arrow-left {
+    margin-right: 12px;
+  }
+
+  .headlines-arrow-right {
+    margin-left: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .headlines-carousel {
+    gap: 8px;
+  }
+
+  .headlines-slide {
+    height: 200px;
+  }
+
+  .headlines-content {
+    padding: 16px;
+  }
+
+  .headlines-slide-title {
+    font-size: 18px;
+  }
+
+  .headlines-slide-description {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .headlines-read-more {
+    padding: 8px 20px;
+    font-size: 12px;
+  }
+
+  .headlines-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .headlines-arrow-left,
+  .headlines-arrow-right {
+    margin: 0;
+  }
+}

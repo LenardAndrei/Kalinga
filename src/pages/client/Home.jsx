@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import bgBuilding from "../../assets/building.jpg";
 import ServiceSlider from "../../components/client/ServiceSlider";
 import AboutSection from "../../components/client/AboutSection";
 import CTASection from "../../components/client/CTASection";
 
 function Home() {
+
+  const navigate = useNavigate();
+
   const styles = {
     hero: {
       position: "relative",
@@ -90,7 +94,10 @@ function Home() {
           simple, organized, and convenient.
         </p>
         <p style={styles.tagline}>Bringing care closer to every home.</p>
-        <button style={styles.ctaBtn}>
+        <button 
+          style={styles.ctaBtn} 
+          onClick={() => navigate("/login")}
+        >
           Get Started →
         </button>
       </div>
