@@ -1,0 +1,388 @@
+
+.doctor-patients {
+    position: relative;
+    z-index: 10;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.doctor-patients__title {
+    font-size: 3rem;
+    font-weight: 900;
+    background-image: linear-gradient(to bottom, #032932, #2A787C);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    margin-bottom: 20px;
+}
+
+/* Table styles */
+.doctor-patients__table {
+    width: 100%;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+.doctor-patients__table th, td {
+    padding: 1rem;
+    text-align: center;
+}
+
+.doctor-patients__table td {
+    padding: 0.5rem 1rem;
+}
+
+.doctor-patients__table-header {
+    background-color: #2A787C;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.doctor-patients__table-header-row {
+    border-radius: 1rem 1rem 0 0;
+    outline: none;
+    color: white;
+}
+
+.doctor-patients__table-title {
+    outline: none;
+}
+
+.doctor-patients-table__entry {
+    border-bottom: 1px solid #BFBCBC;
+}
+
+.doctor-patients-table__entry:last-child {
+    border-bottom: none;
+}
+
+.doctor-patients-table__entry > td {
+    color: black;
+}
+
+.doctor-patients-table__entry-action-btn {
+    background-color: #032932;
+    color: #e6edf0;
+    border: none;
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.doctor-patients-table__entry-action-btn:hover {
+    background-color: #13404f;
+}
+
+.doctor-patients-table__entry-action-btn:active {
+    transform: scale(0.97);
+}
+
+.doctor-patients-table__entry-action-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(15, 47, 58, 0.3);
+}
+
+
+/* Doctor patient info card styles */
+.doctor-patients-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 0 2rem 1rem;
+    width: 100%;
+}
+
+.doctor-patients-card__title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: transparent;
+    background-image: linear-gradient(to bottom, #032932, #2A787C);
+    background-clip: text;
+    margin-bottom: 24px;
+}
+
+.doctor-patients-card__profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.doctor-patients-card__avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    background-color: #e8edf2;
+    border: 2px solid #d1d9e0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.doctor-patients-card__avatar svg {
+    width: 60px;
+    height: 60px;
+    fill: #adb5bd;
+}
+
+.doctor-patients-card__profile-info {
+    background: linear-gradient(135deg, #2d6a6a, #1a4040);
+    border-radius: 12px;
+    padding: 18px 22px;
+    flex: 1;
+    color: #ffffff;
+}
+
+.doctor-patients-card__section {
+    background: linear-gradient(135deg, #2d6a6a, #1a4040);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+    color: #ffffff;
+}
+
+.doctor-patients-card__section:last-child {
+    margin-bottom: 0;
+}
+
+.doctor-patients-card__section-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #ffffff;
+}
+
+.doctor-patients-card__info-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.doctor-patients-card__info-row:last-child {
+    margin-bottom: 0;
+}
+
+.doctor-patients-card__info-label {
+    font-size: 1rem;
+    font-weight: 700;
+    min-width: 100px;
+    color: #ffffff;
+}
+
+.doctor-patients-card__info-value {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #cde8e8;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .doctor-patients__title {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .doctor-patients__table th, td {
+        padding: 0.8rem;
+    }
+
+    .doctor-patients__table td {
+        padding: 0.4rem 0.8rem;
+    }
+
+    .doctor-patients__table-title {
+        font-size: 1rem;
+    }
+
+    .doctor-patients-table__entry-action-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 13px;
+    }
+
+    .doctor-patients-card__title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .doctor-patients-card__profile {
+        gap: 16px;
+        margin-bottom: 16px;
+    }
+
+    .doctor-patients-card__avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .doctor-patients-card__avatar svg {
+        width: 50px;
+        height: 50px;
+    }
+
+    .doctor-patients-card__section {
+        padding: 14px 18px;
+        margin-bottom: 12px;
+    }
+
+    .doctor-patients-card__info-label {
+        min-width: 80px;
+        font-size: 0.9rem;
+    }
+
+    .doctor-patients-card__info-value {
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+    .doctor-patients__title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .doctor-patients__table {
+        font-size: 0.85rem;
+    }
+
+    .doctor-patients__table th, td {
+        padding: 0.6rem;
+    }
+
+    .doctor-patients__table td {
+        padding: 0.3rem 0.6rem;
+    }
+
+    .doctor-patients__table-title {
+        font-size: 0.85rem;
+    }
+
+    .doctor-patients-table__entry-action-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 12px;
+    }
+
+    .doctor-patients-card__title {
+        font-size: 1.5rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .doctor-patients-card__profile {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .doctor-patients-card__avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .doctor-patients-card__avatar svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .doctor-patients-card__profile-info {
+        width: 100%;
+        padding: 12px 16px;
+    }
+
+    .doctor-patients-card__section {
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .doctor-patients-card__section-title {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .doctor-patients-card__info-row {
+        gap: 6px;
+        margin-bottom: 4px;
+        font-size: 12px;
+    }
+
+    .doctor-patients-card__info-label {
+        min-width: 70px;
+        font-size: 0.8rem;
+    }
+
+    .doctor-patients-card__info-value {
+        font-size: 0.8rem;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .doctor-patients__title {
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .doctor-patients__table {
+        font-size: 0.75rem;
+    }
+
+    .doctor-patients__table th, td {
+        padding: 0.4rem;
+    }
+
+    .doctor-patients__table td {
+        padding: 0.2rem 0.4rem;
+    }
+
+    .doctor-patients-table__entry-action-btn {
+        padding: 0.2rem 0.5rem;
+        font-size: 10px;
+    }
+
+    .doctor-patients-card__title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .doctor-patients-card__avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .doctor-patients-card__avatar svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .doctor-patients-card__section {
+        padding: 10px 12px;
+        margin-bottom: 8px;
+    }
+
+    .doctor-patients-card__section-title {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .doctor-patients-card__info-label {
+        min-width: 60px;
+        font-size: 0.75rem;
+    }
+
+    .doctor-patients-card__info-value {
+        font-size: 0.75rem;
+    }
+}

@@ -30,6 +30,14 @@ import Doctors from "./pages/admin/Doctors"
 import AdminHealthcare from "./pages/admin/Healthcare"
 import Patients from "./pages/admin/Patient"
 
+import DoctorLayout from "./pages/doctor/Layout/DoctorLayout.jsx"
+import DoctorProfile from "./pages/doctor/Profile/DoctorProfile.jsx"
+import DoctorPatients from "./pages/doctor/Patients/DoctorPatients.jsx"
+import DoctorAppointments from "./pages/doctor/Appointments/DoctorAppointments.jsx"
+import DoctorPrescriptions from "./pages/doctor/Prescriptions/DoctorPrescriptions.jsx"
+import DoctorSchedules from "./pages/doctor/Schedules/DoctorSchedules.jsx"
+import DoctorDashboard from "./pages/doctor/Dashboard/DoctorDashboard.jsx"
+
 import Login from "./pages/auth/Login"
 import SelectRole from "./pages/auth/SelectRole"
 
@@ -104,6 +112,16 @@ function App() {
           <Route path="reviews"      element={<div>Reviews</div>} />
         </Route>
 
+        {/* DOCTOR */}
+        <Route path="/doctors" element={<DoctorLayout/>}>
+          <Route path="dashboard" element={<DoctorDashboard/>}/>
+          <Route path="profile" element={<DoctorProfile/>}/>
+          <Route path="patients" element={<DoctorPatients/>}/>
+          <Route path="schedule" element={<DoctorSchedules/>}/>
+          <Route path="appointments" element={<DoctorAppointments/>}/>
+          <Route path="prescriptions" element={<DoctorPrescriptions/>}/>
+        </Route>
+
         <Route path="/healthcare-provider" element={<HCLayout />}>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
@@ -113,7 +131,7 @@ function App() {
           <Route path="reviews"       element={<Reviews />} /> 
           <Route path="services"      element={<Services />} />
           <Route path="services/laboratory"          element={<LaboratoryManagement />} />
-          <Route path="services/pharmacy"            element={<PharmacyManagement />} />\
+          <Route path="services/pharmacy"            element={<PharmacyManagement />} />
           <Route path="services/consultation"        element={<ConsultationManagement />} />
           <Route path="services/dentist"             element={<DentistManagement />} />
 

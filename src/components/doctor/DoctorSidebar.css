@@ -1,0 +1,335 @@
+/* Hamburger Menu Button */
+.doctor-sidebar__hamburger {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+    background: transparent;
+    border: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.hamburger-line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #032932;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.hamburger-line.open:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger-line.open:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-line.open:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Mobile overlay */
+.doctor-sidebar__overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Sidebar Styles */
+.doctor-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: linear-gradient(180deg, #82ACAB 0%, #2A787C 33% ,#032932 100%);
+    padding: 0 0.5rem;
+    border-radius: 0 20px 20px 0;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.doctor-sidebar-logo__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.doctor-sidebar-logo__image {
+    width: 2rem;
+    height: 2.6rem;
+}
+
+.doctor-sidebar-logo__text {
+    color: white;
+    font-size: 1.9rem;
+    font-weight: 900;
+}
+
+/* Sidebar link styles */
+.doctor-sidebar__links {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.doctor-sidebar__link {
+    text-decoration: none;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1rem 0.5rem;
+    border-radius: 10px 2rem 2rem 10px;
+}
+
+.doctor-sidebar__link--active {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.doctor-sidebar__link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s;
+}
+
+.doctor-sidebar-link__text {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-sizing: border-box;
+    text-align: left;
+    flex: 1;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.doctor-sidebar-link__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: white;
+}
+
+/* Sidebar footer styles */
+.sidebar-footer {
+    margin-bottom: 1rem;
+    background-color: #7a8e8e;
+    padding: 0.75rem;
+    border-radius: 1.5rem;
+    font-family: sans-serif;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    box-sizing: border-box;
+}
+
+.sidebar-footer__title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.sidebar-footer__logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #032932;
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sidebar-footer__logout-btn:hover {
+    background-color: #020e11;
+}
+
+.sidebar-footer__icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .doctor-sidebar-logo__text {
+        font-size: 1.5rem;
+    }
+
+    .doctor-sidebar-link__text {
+        font-size: 0.95rem;
+    }
+
+    .sidebar-footer__title {
+        font-size: 0.75rem;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+    .doctor-sidebar__hamburger {
+        display: flex;
+    }
+
+    .doctor-sidebar__overlay {
+        display: block;
+    }
+
+    .doctor-sidebar {
+        width: 80vw;
+        max-width: 280px;
+        transform: translateX(-100%);
+        border-radius: 0;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .doctor-sidebar--mobile-open {
+        transform: translateX(0);
+    }
+
+    .doctor-sidebar-logo__image {
+        width: 1.5rem;
+        height: 2rem;
+    }
+
+    .doctor-sidebar-logo__text {
+        font-size: 1.2rem;
+    }
+
+    .doctor-sidebar-link__text {
+        font-size: 0.9rem;
+    }
+
+    .doctor-sidebar-link__icon {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .doctor-sidebar__link {
+        padding: 0.8rem 0.4rem;
+    }
+
+    .sidebar-footer {
+        padding: 0.6rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .sidebar-footer__title {
+        font-size: 0.7rem;
+    }
+
+    .sidebar-footer__logout-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .hamburger-line {
+        width: 20px;
+        height: 2.5px;
+    }
+
+    .doctor-sidebar {
+        width: 75vw;
+        max-width: 260px;
+    }
+
+    .doctor-sidebar-logo__container {
+        gap: 0.5rem;
+        margin-top: 0.8rem;
+    }
+
+    .doctor-sidebar-logo__image {
+        width: 1.3rem;
+        height: 1.7rem;
+    }
+
+    .doctor-sidebar-logo__text {
+        font-size: 1rem;
+    }
+
+    .doctor-sidebar-link__text {
+        font-size: 0.8rem;
+    }
+
+    .doctor-sidebar-link__icon {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .sidebar-footer__title {
+        font-size: 0.65rem;
+    }
+}
+
+.sidebar-footer__title {
+    color: #ffffff;
+    margin: 0;
+    font-size: 1rem;
+    text-align: left;
+    font-weight: 600;
+    line-height: 1.1;
+    max-width: 300px;
+}
+
+.sidebar-footer__logout-btn {
+    align-self: flex-end;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 30px;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 300;
+    font-style: italic;
+    gap: 10px;
+    padding: 0.3rem 0.5rem;
+}
+
+.sidebar-footer__logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+.sidebar-footer__icon {
+    width: 0.75rem;
+    height: 0.75rem;
+}
