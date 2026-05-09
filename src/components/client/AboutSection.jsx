@@ -1,107 +1,98 @@
 function AboutSection() {
-
   const styles = {
     container: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: "clamp(50px, 15vw, 90px) clamp(20px, 10vw, 40px)",
+      padding: "clamp(50px, 10vw, 90px) 20px",
       background: "#fff",
       fontFamily: "'Poppins', sans-serif",
     },
-
     title: {
-      fontSize: "clamp(24px, 5vw, 40px)",
+      fontSize: "clamp(28px, 5vw, 40px)",
       fontWeight: "800",
       color: "#1a1a1a",
       marginBottom: "32px",
     },
-
     wrapper: {
       position: "relative",
       width: "100%",
-      maxWidth: "min(1000px, 90vw)",
+      maxWidth: "1000px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
     },
-
     topCard: {
       position: "relative",
       zIndex: 2,
-      width: "min(75%, 90vw)",
+      width: "min(85%, 800px)", // Slightly wider for mobile comfort
       background: "#7FA8A7",
       borderRadius: "20px",
-      padding: "clamp(16px, 5vw, 32px) clamp(24px, 10vw, 48px)",
+      padding: "clamp(24px, 5vw, 32px)",
       textAlign: "center",
       marginBottom: "-40px",
+      boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
     },
-
     topTitle: {
-      fontSize: "18px",
+      fontSize: "clamp(16px, 2vw, 18px)",
       fontWeight: "800",
       color: "#fff",
-      margin: "0 0 18px 0",
+      margin: "0 0 12px 0",
+      textTransform: "uppercase",
     },
-
     topText: {
-      fontSize: "16px",
-      fontWeight: "400",
+      fontSize: "clamp(14px, 2vw, 16px)",
       color: "#fff",
-      lineHeight: 1.7,
+      lineHeight: 1.6,
       margin: 0,
     },
-
     bottomCard: {
       position: "relative",
       zIndex: 1,
       width: "100%",
       background: "#D2E4E8",
-      borderRadius: "20px",
-      padding: "clamp(40px, 10vw, 65px) 0px clamp(20px, 5vw, 36px)",
+      borderRadius: "24px",
+      padding: "clamp(60px, 8vw, 80px) 20px clamp(30px, 5vw, 40px)",
       display: "flex",
-      flexDirection: window.innerWidth < 768 ? "column" : "row",
-      alignItems: "flex-start",
+      flexWrap: "wrap", // This is the magic fix for responsiveness
+      justifyContent: "center",
+      alignItems: "stretch",
+      gap: "20px",
     },
-
     section: {
-      flex: 1,
-      padding: "clamp(20px, 5vw, 40px) 40px",
+      flex: "1 1 300px", // Grows, shrinks, but tries to stay at least 300px
+      padding: "20px",
       textAlign: "center",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
     },
-
     sectionTitle: {
-      fontSize: "18px",
+      fontSize: "clamp(16px, 2vw, 18px)",
       fontWeight: "800",
       color: "#1a1a1a",
-      marginBottom: "16px",
+      marginBottom: "12px",
     },
-
     sectionText: {
-      fontSize: "16px",
-      fontWeight: "400",
+      fontSize: "clamp(14px, 2vw, 16px)",
       color: "#333",
-      lineHeight: 1.7,
+      lineHeight: 1.6,
       margin: 0,
     },
-
+    
     divider: {
-      width: window.innerWidth < 768 ? "80%" : "1px",
-      height: window.innerWidth < 768 ? "1px" : "auto",
-      alignSelf: "stretch",
-      background: "#032932",
-      margin: window.innerWidth < 768 ? "20px 0" : "8px 0",
+      width: "1px",
+      background: "rgba(3, 41, 50, 0.2)",
+      margin: "20px 0",
+      display: window.innerWidth < 768 ? "none" : "block", 
     }
   }
 
   return (
     <div style={styles.container}>
-
       <h2 style={styles.title}>About Us</h2>
-
       <div style={styles.wrapper}>
-
-        {/* TOP CARD */}
+        
         <div style={styles.topCard}>
           <p style={styles.topTitle}>Who We Are</p>
           <p style={styles.topText}>
@@ -111,9 +102,7 @@ function AboutSection() {
           </p>
         </div>
 
-        {/* BOTTOM CARD */}
         <div style={styles.bottomCard}>
-
           <div style={styles.section}>
             <p style={styles.sectionTitle}>Our Mission</p>
             <p style={styles.sectionText}>
@@ -132,11 +121,11 @@ function AboutSection() {
               and improves service efficiency at the barangay level.
             </p>
           </div>
-
         </div>
       </div>
     </div>
   )
 }
+
 
 export default AboutSection

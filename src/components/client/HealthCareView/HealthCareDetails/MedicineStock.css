@@ -1,7 +1,7 @@
 .medicine-wrapper {
   background: linear-gradient(to right, #82ACAB, #E8FFFE);
   border-radius: 20px;
-  padding: 24px 28px;
+  padding: 28px 28px;
   margin: 24px 32px;
   font-family: 'Poppins', sans-serif;
 }
@@ -78,7 +78,7 @@
 
   .medicine-card {
     width: 160px;
-    height: 180px;
+    height: 190px;
   }
 
   .medicine-img {

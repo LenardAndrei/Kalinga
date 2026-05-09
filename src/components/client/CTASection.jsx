@@ -1,23 +1,28 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react"; // Added useState
+import { useState } from "react";
 
 function CTASection() {
   const navigate = useNavigate(); 
   
-  // 1. Track hover state for each button
   const [hoverMap, setHoverMap] = useState(false);
   const [hoverSpec, setHoverSpec] = useState(false);
+
+  const getBtnStyle = (isHovered) => ({
+    ...styles.btn,
+    transform: isHovered ? "translateY(-5px)" : "translateY(0)",
+    boxShadow: isHovered ? "0 10px 20px rgba(0,0,0,0.15)" : "none",
+    background: isHovered ? "#f0f0f0" : "#fff", // Subtle feedback
+  });
 
   const styles = {
     section: {
       background: "#032932",
       padding: "clamp(20px, 10vw, 40px) clamp(20px, 10vw, 40px)",
       textAlign: "center",
-      fontFamily: "'Poppins', sans-serif",
     },
     title: {
       fontSize: "clamp(24px, 5vw, 36px)",
-      fontWeight: "800",
+      fontWeight: "700",
       color: "#fff",
       margin: "0 0 16px 0",
     },
@@ -40,10 +45,10 @@ function CTASection() {
       padding: "clamp(16px, 5vw, 20px)",
       borderRadius: "50px",
       fontSize: "clamp(13px, 5vw, 18px)",
-      fontWeight: "600",
+      fontWeight: "700",
       whiteSpace: "nowrap",
       cursor: "pointer", 
-      transition: "transform 0.3s ease", // Essential for smooth movement
+      transition: "transform 0.3s ease", 
     }
   };
 

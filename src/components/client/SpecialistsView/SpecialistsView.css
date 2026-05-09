@@ -118,10 +118,11 @@
   background: #fff;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
   cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);;
 }
 
 .sp-card:hover {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
   transform: translateY(-2px);
 }
 
@@ -216,14 +217,30 @@
   .sp-search-input {
     font-size: 14px;
   }
-
+  /* 1. Ensure the container doesn't wrap and allows smooth swiping */
   .sp-categories {
     gap: 8px;
+    padding: 10px 5px; /* Give it some "breathing room" */
+    width: 100vw;      /* Occupy full width */
+    margin-left: -10px; /* Offset parent padding to touch screen edges */
+    padding-left: 15px; 
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth momentum scrolling for iOS */
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
   }
 
+  /* 2. Adjust button size for fingers (Touch Target) */
   .sp-cat-btn {
-    padding: 6px 12px;
-    font-size: 12px;
+    padding: 10px 20px; /* Taller and wider for easier tapping */
+    font-size: 14px;    /* Keep text legible */
+    border-width: 1px;
+  }
+
+  /* 3. Hide the arrows on mobile */
+  /* Most mobile users prefer swiping over clicking tiny arrows */
+  .sp-cat-arrow {
+    display: none;
   }
 
   .sp-grid {
@@ -237,11 +254,11 @@
   }
 
   .sp-card-img-wrapper {
-    height: 200px;
+    height: 300px;
   }
 
   .sp-card-body {
-    padding: 10px;
+    padding: 15px;
   }
 
   .sp-card-name,

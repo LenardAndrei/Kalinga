@@ -156,24 +156,27 @@
 /* Responsive */
 @media (max-width: 768px) {
   .headlines-container {
-    padding: 30px 24px;
+    padding: 24px 20px;
   }
 
   .headlines-title {
     font-size: 24px;
-    margin: 0 0 16px;
+    margin: 0 0 16px 0;
   }
 
   .headlines-carousel {
-    gap: 12px;
+    position: relative;
+    gap: 0;
   }
 
   .headlines-slide {
+    width: 100%;
     height: 240px;
+    min-width: 0;
   }
 
   .headlines-content {
-    padding: 24px;
+    padding: 20px;
   }
 
   .headlines-slide-title {
@@ -182,19 +185,29 @@
 
   .headlines-slide-description {
     font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .headlines-read-more {
+    font-size: 13px;
+    padding: 8px 18px;
   }
 
   .headlines-arrow {
-    width: 40px;
-    height: 40px;
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    z-index: 5;
   }
 
   .headlines-arrow-left {
-    margin-right: 12px;
+    left: 10px;
+    margin: 0;
   }
 
   .headlines-arrow-right {
-    margin-left: 12px;
+    right: 10px;
+    margin: 0;
   }
 }
 @media (max-width: 480px) {

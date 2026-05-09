@@ -239,58 +239,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-@media (max-width: 768px) {
-  .search-wrapper {
-    position: fixed;
-    top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 32px);
-    max-width: 520px;
-    z-index: 1000;
-  }
-
-  .search-form {
-    width: 100%;
-    padding: 10px 16px;
-  }
-
-  .saved-btn {
-    top: 90px;
-    right: 16px;
-  }
-
-  .saved-panel {
-    top: 130px;
-    right: 16px;
-    width: min(92vw, 340px);
-  }
-
-  .add-modal {
-    width: min(92vw, 340px);
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 100px;
-  }
-}
-
-@media (max-width: 480px) {
-  .search-wrapper {
-    width: calc(100% - 24px);
-    top: 14px;
-  }
-
-  .saved-panel {
-    width: min(96vw, 320px);
-    right: 10px;
-  }
-
-  .add-modal {
-    width: min(96vw, 320px);
-    bottom: 90px;
-  }
-}
-
 .add-modal-title {
   margin: 0 0 10px;
   font-weight: 700;
@@ -446,73 +394,6 @@
   height: calc(100vh - 70px);
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .map-page {
-    padding: 20px 10px;
-  }
-
-  .map-title {
-    font-size: 1.5rem;
-  }
-
-  .map-subtitle {
-    font-size: 14px;
-  }
-
-  .map-container {
-    height: 400px;
-  }
-
-  .search-wrapper {
-    left: 10px;
-    top: 10px;
-  }
-
-  .search-form {
-    width: 250px;
-    padding: 8px 15px;
-  }
-
-  .search-input {
-    font-size: 12px;
-  }
-
-  .filter-btn {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-
-  .saved-list {
-    width: 200px;
-  }
-
-  .saved-item {
-    padding: 8px 12px;
-  }
-
-  .saved-item-name {
-    font-size: 12px;
-  }
-
-  .saved-item-coords {
-    font-size: 10px;
-  }
-
-  .add-modal {
-    width: 90%;
-    max-width: 300px;
-  }
-
-  .add-modal-input {
-    font-size: 12px;
-  }
-
-  .add-modal-btns button {
-    font-size: 12px;
-  }
-}
-
 /* Tablet responsiveness */
 @media (max-width: 1024px) and (min-width: 769px) {
   .map-page {
@@ -534,5 +415,123 @@
   .add-modal {
     width: 80%;
     max-width: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .search-wrapper {
+    position: absolute;
+    top: 20px;
+    left: 30%;
+    transform: translateX(-50%);
+    width: calc(60% - 24px);
+    max-width: 520px;
+    z-index: 9;
+  }
+
+  .search-form {
+    width: 100%;
+    padding: 10px 14px;
+  }
+
+  .search-input {
+    font-size: 13px;
+  }
+
+  .saved-btn {
+    top: 22px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .saved-panel {
+    top: 125px;
+    right: 12px;
+    width: min(92vw, 320px);
+    max-height: 55vh;
+  }
+
+  .saved-item-name {
+    font-size: 12px;
+  }
+
+  .saved-item-coords {
+    font-size: 10px;
+  }
+
+  .add-modal {
+    width: min(92vw, 320px);
+    bottom: 90px;
+    padding: 14px 16px;
+  }
+
+  .add-modal-input {
+    font-size: 12px;
+  }
+
+  .location-btn-wrapper {
+    bottom: 24px;
+    right: 14px;
+  }
+
+  .location-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .location-error {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+
+  .map-wrapper {
+    height: calc(100vh - 60px);
+  }
+}
+
+@media (max-width: 480px) {
+
+  .search-wrapper {
+    top: 12px;
+    width: calc(100% - 16px);
+  }
+
+  .search-form {
+    padding: 8px 12px;
+    border-radius: 40px;
+  }
+
+  .search-input {
+    font-size: 12px;
+  }
+
+  .saved-btn {
+    width: 36px;
+    height: 36px;
+    top: 76px;
+    right: 10px;
+  }
+
+  .saved-panel {
+    width: calc(100% - 20px);
+    right: 10px;
+    top: 118px;
+  }
+
+  .add-modal {
+    width: calc(100% - 20px);
+    bottom: 80px;
+  }
+
+  .location-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .spinner {
+    width: 16px;
+    height: 16px;
   }
 }

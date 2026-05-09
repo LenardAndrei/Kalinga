@@ -56,7 +56,7 @@ function Navbar() {
 
   const handleProfile = () => {
     setProfileOpen(false)
-    navigate("/client/profile")   // change to your profile route
+    navigate("/client/profile")   
   }
 
   const [menuOpen, setMenuOpen] = useState(false)

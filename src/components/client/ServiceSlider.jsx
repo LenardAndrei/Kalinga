@@ -22,11 +22,11 @@ function ServiceSlider() {
   const getIdx = (i) => ((i % n) + n) % n
 
   const go = (dir) => {
-    if (sliding) return
-    setSliding(true)
-    setCurrent((c) => getIdx(c + dir))
-    setTimeout(() => setSliding(false), 900)
-  }
+    setCurrent((c) => getIdx(c + dir));
+    setSliding(true);
+    setTimeout(() => setSliding(false), 400); 
+  };
+
 
   const cards = [-2, -1, 0, 1, 2].map((offset) => {
     const idx = getIdx(current + offset)
@@ -40,7 +40,7 @@ function ServiceSlider() {
     return { ...services[idx], offset, x, z, depth, opacity, zIndex }
   })
 
-  const TRANSITION = "transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), width 0.9s cubic-bezier(0.4, 0, 0.2, 1), height 0.9s cubic-bezier(0.4, 0, 0.2, 1), margin 0.9s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.9s cubic-bezier(0.4, 0, 0.2, 1)"
+  const TRANSITION = "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
 
   return (
     <div style={{
@@ -104,7 +104,7 @@ function ServiceSlider() {
                   objectFit: "contain",
                   marginBottom: "16px",
                   pointerEvents: "none",
-                  transition: `width 0.9s cubic-bezier(0.4, 0, 0.2, 1), height 0.9s cubic-bezier(0.4, 0, 0.2, 1)`,
+                  transition: `width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1)`,
                 }}
               />
               <p style={{
@@ -116,7 +116,7 @@ function ServiceSlider() {
                 lineHeight: 1.3,
                 textAlign: "center",
                 textShadow: "0 1px 4px rgba(0,0,0,0.4)",
-                transition: `font-size 0.9s cubic-bezier(0.4, 0, 0.2, 1)`,
+                transition: `font-size 0.4s cubic-bezier(0.4, 0, 0.2, 1)`,
               }}>
                 {card.title}
               </p>
