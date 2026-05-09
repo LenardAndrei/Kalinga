@@ -1,28 +1,60 @@
 import { useNavigate } from "react-router-dom";
-import { MOCK_TESTS } from "../../../pages/HealthcareProvider/LaboratoryManagement";
+import { MOCK_CONSULTATIONS } from "../../../pages/HealthcareProvider/ConsultationManagement";
 
-export default function LaboratoryServices({
-  tests = MOCK_TESTS,   // replace default with API data later — shape: { id, name, price, resultTime }
+function DoctorInitials({ name }) {
+  const initials = name
+    .replace("Dr. ", "")
+    .split(" ")
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+
+  const palettes = [
+    ["#22c97a", "rgba(34,201,122,0.18)"],
+    ["#5fc6a0", "rgba(95,198,160,0.18)"],
+    ["#4a9eda", "rgba(74,158,218,0.18)"],
+    ["#a07af5", "rgba(160,122,245,0.18)"],
+    ["#f5a623", "rgba(245,166,35,0.18)"],
+  ];
+  const [fg, bg] = palettes[name.charCodeAt(4) % palettes.length];
+
+  return (
+    <div style={{
+      width: 30, height: 30, borderRadius: "50%",
+      background: bg, border: `1.5px solid ${fg}`,
+      color: fg, fontFamily: "'Poppins', sans-serif",
+      fontWeight: 800, fontSize: 11,
+      display: "flex", alignItems: "center", justifyContent: "center",
+      flexShrink: 0,
+    }}>
+      {initials}
+    </div>
+  );
+}
+
+export default function ConsultationWidget({
+  consultations = MOCK_CONSULTATIONS, 
   isLoading = false,
 }) {
   const navigate = useNavigate();
 
-  const total     = tests.length;
-  const minPrice  = total > 0 ? Math.min(...tests.map((t) => t.price)) : 0;
-  const maxPrice  = total > 0 ? Math.max(...tests.map((t) => t.price)) : 0;
-  const avgPrice  = total > 0 ? Math.round(tests.reduce((s, t) => s + t.price, 0) / total) : 0;
+  const total    = consultations.length;
+  const avgPrice = total > 0
+    ? Math.round(consultations.reduce((s, c) => s + c.price, 0) / total)
+    : 0;
 
-  // 4 cheapest tests as preview — most likely the common ones
-  const preview = [...tests].sort((a, b) => a.price - b.price).slice(0, 4);
+  // Preview: 3 cheapest consultation types
+  const previewTypes = [...consultations]
+    .sort((a, b) => a.price - b.price)
+    .slice(0, 3);
 
   return (
     <div style={styles.outerWrapper}>
       <style>{`
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .lab-card { font-family: 'Poppins', sans-serif; }
-
-        .lab-manage-btn {
+        .co-manage-btn {
           width: 100%;
           background: rgba(255,255,255,0.15);
           border: 1.5px solid rgba(255,255,255,0.35);
@@ -40,46 +72,49 @@ export default function LaboratoryServices({
           justify-content: center;
           gap: 8px;
         }
-        .lab-manage-btn:hover {
+        .co-manage-btn:hover {
           background: rgba(255,255,255,0.25);
           border-color: rgba(255,255,255,0.6);
           transform: translateY(-1px);
         }
-        .lab-manage-btn:active { transform: translateY(0); }
+        .co-manage-btn:active { transform: translateY(0); }
 
-        .lab-preview-row {
+        .co-row {
           opacity: 0;
           transform: translateY(5px);
-          animation: labRowIn 0.3s ease forwards;
+          animation: coRowIn 0.3s ease forwards;
         }
-        @keyframes labRowIn { to { opacity: 1; transform: translateY(0); } }
+        @keyframes coRowIn { to { opacity: 1; transform: translateY(0); } }
+        .co-row:hover { background: rgba(255,255,255,0.12) !important; }
 
-        .lab-preview-row:hover { background: rgba(255,255,255,0.12) !important; }
       `}</style>
 
-      <div className="lab-card" style={styles.card}>
+      <div style={styles.card}>
 
         {/* Header */}
         <div style={styles.header}>
           <div style={styles.iconWrap}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
               stroke="rgba(255,255,255,0.9)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-4m-5 0h5" />
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
           </div>
           <div>
             <p style={styles.headerSub}>Services Overview</p>
-            <h2 style={styles.headerTitle}>Laboratory Tests</h2>
+            <h2 style={styles.headerTitle}>Consultations</h2>
           </div>
         </div>
 
         {/* Divider */}
         <div style={styles.divider} />
 
-        {/* Stat row: total + avg price */}
+        {/* Stats row */}
         <div style={styles.statsRow}>
           <div style={styles.statBox}>
-            <span style={styles.statLabel}>Total Tests</span>
+            <span style={styles.statLabel}>Total Types</span>
             <span style={styles.statValue}>{isLoading ? "—" : total}</span>
           </div>
           <div style={styles.statDivider} />
@@ -89,62 +124,48 @@ export default function LaboratoryServices({
               {isLoading ? "—" : `₱${avgPrice.toLocaleString()}`}
             </span>
           </div>
-          <div style={styles.statDivider} />
-          <div style={styles.statBox}>
-            <span style={styles.statLabel}>Price Range</span>
-            <span style={{ ...styles.statValue, fontSize: 13 }}>
-              {isLoading ? "—" : `₱${minPrice.toLocaleString()}–₱${maxPrice.toLocaleString()}`}
-            </span>
-          </div>
         </div>
 
-        {/* Preview list */}
-        <div style={styles.previewWrap}>
-          {isLoading ? (
-            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, textAlign: "center", padding: "12px 0" }}>
-              Loading…
-            </p>
-          ) : (
-            preview.map((test, i) => (
+        {/* Divider */}
+        <div style={styles.divider} />
+
+        {/* Consultation types preview */}
+        <div>
+          <p style={styles.sectionLabel}>Available Consultations</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+            {isLoading ? (
+              <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, textAlign: "center" }}>Loading…</p>
+            ) : previewTypes.map((c, i) => (
               <div
-                key={test.id}
-                className="lab-preview-row"
-                style={{ ...styles.previewRow, animationDelay: `${i * 60}ms` }}
+                key={c.id}
+                className="co-row"
+                style={{ ...styles.typeRow, animationDelay: `${i * 60}ms` }}
               >
-                {/* Beaker dot */}
-                <div style={styles.previewDot} />
-
-                {/* Name */}
-                <span style={styles.previewName}>{test.name}</span>
-
-                {/* Price + time */}
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 1 }}>
-                  <span style={styles.previewPrice}>₱{test.price.toLocaleString()}</span>
-                  <span style={styles.previewTime}>{test.resultTime}</span>
-                </div>
+                <div style={styles.typeDot} />
+                <span style={styles.typeName}>{c.type}</span>
+                <span style={styles.typePrice}>₱{c.price.toLocaleString()}</span>
               </div>
-            ))
-          )}
+            ))}
+          </div>
 
-          {/* "and N more" if list is longer */}
-          {!isLoading && total > preview.length && (
+          {!isLoading && total > previewTypes.length && (
             <p style={styles.moreLabel}>
-              +{total - preview.length} more test{total - preview.length !== 1 ? "s" : ""}
+              +{total - previewTypes.length} more type{total - previewTypes.length !== 1 ? "s" : ""}
             </p>
           )}
         </div>
 
         {/* CTA */}
         <button
-          className="lab-manage-btn"
-          onClick={() => navigate("/healthcare-provider/services/laboratory")}
+          className="co-manage-btn"
+          onClick={() => navigate("/healthcare-provider/services/consultation")}
         >
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
           </svg>
-          Manage Services
+          Manage Consultations
         </button>
 
       </div>
@@ -153,17 +174,18 @@ export default function LaboratoryServices({
 }
 
 const styles = {
-  
+ 
   card: {
     width: 340,
-    height: 450,
+    minHeight: 450,
     borderRadius: 24,
     background: "linear-gradient(160deg, #032932 0%, #0d5c4e 55%, #5fa89a 100%)",
     padding: "22px 20px 20px",
-    boxShadow: "0 16px 48px rgba(3,41,50,0.35)",
+    boxShadow: "0 16px 48px rgba(3,41,50,0.38)",
     display: "flex",
     flexDirection: "column",
-    gap: 14,
+    gap: 12,
+    justifyContent: "space-between",
   },
 
   header: {
@@ -245,25 +267,28 @@ const styles = {
     lineHeight: 1,
   },
 
-  previewWrap: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 5,
+  sectionLabel: {
+    fontSize: 10,
+    fontWeight: 700,
+    color: "rgba(255,255,255,0.4)",
+    textTransform: "uppercase",
+    letterSpacing: "0.09em",
+    marginBottom: 6,
   },
 
-  previewRow: {
+  typeRow: {
     display: "flex",
     alignItems: "center",
     gap: 10,
     borderRadius: 10,
-    padding: "8px 12px",
+    padding: "7px 12px",
     background: "rgba(255,255,255,0.06)",
     border: "1px solid rgba(255,255,255,0.09)",
     cursor: "default",
     transition: "background 0.15s",
   },
 
-  previewDot: {
+  typeDot: {
     width: 7,
     height: 7,
     borderRadius: "50%",
@@ -271,7 +296,7 @@ const styles = {
     flexShrink: 0,
   },
 
-  previewName: {
+  typeName: {
     flex: 1,
     fontSize: 13,
     fontWeight: 600,
@@ -281,18 +306,11 @@ const styles = {
     textOverflow: "ellipsis",
   },
 
-  previewPrice: {
+  typePrice: {
     fontSize: 13,
     fontWeight: 700,
     color: "#fff",
-    lineHeight: 1,
-  },
-
-  previewTime: {
-    fontSize: 10,
-    fontWeight: 500,
-    color: "rgba(255,255,255,0.4)",
-    lineHeight: 1,
+    whiteSpace: "nowrap",
   },
 
   moreLabel: {
@@ -300,7 +318,7 @@ const styles = {
     fontWeight: 600,
     color: "rgba(255,255,255,0.35)",
     textAlign: "center",
-    paddingTop: 2,
+    paddingTop: 4,
     letterSpacing: "0.03em",
   },
 };

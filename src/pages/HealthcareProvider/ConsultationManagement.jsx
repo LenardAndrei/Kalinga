@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Mock data 
-const MOCK_CONSULTATIONS = [
+export const MOCK_CONSULTATIONS = [
   { id: 1,  type: "General Check-up",        price: 300,  doctor: "Dr. Maria Santos"    },
   { id: 2,  type: "Prenatal Care",            price: 500,  doctor: "Dr. Ana Reyes"       },
   { id: 3,  type: "Pediatric Consultation",   price: 400,  doctor: "Dr. Jose Dela Cruz"  },
@@ -15,7 +15,7 @@ const MOCK_CONSULTATIONS = [
   { id: 10, type: "Neurology",                price: 1000, doctor: "Dr. Carlo Mendoza"   },
 ];
 
-const MOCK_DOCTORS = [
+export const MOCK_DOCTORS = [
   "Dr. Maria Santos",
   "Dr. Ana Reyes",
   "Dr. Jose Dela Cruz",

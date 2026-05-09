@@ -1,49 +1,111 @@
- import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { MOCK_MODULES, MOCK_OTHER_SERVICES } from "../../pages/HealthcareProvider/ServicesManagement";
 
-// API CONFIG 
+// API CONFIG
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://your-api.example.com";
 
 async function fetchServices(facilityId) {
   const response = await fetch(`${API_BASE_URL}/api/facilities/${facilityId}/services`);
   if (!response.ok) throw new Error(`Failed to fetch services: ${response.status}`);
   return response.json();
-  // Expected response shape:
-  // {
-  //   total: number,
-  //   services: [
-  //     { id: string, name: string },
-  //     ...
-  //   ]
-  // }
 }
 
-// MOCK DATA
-const MOCK_DATA = {
-  total: 8,
-  services: [
-    { id: "1", name: "Consultation" },
-    { id: "2", name: "Vaccination" },
-    { id: "3", name: "Laboratory Tests" },
-    { id: "4", name: "Free Medicine" },
-    { id: "5", name: "Pharmacy" },
-    { id: "6", name: "Radiology" },
-    { id: "7", name: "Dental Services" },
-    { id: "8", name: "Family Planning" },
+function deriveServices(modules, otherServices) {
+  const moduleNames = modules.map((m) => ({
+    id: `mod-${m.type}`,
+    name: m.type.charAt(0).toUpperCase() + m.type.slice(1),
+    isModule: true,
+  }));
+  const otherNames = otherServices.map((s) => ({
+    id: `svc-${s.id}`,
+    name: s.name,
+    isModule: false,
+  }));
+  return [...moduleNames, ...otherNames];
+}
 
-  ],
-};
+const MOCK_DERIVED = deriveServices(MOCK_MODULES, MOCK_OTHER_SERVICES);
 
-// MAIN COMPONENT
+// Sub-components
+function ServicePill({ name, isModule }) {
+  return (
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      gap: 7,
+      backgroundColor: isModule ? "#032932" : "#f0f5f4",
+      border: `1px solid ${isModule ? "transparent" : "#d4e6e1"}`,
+      borderRadius: 10,
+      padding: "7px 12px",
+      fontFamily: "'Poppins', sans-serif",
+      fontSize: 13,
+      fontWeight: 600,
+      color: isModule ? "#fff" : "#032932",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      flexShrink: 0,
+    }}>
+      {isModule && (
+        <span style={{
+          width: 6, height: 6, borderRadius: "50%",
+          background: "#5fc6a0", flexShrink: 0, display: "inline-block",
+        }} />
+      )}
+      {name}
+    </div>
+  );
+}
+
+// Horizontal stacked bar showing module vs other split
+function CompositionBar({ moduleCount, otherCount, total }) {
+  const modulePct = total > 0 ? Math.round((moduleCount / total) * 100) : 0;
+  const otherPct  = 100 - modulePct;
+  return (
+    <div>
+      <div style={{
+        display: "flex",
+        height: 10,
+        borderRadius: 999,
+        overflow: "hidden",
+        background: "#e8f2ef",
+      }}>
+        <div style={{
+          width: `${modulePct}%`,
+          background: "linear-gradient(to right, #032932, #2a6b60)",
+          transition: "width 0.6s ease",
+        }} />
+        <div style={{
+          width: `${otherPct}%`,
+          background: "linear-gradient(to right, #a8d8cc, #d4e6e1)",
+          transition: "width 0.6s ease",
+        }} />
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+        <span style={styles.barLabel}>
+          <span style={{ ...styles.barDot, background: "#032932" }} />
+          Modules ({modulePct}%)
+        </span>
+        <span style={styles.barLabel}>
+          Other ({otherPct}%)
+          <span style={{ ...styles.barDot, background: "#a8d8cc", marginLeft: 5, marginRight: 0 }} />
+        </span>
+      </div>
+    </div>
+  );
+}
+
 
 export default function ServicesOfferedCard({
   facilityId = "default",
-  onManageServices,
   useMock = true,
 }) {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [btnHovered, setBtnHovered] = useState(false);
+  const navigate = useNavigate();
+
+  const [services, setServices] = useState(null);
+  const [loading,  setLoading]  = useState(true);
+  const [error,    setError]    = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -51,8 +113,14 @@ export default function ServicesOfferedCard({
       setLoading(true);
       setError(null);
       try {
-        const result = useMock ? MOCK_DATA : await fetchServices(facilityId);
-        if (!cancelled) setData(result);
+        let result;
+        if (useMock) {
+          result = MOCK_DERIVED;
+        } else {
+          const raw = await fetchServices(facilityId);
+          result = Array.isArray(raw) ? raw : deriveServices(raw.modules, raw.otherServices);
+        }
+        if (!cancelled) setServices(result);
       } catch (err) {
         if (!cancelled) setError(err.message);
       } finally {
@@ -63,62 +131,123 @@ export default function ServicesOfferedCard({
     return () => { cancelled = true; };
   }, [facilityId, useMock]);
 
-  const handleManage = () => {
-    if (onManageServices) onManageServices();
-    else console.log("Navigate to manage services");
-  };
+  const total    = services?.length ?? 0;
+  const modules  = services?.filter((s) => s.isModule)  ?? [];
+  const others   = services?.filter((s) => !s.isModule) ?? [];
+
+  // Pills — up to 6
+  const pillPreview  = services?.slice(0, 6) ?? [];
+  const pillOverflow = total - pillPreview.length;
 
   return (
     <div style={styles.card}>
-      <h2 style={styles.title}>Services Offered</h2>
+      <style>{`
+        @keyframes svcRowIn {
+          from { opacity: 0; transform: translateY(4px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .svc-pill-anim { animation: svcRowIn 0.3s ease both; }
+        .svc-row-anim  { animation: svcRowIn 0.3s ease both; }
+        .svc-manage-btn:hover {
+          background: #3d8a7a !important;
+          transform: translateY(-1px) !important;
+        }
+        .svc-manage-btn:active { transform: translateY(0) !important; }
+      `}</style>
 
-      {/* Summary badge */}
-      <div style={styles.summaryBadge}>
-        <div style={styles.countBubble}>
-          <span style={styles.countText}>{loading ? "—" : (data?.total ?? 0)}</span>
-        </div>
-        <span style={styles.summaryLabel}>Active Services Offered</span>
+      {/* ── Header ── */}
+      <div style={styles.header}>
+        <h2 style={styles.title}>Services Offered</h2>
+        {!loading && !error && (
+          <span style={styles.countBadge}>{total}</span>
+        )}
       </div>
 
-      {/* Services list box */}
-      <div style={styles.listBox}>
-        {loading && <span style={styles.stateText}>Loading services…</span>}
-
-        {error && (
-            <span style={{ ...styles.stateText, color: "#c0392b" }}>
-            ⚠ {error}
-            </span>
-        )}
-
-        {!loading && !error && data && (
-            <>
-            <ul style={styles.list}>
-                {data.services.slice(0, 5).map((service) => (
-                <li key={service.id} style={styles.pill}>
-                    {service.name}
-                </li>
-                ))}
-            </ul>
-
-            {data.services.length > 5 && (
-                <span style={styles.moreText}>
-                + {data.services.length - 5} more
-                </span>
-            )}
-            </>
-        )}
+      {/* ── Stat row ── */}
+      {!loading && !error && services && (
+        <div style={styles.statsRow}>
+          <div style={styles.statBox}>
+            <span style={styles.statLabel}>Total</span>
+            <span style={styles.statValue}>{total}</span>
+          </div>
+          <div style={styles.statDivider} />
+          <div style={styles.statBox}>
+            <span style={styles.statLabel}>Modules</span>
+            <span style={styles.statValue}>{modules.length}</span>
+          </div>
+          <div style={styles.statDivider} />
+          <div style={styles.statBox}>
+            <span style={styles.statLabel}>Other Services</span>
+            <span style={styles.statValue}>{others.length}</span>
+          </div>
         </div>
+      )}
 
-      {/* Manage Services button */}
+      {/* ── Loading / error states ── */}
+      {loading && (
+        <div style={styles.stateBox}>
+          <span style={styles.stateText}>Loading services…</span>
+        </div>
+      )}
+      {error && (
+        <div style={{ ...styles.stateBox, background: "#fdecea" }}>
+          <span style={{ ...styles.stateText, color: "#c0392b" }}>⚠ {error}</span>
+        </div>
+      )}
+
+      {!loading && !error && services && (
+        <>
+          {/* ── Composition bar ── */}
+          <div style={styles.section}>
+            <p style={styles.sectionLabel}>Composition</p>
+            <CompositionBar
+              moduleCount={modules.length}
+              otherCount={others.length}
+              total={total}
+            />
+          </div>
+
+          <div style={styles.divider} />
+
+          {/* ── Pills ── */}
+          <div style={styles.section}>
+            <p style={styles.sectionLabel}>All Services</p>
+            <div style={styles.pillsWrap}>
+              {pillPreview.map((svc, i) => (
+                <div
+                  key={svc.id}
+                  className="svc-pill-anim"
+                  style={{ animationDelay: `${i * 40}ms` }}
+                >
+                  <ServicePill name={svc.name} isModule={svc.isModule} />
+                </div>
+              ))}
+              {pillOverflow > 0 && (
+                <div style={styles.overflowPill}>+{pillOverflow} more</div>
+              )}
+            </div>
+          </div>
+
+
+        </>
+      )}
+
+      {/* ── Legend ── */}
+      {!loading && !error && (
+        <div style={styles.legend}>
+          <span style={styles.legendDot} />
+          <span style={styles.legendText}>Module</span>
+          <div style={styles.legendSwatch} />
+          <span style={styles.legendText}>Other service</span>
+        </div>
+      )}
+
+      {/* ── CTA ── */}
       <div style={styles.buttonWrapper}>
         <button
-          style={{
-            ...styles.manageButton,
-            ...(btnHovered ? styles.manageButtonHover : {}),
-          }}
-          onMouseEnter={() => setBtnHovered(true)}
-          onMouseLeave={() => setBtnHovered(false)}
-          onClick={handleManage}
+          className="svc-manage-btn"
+          style={styles.manageButton}
+          onClick={() => navigate("/healthcare-provider/services")}
         >
           Manage Services
         </button>
@@ -127,120 +256,222 @@ export default function ServicesOfferedCard({
   );
 }
 
-// STYLES 
-
-const TEAL = "#5fa89a";
-const TEAL_DARK = "#3d8a7a";
-const TEXT_DARK = "#0d3d3d";
-const ROW_BG = "#e0e0e0";
+const TEAL      = "#5fa89a";
+const TEXT_DARK = "#032932";
 
 const styles = {
   card: {
-    width: 515,
-    height: 321,
+    width: "100%",
+    maxWidth: 515,
     backgroundColor: "#ffffff",
     borderRadius: 20,
-    border: "0.5px solid rgba(0,0,0,0.12)",
     padding: "20px 24px",
     boxSizing: "border-box",
-    boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
+    boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
     display: "flex",
     flexDirection: "column",
     gap: 12,
-    fontFamily: "'Poppins', 'DM Sans', 'Helvetica Neue', sans-serif",
-  },
-  title: {
-    margin: 0,
-    textAlign: "center",
-    fontSize: 24,
-    fontWeight: 900,
-    color: TEXT_DARK,
+    fontFamily: "'Poppins', sans-serif",
   },
 
-  // Summary badge
-  summaryBadge: {
-    backgroundColor: TEAL,
-    borderRadius: 50,
-    display: "flex",
-    alignItems: "center",
-    overflow: "hidden",
-    height: 46,
-  },
-  countBubble: {
-    backgroundColor: TEAL_DARK,
-    borderRadius: 50,
-    minWidth: 70,
-    height: 46,
+  header: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    flexShrink: 0,
-  },
-  countText: {
-    fontSize: 36,
-    fontWeight: 900,
-    color: "#fff",
-    lineHeight: 1,
-  },
-  summaryLabel: {
-    fontSize: 20,
-    fontWeight: 900,
-    color: TEXT_DARK,
-    paddingLeft: 16,
+    gap: 10,
   },
 
-  // Services list box
-  listBox: {
-    backgroundColor: ROW_BG,
-    borderRadius: 16,
-    padding: "14px 20px",
-    minHeight: 120,
-  },
-    list: {
+  title: {
     margin: 0,
-    padding: 0,
-    listStyle: "none",
-    display: "flex",
-    flexWrap: "wrap",  
-    gap: "8px",
-},
-    pill: {
-    fontSize: 14,
-    fontWeight: 600,
+    fontSize: "clamp(18px, 4vw, 22px)",
+    fontWeight: 900,
     color: TEXT_DARK,
-    backgroundColor: "#ffffff",
-    padding: "6px 12px",
-    borderRadius: 20, 
-    border: "1px solid rgba(0,0,0,0.1)",
+    textAlign: "center",
+  },
+
+  countBadge: {
+    background: TEAL,
+    color: "#fff",
+    fontFamily: "'Poppins', sans-serif",
+    fontWeight: 800,
+    fontSize: 13,
+    borderRadius: 999,
+    padding: "2px 10px",
+    lineHeight: 1.6,
+    flexShrink: 0,
+  },
+
+  statsRow: {
+    display: "flex",
+    alignItems: "center",
+    background: "#f0f5f4",
+    borderRadius: 12,
+    border: "1px solid #d4e6e1",
+    padding: "10px 8px",
+  },
+
+  statBox: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 2,
+  },
+
+  statDivider: {
+    width: "1px",
+    height: 28,
+    background: "#d4e6e1",
+    flexShrink: 0,
+  },
+
+  statLabel: {
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: 10,
+    fontWeight: 600,
+    color: "#7a9e97",
+    textTransform: "uppercase",
+    letterSpacing: "0.07em",
+  },
+
+  statValue: {
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: 20,
+    fontWeight: 800,
+    color: TEXT_DARK,
+    lineHeight: 1,
+  },
+
+  section: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 8,
+  },
+
+  sectionLabel: {
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: 10,
+    fontWeight: 700,
+    color: "#a8c5bc",
+    textTransform: "uppercase",
+    letterSpacing: "0.08em",
+    margin: 0,
+  },
+
+  divider: {
+    height: "1px",
+    background: "#e8f2ef",
+    borderRadius: 1,
+  },
+
+  barLabel: {
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: 11,
+    fontWeight: 500,
+    color: "#a8c5bc",
+    display: "flex",
+    alignItems: "center",
+    gap: 4,
+  },
+
+  barDot: {
+    display: "inline-block",
+    width: 8,
+    height: 8,
+    borderRadius: "50%",
+    marginRight: 4,
+    flexShrink: 0,
+  },
+
+  pillsWrap: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 7,
+  },
+
+  overflowPill: {
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: "#f0f5f4",
+    border: "1px solid #d4e6e1",
+    borderRadius: 10,
+    padding: "7px 12px",
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: 12,
+    fontWeight: 600,
+    color: "#7a9e97",
     whiteSpace: "nowrap",
-},
-    moreText: {
+  },
+
+  legend: {
+    display: "flex",
+    alignItems: "center",
+    gap: 6,
+    paddingTop: 2,
+    flexWrap: "wrap",
+  },
+
+  legendDot: {
+    width: 8,
+    height: 8,
+    borderRadius: "50%",
+    background: "#5fc6a0",
+    flexShrink: 0,
+    display: "inline-block",
+  },
+
+  legendSwatch: {
+    width: 14,
+    height: 14,
+    borderRadius: 4,
+    background: "#f0f5f4",
+    border: "1px solid #d4e6e1",
+    flexShrink: 0,
+    marginLeft: 8,
+  },
+
+  legendText: {
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: 11,
+    fontWeight: 500,
+    color: "#a8c5bc",
+  },
+
+  stateBox: {
+    minHeight: 80,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 12,
+    backgroundColor: "#f0f5f4",
+  },
+
+  stateText: {
+    fontFamily: "'Poppins', sans-serif",
     fontSize: 13,
     color: TEXT_DARK,
     opacity: 0.6,
-    marginTop: 6,
-    display: "block",
-    },
+  },
 
-  // Button
   buttonWrapper: {
     display: "flex",
     justifyContent: "center",
+    marginTop: "auto",
+    paddingTop: 4,
   },
+
   manageButton: {
     backgroundColor: TEAL,
     border: "none",
     borderRadius: 50,
     padding: "10px 60px",
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 700,
     color: "#fff",
     cursor: "pointer",
-    fontFamily: "inherit",
-    transition: "background-color 0.15s ease, transform 0.1s ease",
-  },
-  manageButtonHover: {
-    backgroundColor: TEAL_DARK,
-    transform: "scale(0.98)",
+    fontFamily: "'Poppins', sans-serif",
+    transition: "background-color 0.15s ease, transform 0.15s ease",
+    width: "100%",
+    maxWidth: 300,
   },
 };

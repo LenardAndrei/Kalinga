@@ -1,188 +1,406 @@
-const HeartIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="#5a8a7a" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-  </svg>
-);
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { mockAnnouncements } from "../../pages/HealthcareProvider/Announcements";
 
-const UserIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="#9fb8b2" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-  </svg>
-);
-
-const WORD_LIMIT = 18;
-
-function truncateWords(text, limit) {
-  const words = text.split(" ");
-  if (words.length <= limit) return { preview: text, isTruncated: false };
-  return { preview: words.slice(0, limit).join(" ") + "…", isTruncated: true };
+function formatTimestamp(dateStr) {
+  if (!dateStr) return "";
+  if (dateStr.includes("T")) {
+    const date = new Date(dateStr);
+    const now = new Date();
+    const diffDays = Math.floor((now - date) / 86400000);
+    const timeStr = date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    if (diffDays === 0) return `Today, ${timeStr}`;
+    if (diffDays === 1) return `Yesterday, ${timeStr}`;
+    return `${date.toLocaleDateString()}, ${timeStr}`;
+  }
+  return dateStr;
 }
 
-function formatTimestamp(isoString) {
-  const date = new Date(isoString);
-  const now = new Date();
-  const diffDays = Math.floor((now - date) / 86400000);
-  const timeStr = date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-  if (diffDays === 0) return `Today, ${timeStr}`;
-  if (diffDays === 1) return `Yesterday, ${timeStr}`;
-  return `${date.toLocaleDateString()}, ${timeStr}`;
+function getInitials(facilityName = "") {
+  return facilityName
+    .split(" ")
+    .filter((w) => w.length > 2)
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase() || "HC";
 }
 
-export default function RecentAnnouncement() {
+export default function RecentAnnouncement({
+  announcements = mockAnnouncements,
+  isLoading = false,
+}) {
+  const navigate = useNavigate();
+  const [liked, setLiked] = useState({});
 
-  // TEST DATA 
-  const announcement = {
-    id: "ann_001",
-    authorName: "San Isidro Health Center",
-    authorLocation: "Brgy. San Isidro, Mauban, Quezon",
-    authorAvatarUrl: null,
-    authorInitials: "SI",
-    postedAt: "2025-04-11T10:00:00+08:00",
-    title: "Community Healthcare Announcement",
-    greeting: "Good day!",
-    body: "We are pleased to inform everyone that our community healthcare services are available to support your well-being. Our team of dedicated professionals is ready to assist you with a wide range of health concerns.",
-    postUrl: null,
-    viewCount: 356,
-    reactionCount: 50,
-  };
+  const latest = announcements[0] ?? null;
 
-  const { preview, isTruncated } = truncateWords(announcement.body, WORD_LIMIT);
+  const PREVIEW_CHARS = 180;
+  const bodyPreview = latest
+    ? latest.body.length > PREVIEW_CHARS
+      ? latest.body.slice(0, PREVIEW_CHARS).trimEnd() + "…"
+      : latest.body
+    : "";
+  const isTruncated = latest ? latest.body.length > PREVIEW_CHARS : false;
 
-  const handleViewPost = () => {
-    if (announcement.postUrl) {
-      window.open(announcement.postUrl, "_blank", "noopener,noreferrer");
-    }
-  };
+  const reactions = latest
+    ? liked[latest.id]
+      ? latest.reactions + 1
+      : latest.reactions
+    : 0;
 
   return (
-    <div style={{
-      width: 515,
-      height: 321,
-      backgroundColor: "#6a9e94",
-      borderRadius: 20,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "space-between",
-      padding: "18px 20px 20px",
-      boxSizing: "border-box",
-      fontFamily: "'Poppins','Segoe UI', sans-serif",
-      boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
-    }}>
+    <div style={styles.card}>
+      <style>{`
+        .ann-manage-btn:hover { background: #3d8a7a !important; transform: translateY(-1px) !important; }
+        .ann-manage-btn:active { transform: translateY(0) !important; }
+        .ann-react-btn:hover { background: #fde8ef !important; }
+        .ann-view-more:hover { color: #3d8a7a !important; text-decoration: underline; }
+      `}</style>
 
-      {/* Title */}
-      <div style={{ color: "#ffffff", fontWeight: 900, fontSize: 24, textAlign: "center", lineHeight: 1.2, marginBottom: 12, marginTop: -5 }}>
-        Recent Announcement
+      {/* Header */}
+      <div style={styles.header}>
+        <h2 style={styles.title}>Recent Announcement</h2>
+        {!isLoading && announcements.length > 0 && (
+          <span style={styles.countBadge}>{announcements.length}</span>
+        )}
       </div>
 
-      {/* White Card */}
-      <div style={{
-        width: 475,
-        height: 350,
-        backgroundColor: "#ffffff",
-        borderRadius: 16,
-        padding: "14px 18px 10px",
-        boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        overflow: "hidden",
-      }}>
-
-        {/* Header Row */}
-        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-
-            {/* Avatar — shows image if URL exists, falls back to initials */}
-            <div style={{
-              width: 40, height: 40, borderRadius: "50%", backgroundColor: "#dce8e5",
-              display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-              fontSize: 13, fontWeight: 700, color: "#5a7a75",
-            }}>
-              {announcement.authorAvatarUrl
-                ? <img src={announcement.authorAvatarUrl} alt="avatar" style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover" }} />
-                : announcement.authorInitials || <UserIcon />
-              }
-            </div>
-
-            {/* Name + Location */}
-            <div>
-              <div style={{ fontWeight: "bold", fontSize: 16, color: "#1a2e2b", lineHeight: 1.3 }}>
-                {announcement.authorName}
-              </div>
-              <div style={{ fontStyle: "italic", fontWeight: 400, fontSize: 12, color: "#5a7a75", lineHeight: 1.3 }}>
-                {announcement.authorLocation}
-              </div>
-            </div>
-          </div>
-
-          {/* Timestamp */}
-          <div style={{ fontWeight: 400, fontSize: 12, color: "#8aada8", whiteSpace: "nowrap", paddingTop: 2 }}>
-            {formatTimestamp(announcement.postedAt)}
-          </div>
+      {/* Loading / empty */}
+      {isLoading && (
+        <div style={styles.stateBox}>
+          <span style={styles.stateText}>Loading…</span>
         </div>
+      )}
+      {!isLoading && !latest && (
+        <div style={styles.stateBox}>
+          <span style={styles.stateText}>No announcements yet.</span>
+        </div>
+      )}
 
-        {/* Announcement Body */}
-        <div style={{ flex: 1, marginTop: 10 }}>
-          <div style={{ fontWeight: "bold", fontSize: 16, color: "#1a2e2b", marginBottom: 4 }}>
-            {announcement.title.toUpperCase()}
+      {/* Announcement card */}
+      {!isLoading && latest && (
+        <div style={styles.annCard}>
+
+          {/* Author row */}
+          <div style={styles.authorRow}>
+            {/* Avatar */}
+            <div style={styles.avatar}>
+              {getInitials(latest.facility)}
+            </div>
+
+            {/* Name + location */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <p style={styles.facilityName}>{latest.facility}</p>
+              <p style={styles.facilityLocation}>{latest.location}</p>
+            </div>
+
+            {/* Timestamp */}
+            <span style={styles.timestamp}>{formatTimestamp(latest.date)}</span>
           </div>
-          <div style={{ fontWeight: 400, fontSize: 12, color: "#2e4a46", lineHeight: 1.6 }}>
-            {announcement.greeting}
-            <br />
-            {preview}
-          </div>
+
+          {/* Divider */}
+          <div style={styles.innerDivider} />
+
+          {/* Title */}
+          <p style={styles.annTitle}>{latest.title}</p>
+
+          {/* Body */}
+          <p style={styles.annBody}>{bodyPreview}</p>
+
           {isTruncated && (
-            <div
-              onClick={handleViewPost}
-              style={{
-                fontWeight: "bold",
-                fontSize: 12,
-                color: announcement.postUrl ? "#5a8a7a" : "#a0b8b4",
-                cursor: announcement.postUrl ? "pointer" : "not-allowed",
-                marginTop: 4,
-                display: "inline-block",
-                textDecoration: announcement.postUrl ? "underline" : "none",
-                opacity: announcement.postUrl ? 1 : 0.6,
-              }}
-              title={announcement.postUrl ? "Open original post" : "Link not yet available"}
+            <button
+              className="ann-view-more"
+              onClick={() => navigate("/healthcare-provider/announcements")}
+              style={styles.viewMore}
             >
               View entire post
-            </div>
+            </button>
           )}
-        </div>
 
-        {/* Footer — views & reactions */}
-        <div style={{ borderTop: "1px solid #e0eeeb", paddingTop: 5, display: "flex", alignItems: "center", gap: 16 }}>
-          <span style={{ fontWeight: "bold", fontSize: 12, color: "#6a9e94" }}>
-            {announcement.viewCount.toLocaleString()} views
-          </span>
-          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <HeartIcon />
-            <span style={{ fontWeight: "bold", fontSize: 12, color: "#6a9e94" }}>
-              {announcement.reactionCount.toLocaleString()} reactions
-            </span>
+          {/* Divider */}
+          <div style={{ ...styles.innerDivider, marginTop: 10 }} />
+
+          {/* Footer */}
+          <div style={styles.footer}>
+            <div style={styles.footerMeta}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                stroke="#a8c5bc" strokeWidth="2" strokeLinecap="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span style={styles.metaText}>{latest.views.toLocaleString()} views</span>
+            </div>
+
+            <button
+              className="ann-react-btn"
+              onClick={() => setLiked((p) => ({ ...p, [latest.id]: !p[latest.id] }))}
+              style={styles.reactBtn}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24"
+                fill={liked[latest.id] ? "#e05a7a" : "none"}
+                stroke={liked[latest.id] ? "#e05a7a" : "#a8c5bc"}
+                strokeWidth="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+              <span style={{ color: liked[latest.id] ? "#e05a7a" : "#8fa8a0" }}>
+                {reactions} reaction{reactions !== 1 ? "s" : ""}
+              </span>
+            </button>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Manage Button */}
-      <button style={{
-        marginTop: 14,
-        width: 300,
-        height: 45,
-        backgroundColor: "#ffffff",
-        border: "none",
-        borderRadius: 50,
-        fontWeight: 900,
-        fontSize: 18,
-        color: "#1a2e2b",
-        cursor: "pointer",
-        letterSpacing: 0.3,
-        fontFamily: "'Poppins','Segoe UI', sans-serif",
-      }}>
-        Manage Announcements
-      </button>
+      {/* Other announcements count hint */}
+      {!isLoading && announcements.length > 1 && (
+        <p style={styles.moreLabel}>
+          +{announcements.length - 1} more announcement{announcements.length - 1 !== 1 ? "s" : ""}
+        </p>
+      )}
+
+      {/* CTA */}
+      <div style={styles.buttonWrapper}>
+        <button
+          className="ann-manage-btn"
+          style={styles.manageButton}
+          onClick={() => navigate("/healthcare-provider/announcements")}
+        >
+          Manage Announcements
+        </button>
+      </div>
     </div>
   );
 }
+
+const TEAL      = "#5fa89a";
+const TEAL_DARK = "#032932";
+const TEXT_DARK = "#032932";
+
+const styles = {
+  card: {
+    width: "100%",
+    maxWidth: 515,
+    // Removed fixed height — let content dictate height naturally
+    backgroundColor: "#ffffff",
+    borderRadius: 20,
+    padding: "20px 24px",
+    boxSizing: "border-box",
+    boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
+    display: "flex",
+    flexDirection: "column",
+    gap: 12,
+    fontFamily: "'Poppins', sans-serif",
+  },
+ 
+  header: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    flexWrap: "wrap",
+  },
+ 
+  title: {
+    margin: 0,
+    fontSize: "clamp(18px, 4vw, 22px)",
+    fontWeight: 900,
+    color: TEXT_DARK,
+    textAlign: "center",
+  },
+ 
+  countBadge: {
+    background: TEAL,
+    color: "#fff",
+    fontFamily: "'Poppins', sans-serif",
+    fontWeight: 800,
+    fontSize: 13,
+    borderRadius: 999,
+    padding: "2px 10px",
+    lineHeight: 1.6,
+    flexShrink: 0,
+  },
+ 
+  stateBox: {
+    minHeight: 80,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 12,
+    background: "#f0f5f4",
+  },
+ 
+  stateText: {
+    fontSize: 13,
+    color: TEXT_DARK,
+    opacity: 0.5,
+    fontWeight: 500,
+  },
+ 
+  annCard: {
+    background: "#f0f5f4",
+    borderRadius: 14,
+    padding: "14px 16px",
+    display: "flex",
+    flexDirection: "column",
+    gap: 8,
+  },
+ 
+  authorRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+  },
+ 
+  avatar: {
+    width: 38,
+    height: 38,
+    borderRadius: "50%",
+    background: TEAL_DARK,
+    color: "#fff",
+    fontFamily: "'Poppins', sans-serif",
+    fontWeight: 700,
+    fontSize: 13,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+  },
+ 
+  facilityName: {
+    fontSize: 14,
+    fontWeight: 700,
+    color: TEXT_DARK,
+    lineHeight: 1.3,
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    margin: 0,
+  },
+ 
+  facilityLocation: {
+    fontSize: 11,
+    fontWeight: 400,
+    fontStyle: "italic",
+    color: "#7a9e97",
+    lineHeight: 1.3,
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    margin: 0,
+  },
+ 
+  timestamp: {
+    fontSize: 11,
+    fontWeight: 500,
+    color: "#a8c5bc",
+    whiteSpace: "nowrap",
+    flexShrink: 0,
+  },
+ 
+  innerDivider: {
+    height: "1px",
+    background: "#d4e6e1",
+    borderRadius: 1,
+    margin: "2px 0",
+  },
+ 
+  annTitle: {
+    fontSize: 13,
+    fontWeight: 800,
+    color: TEXT_DARK,
+    textTransform: "uppercase",
+    letterSpacing: "0.04em",
+    lineHeight: 1.3,
+    margin: 0,
+  },
+ 
+  annBody: {
+    fontSize: 13,
+    fontWeight: 400,
+    color: "#3d5c56",
+    lineHeight: 1.7,
+    whiteSpace: "pre-line",
+    margin: 0,
+  },
+ 
+  viewMore: {
+    background: "none",
+    border: "none",
+    padding: 0,
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: 12,
+    fontWeight: 600,
+    color: TEAL,
+    cursor: "pointer",
+    textAlign: "left",
+    transition: "color 0.15s",
+  },
+ 
+  footer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    gap: 8,
+  },
+ 
+  footerMeta: {
+    display: "flex",
+    alignItems: "center",
+    gap: 5,
+  },
+ 
+  metaText: {
+    fontSize: 12,
+    fontWeight: 500,
+    color: "#a8c5bc",
+    fontFamily: "'Poppins', sans-serif",
+  },
+ 
+  reactBtn: {
+    background: "none",
+    border: "none",
+    padding: "4px 8px",
+    borderRadius: 8,
+    display: "flex",
+    alignItems: "center",
+    gap: 5,
+    cursor: "pointer",
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: 12,
+    fontWeight: 500,
+    transition: "background 0.15s",
+  },
+ 
+  moreLabel: {
+    fontSize: 11,
+    fontWeight: 600,
+    color: "#a8c5bc",
+    textAlign: "center",
+    margin: 0,
+    letterSpacing: "0.03em",
+  },
+ 
+  buttonWrapper: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 2,
+  },
+ 
+  manageButton: {
+    backgroundColor: TEAL,
+    border: "none",
+    borderRadius: 50,
+    padding: "10px 60px",
+    fontSize: 16,
+    fontWeight: 700,
+    color: "#fff",
+    cursor: "pointer",
+    fontFamily: "'Poppins', sans-serif",
+    transition: "background-color 0.15s ease, transform 0.15s ease",
+    width: "100%",
+    maxWidth: 350,
+  },
+};
+
+ 

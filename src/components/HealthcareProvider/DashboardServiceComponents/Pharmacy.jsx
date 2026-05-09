@@ -1,223 +1,277 @@
-import { useState } from "react";
-
-const SAMPLE_MEDICINES = [
-  { id: 1, name: "Paracetamol", stock: 9, category: "Pain Relief" },
-  { id: 2, name: "Vitamin C", stock: 95, category: "Supplements" },
-  { id: 3, name: "Ibuprofen", stock: 80, category: "Pain Relief" },
-  { id: 4, name: "Antibiotics", stock: 60, category: "Antibacterial" },
-  { id: 5, name: "Antihistamine", stock: 45, category: "Allergy" },
-  { id: 6, name: "Amoxicillin", stock: 30, category: "Antibacterial" },
-  { id: 7, name: "Metformin", stock: 20, category: "Diabetes" },
-];
-
-const TOP_N = 5;
-
-const getStockStatus = (stock) => {
-  if (stock <= 30) return "Low Stock";
-  return "In Stock";
-};
+import { useNavigate } from "react-router-dom";
+import { MOCK_MEDICINES, STATUS_OPTIONS } from "../../../pages/HealthcareProvider/PharmacyManagement";
 
 export default function MedicineInventory({
-  medicines = SAMPLE_MEDICINES,
-  onUpdateStock = () => alert("Connect to your backend here!"),
+  medicines = MOCK_MEDICINES,
   isLoading = false,
 }) {
-  const totalItems = medicines.length;
+  const navigate = useNavigate();
 
-  const topMedicines = [...medicines]
-    .sort((a, b) => b.stock - a.stock)
-    .slice(0, TOP_N);
+  const total = medicines.length;
+
+  const counts = {
+    in_stock:     medicines.filter((m) => m.status === "in_stock").length,
+    low_stock:    medicines.filter((m) => m.status === "low_stock").length,
+    out_of_stock: medicines.filter((m) => m.status === "out_of_stock").length,
+  };
+
+  const LEVELS = [
+    { key: "in_stock",     dot: "#22c97a", delay: "0ms"   },
+    { key: "low_stock",    dot: "#f5a623", delay: "70ms"  },
+    { key: "out_of_stock", dot: "#e8453c", delay: "140ms" },
+  ];
 
   return (
     <div style={styles.outerWrapper}>
       <style>{`
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        .med-card { font-family: 'Poppins', sans-serif; }
 
         .med-update-btn {
-          background: #fff;
-          border: none;
-          border-radius: 100px;
-          padding: 14px 48px;
+          width: 100%;
+          background: rgba(255,255,255,0.15);
+          border: 1.5px solid rgba(255,255,255,0.35);
+          border-radius: 14px;
+          padding: 12px 0;
           font-family: 'Poppins', sans-serif;
-          font-size: 18px;
+          font-size: 14px;
           font-weight: 700;
-          color: #0d2f2f;
+          color: #fff;
           cursor: pointer;
-          transition: transform 0.15s ease, box-shadow 0.15s ease;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+          letter-spacing: 0.3px;
+          transition: background 0.2s, border-color 0.2s, transform 0.15s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
         }
         .med-update-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+          background: rgba(255,255,255,0.25);
+          border-color: rgba(255,255,255,0.6);
+          transform: translateY(-1px);
         }
-        .med-update-btn:active {
-          transform: translateY(0);
-        }
+        .med-update-btn:active { transform: translateY(0); }
 
-        .med-list-item {
+        .med-level-row {
           opacity: 0;
-          transform: translateX(-8px);
-          animation: fadeSlide 0.3s ease forwards;
+          transform: translateY(5px);
+          animation: levelIn 0.3s ease forwards;
         }
-        @keyframes fadeSlide {
-          to { opacity: 1; transform: translateX(0); }
-        }
+        @keyframes levelIn { to { opacity: 1; transform: translateY(0); } }
+
+        .med-level-row:hover { background: rgba(255,255,255,0.12) !important; }
       `}</style>
 
-      <div style={styles.card}>
-        <h1 style={styles.title}>Medicine Inventory</h1>
+      <div className="med-card" style={styles.card}>
 
-        <div style={styles.countPill}>
-          <span style={styles.countNumber}>
-            {isLoading ? "—" : totalItems}
-          </span>
-          <span style={styles.countLabel}>Items Available</span>
+        {/* Header */}
+        <div style={styles.header}>
+          <div style={styles.iconWrap}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="rgba(255,255,255,0.9)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+          </div>
+          <div>
+            <p style={styles.headerSub}>Inventory Overview</p>
+            <h2 style={styles.headerTitle}>Medicine Stock</h2>
+          </div>
         </div>
 
-        <div style={styles.listContainer}>
-          {isLoading ? (
-            <p style={{ ...styles.listItem, color: "#aaa" }}>Loading…</p>
-          ) : (
-            topMedicines.map((med, i) => {
-              const status = getStockStatus(med.stock);
+        {/* Divider */}
+        <div style={styles.divider} />
 
+        {/* Total pill */}
+        <div style={styles.totalRow}>
+          <span style={styles.totalLabel}>Total medicines</span>
+          <span style={styles.totalCount}>{isLoading ? "—" : total}</span>
+        </div>
+
+        {/* Stock level rows */}
+        <div style={styles.levelsWrap}>
+          {isLoading ? (
+            <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, textAlign: "center", padding: "12px 0" }}>
+              Loading…
+            </p>
+          ) : (
+            LEVELS.map((lvl) => {
+              const meta = STATUS_OPTIONS.find((s) => s.value === lvl.key);
+              const pct  = total > 0 ? Math.round((counts[lvl.key] / total) * 100) : 0;
               return (
                 <div
-                  key={med.id}
-                  className="med-list-item"
-                  style={{
-                    ...styles.listRow,
-                    animationDelay: `${i * 60}ms`,
-                  }}
+                  key={lvl.key}
+                  className="med-level-row"
+                  style={{ ...styles.levelRow, animationDelay: lvl.delay }}
                 >
-                  <span style={styles.bullet}>•</span>
-                  <span style={styles.listItem}>{med.name}</span>
+                  {/* Left: dot + label */}
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <span style={{ ...styles.dot, background: lvl.dot }} />
+                    <span style={styles.levelLabel}>{meta.label}</span>
+                  </div>
 
-                  <span
-                    style={{
-                      ...styles.stockBadge,
-                      background:
-                        status === "Low Stock"
-                          ? "rgba(255, 99, 71, 0.15)"
-                          : "rgba(46, 204, 113, 0.15)",
-                      color:
-                        status === "Low Stock"
-                          ? "#9c271e"
-                          : "#215838",
-                    }}
-                  >
-                    {status}
-                  </span>
+                  {/* Right: count + percentage bar */}
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    {/* Mini bar */}
+                    <div style={styles.barTrack}>
+                      <div style={{
+                        ...styles.barFill,
+                        width: `${pct}%`,
+                        background: lvl.dot,
+                      }} />
+                    </div>
+                    <span style={styles.levelCount}>{counts[lvl.key]}</span>
+                  </div>
                 </div>
               );
             })
           )}
         </div>
 
-        <button className="med-update-btn" onClick={onUpdateStock}>
-          Update Stock
+        {/* CTA */}
+        <button
+          className="med-update-btn"
+          onClick={() => navigate("/healthcare-provider/services/pharmacy")}
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+          </svg>
+          Manage Stock
         </button>
+
       </div>
     </div>
   );
 }
 
 const styles = {
-  outerWrapper: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "100vh",
-    background: "#e8eded",
-    fontFamily: "'Poppins', sans-serif",
-  },
-
-    card: {
-    width: 343,
-    height: 341,
-    borderRadius: 28,
-    background: "linear-gradient(to bottom, #032932, #5fa89a)",
+  card: {
+    width: 340,
+    height: 450,
+    borderRadius: 24,
+    background: "linear-gradient(160deg, #032932 0%, #0d5c4e 55%, #5fa89a 100%)",
+    padding: "22px 20px 20px",
+    boxShadow: "0 16px 48px rgba(3,41,50,0.35)",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: "22px 18px 20px",
-    boxShadow: "0 12px 40px rgba(0,0,0,0.30)",
-    },
-
-  title: {
-    fontSize: 24,
-    fontWeight: 800,
-    color: "#ffffff",
-    textAlign: "center",
-    lineHeight: 1.2,
+    gap: 14,
   },
 
-  countPill: {
-    height:45,
-    width: 286,
-    background: "#fff",
-    borderRadius: 100,
+  header: {
     display: "flex",
     alignItems: "center",
-    gap: 10,
-    padding: "8px 24px",
+    gap: 12,
+  },
+
+  iconWrap: {
+    width: 44,
+    height: 44,
+    borderRadius: 14,
+    background: "rgba(255,255,255,0.12)",
+    border: "1px solid rgba(255,255,255,0.2)",
+    display: "flex",
+    alignItems: "center",
     justifyContent: "center",
+    flexShrink: 0,
   },
 
-  countNumber: {
-    fontSize: 36,
-    fontWeight: 800,
-    color: "#032932",
-    lineHeight: 1,
-  },
-
-  countLabel: {
-    fontSize: 16,
-    fontWeight: 900,
-    color: "#032932",
-  },
-
-  listContainer: {
-    width: 306,
-    height: 138,
-    background: "rgba(220,228,228,0.88)",
-    borderRadius: 16,
-    padding: "8px 16px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    gap: 0,
-    overflow: "hidden",
-  },
-
-  listRow: {
-    display: "flex",
-    alignItems: "center",
-    gap: 6,
+  headerSub: {
+    fontSize: 11,
+    fontWeight: 600,
+    color: "rgba(255,255,255,0.5)",
+    textTransform: "uppercase",
+    letterSpacing: "0.08em",
     marginBottom: 2,
   },
 
-  bullet: {
-    fontSize: 16,
-    fontWeight: 900,
-    color: "#032932",
-    flexShrink: 0,
-  },
-
-  listItem: {
-    fontSize: 16,
-    fontWeight: 700,
-    color: "#032932",
-    flex: 1,
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: 800,
+    color: "#fff",
     lineHeight: 1.1,
   },
 
-  stockBadge: {
+  divider: {
+    height: "1px",
+    background: "rgba(255,255,255,0.12)",
+    borderRadius: 1,
+  },
+
+  totalRow: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    background: "rgba(255,255,255,0.1)",
+    borderRadius: 12,
+    padding: "10px 16px",
+    border: "1px solid rgba(255,255,255,0.15)",
+  },
+
+  totalLabel: {
     fontSize: 13,
     fontWeight: 600,
-    borderRadius: 6,
-    padding: "2px 8px",
+    color: "rgba(255,255,255,0.7)",
+  },
+
+  totalCount: {
+    fontSize: 26,
+    fontWeight: 900,
+    color: "#fff",
+    lineHeight: 1,
+  },
+
+  levelsWrap: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 6,
+  },
+
+  levelRow: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderRadius: 10,
+    padding: "9px 12px",
+    background: "rgba(255,255,255,0.07)",
+    border: "1px solid rgba(255,255,255,0.1)",
+    cursor: "default",
+    transition: "background 0.15s",
+  },
+
+  dot: {
+    width: 9,
+    height: 9,
+    borderRadius: "50%",
     flexShrink: 0,
+    display: "inline-block",
+  },
+
+  levelLabel: {
+    fontSize: 13,
+    fontWeight: 600,
+    color: "rgba(255,255,255,0.85)",
+  },
+
+  barTrack: {
+    width: 60,
+    height: 5,
+    borderRadius: 999,
+    background: "rgba(255,255,255,0.12)",
+    overflow: "hidden",
+  },
+
+  barFill: {
+    height: "100%",
+    borderRadius: 999,
+    transition: "width 0.6s ease",
+  },
+
+  levelCount: {
+    fontSize: 15,
+    fontWeight: 800,
+    color: "#fff",
+    minWidth: 20,
+    textAlign: "right",
   },
 };

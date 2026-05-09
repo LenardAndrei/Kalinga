@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Mock data 
-const MOCK_MEDICINES = [
+export const MOCK_MEDICINES = [
   { id: 1,  name: "Amoxicillin 500mg",       category: "Antibiotic",     status: "in_stock",   price: 12  },
   { id: 2,  name: "Paracetamol 500mg",        category: "Analgesic",      status: "in_stock",   price: 5   },
   { id: 3,  name: "Ibuprofen 400mg",          category: "Analgesic",      status: "low_stock",  price: 8   },
@@ -20,13 +20,13 @@ const MOCK_MEDICINES = [
   { id: 15, name: "Oral Rehydration Salts",   category: "Supplement",     status: "in_stock",   price: 10  },
 ];
 
-const CATEGORIES = [
+export const CATEGORIES = [
   "Analgesic", "Antibiotic", "Antihistamine", "Antidiabetic",
   "Antihypertensive", "Antacid", "Bronchodilator", "Corticosteroid",
   "Supplement", "Antiviral", "Antifungal", "Other",
 ];
 
-const STATUS_OPTIONS = [
+export const STATUS_OPTIONS = [
   { value: "in_stock",    label: "In Stock",      color: "#1a7a4a", bg: "#e6f7ef" },
   { value: "low_stock",   label: "Low Stock",     color: "#b45309", bg: "#fef3c7" },
   { value: "out_of_stock",label: "Out of Stock",  color: "#c0392b", bg: "#fdecea" },

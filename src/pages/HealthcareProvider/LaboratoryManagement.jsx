@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Mock data 
-const MOCK_TESTS = [
+export const MOCK_TESTS = [
   { id: 1,  name: "Blood Test",           price: 500,  resultTime: "1 hour"   },
   { id: 2,  name: "Urinalysis",           price: 400,  resultTime: "1 hour"   },
   { id: 3,  name: "X-Ray",               price: 1200, resultTime: "2 hours"  },
@@ -20,7 +20,7 @@ const MOCK_TESTS = [
   { id: 15, name: "Kidney Function Test",price: 800,  resultTime: "2 hours"  },
 ];
 
-const RESULT_TIME_OPTIONS = [
+export const RESULT_TIME_OPTIONS = [
   "30 minutes",
   "1 hour",
   "2 hours",

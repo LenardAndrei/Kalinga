@@ -20,7 +20,7 @@ const MODULE_IMAGES = {
   pharmacy:     PharmacyImg,
 };
  
-// ── Module route map ──────────────────────────────────────────────────────
+// Module route map 
 const MODULE_ROUTES = {
   consultation: "/healthcare-provider/services/consultation",
   dentist:      "/healthcare-provider/services/dentist",
@@ -29,16 +29,14 @@ const MODULE_ROUTES = {
   pharmacy:     "/healthcare-provider/services/pharmacy",
 };
  
-// ── Mock data (replace with API fetch) ───────────────────────────────────
-// GET /facilities/:id/modules
-const MOCK_MODULES = [
+// Mock data 
+export const MOCK_MODULES = [
   { type: "laboratory",   count: 12, countLabel: "Tests Available",    description: "Manage tests, fees, turnaround time." },
   { type: "pharmacy",     count: 15, countLabel: "Medicines Available", description: "Manage medicine availability."         },
   { type: "consultation", count: 3,  countLabel: "Doctors Available",   description: "Set doctor consultations."            },
 ];
  
-// GET /facilities/:id/services
-const MOCK_OTHER_SERVICES = [
+export const MOCK_OTHER_SERVICES = [
   { id: 1, name: "Basic First Aid"   },
   { id: 2, name: "BP Checkup"        },
   { id: 3, name: "Family Planning"   },
@@ -46,7 +44,7 @@ const MOCK_OTHER_SERVICES = [
   { id: 5, name: "Temperature Check" },
 ];
  
-// ── All possible modules (shown in Enable modal) ──────────────────────────
+// All possible modules
 const ALL_MODULES = [
   { type: "laboratory",   label: "Laboratory"   },
   { type: "pharmacy",     label: "Pharmacy"     },
@@ -55,7 +53,7 @@ const ALL_MODULES = [
   { type: "maternity",    label: "Maternity"    },
 ];
  
-// ── Modals ────────────────────────────────────────────────────────────────
+// Modals
 function Overlay({ onClose, children }) {
   return (
     <div
@@ -85,7 +83,7 @@ function ModalCard({ children }) {
   );
 }
  
-// Enable Service Module modal — card-grid layout
+// Enable Service Module modal
 function EnableModuleModal({ enabledTypes, onEnable, onClose }) {
   const [selected, setSelected] = useState(null);
   const available = ALL_MODULES.filter((m) => !enabledTypes.includes(m.type));
@@ -336,15 +334,9 @@ function DeleteModal({ serviceName, onConfirm, onClose }) {
   );
 }
  
-// ── Main Page ─────────────────────────────────────────────────────────────
+// Main Page 
 export default function ServicesManagement() {
   const navigate = useNavigate();
- 
-  // TODO: replace with useEffect + API fetch
-  // useEffect(() => {
-  //   api.get("/facilities/:id/modules").then(setModules);
-  //   api.get("/facilities/:id/services").then(setOtherServices);
-  // }, []);
  
   const [modules, setModules]             = useState(MOCK_MODULES);
   const [otherServices, setOtherServices] = useState(MOCK_OTHER_SERVICES);
@@ -355,9 +347,8 @@ export default function ServicesManagement() {
   const [editService, setEditService]         = useState(null);  
   const [deleteService, setDeleteService]     = useState(null);   
  
-  // ── Module handlers ──────────────────────────────────────────────────
+  // Module handlers 
   const handleEnableModule = async (type) => {
-    // TODO: await api.post("/facilities/:id/modules", { type });
     const defaults = {
       laboratory:   { count: 0, countLabel: "Tests Available",    description: "Manage tests, fees, turnaround time." },
       pharmacy:     { count: 0, countLabel: "Medicines Available", description: "Manage medicine availability."        },
@@ -368,7 +359,7 @@ export default function ServicesManagement() {
     setModules((prev) => [...prev, { type, ...defaults[type] }]);
   };
  
-  // ── Other service handlers ───────────────────────────────────────────
+  // Other service handlers
   const handleAddService = async (name) => {
     const newService = { id: Date.now(), name };
     setOtherServices((prev) => [...prev, newService]);
@@ -387,17 +378,13 @@ export default function ServicesManagement() {
     setDeleteService(null);
   };
  
-  // ── Layout helpers ───────────────────────────────────────────────────
-  // Split other services into 2 columns
+  // Layout helpers
   const leftCol  = otherServices.filter((_, i) => i % 2 === 0);
   const rightCol = otherServices.filter((_, i) => i % 2 !== 0);
  
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif", width: "100%", boxSizing: "border-box" }}>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-      />
+
       <style>{`
         *, *::before, *::after { box-sizing: border-box; }
  

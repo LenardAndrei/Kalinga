@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { upcomingEvents } from "./UpcomingEventsView"; 
+import { defaultUpcomingEvents } from "../../components/HealthcareProvider/UpcomingEventsView";
 
 const DAYS_OF_WEEK = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 const MONTHS = [
@@ -32,9 +32,8 @@ export default function Calendar({ date, onEventClick }) {
   const month = now.getMonth();
   const calendarDays = buildCalendarDays(year, month);
 
-  // Build a map: "day-number" → event object for quick lookup
   const eventMap = new Map(
-    upcomingEvents
+    defaultUpcomingEvents
       .filter((e) => {
         const eMonth = MONTH_ABBR_TO_INDEX[e.month];
         const eYear = parseInt(e.year, 10);
@@ -54,25 +53,43 @@ export default function Calendar({ date, onEventClick }) {
       justifyContent: "center",
       alignItems: "center",
       fontFamily: "'Poppins', sans-serif",
+      width: "100%",
+      boxSizing: "border-box",
     },
     container: {
-      width: "500px",
-      height: "405px",
+      width: "100%",
+      maxWidth: "500px",
       background: "#ffffff",
       border: "1px solid #848383",
-      borderRadius: "35px",
-      padding: "20px 24px",
+      borderRadius: "clamp(16px, 4vw, 35px)",
+      padding: "clamp(12px, 3vw, 20px) clamp(12px, 4vw, 24px)",
       boxSizing: "border-box",
       display: "flex",
       flexDirection: "column",
     },
-    header: { display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "14px" },
-    month: { fontFamily: "'Poppins', sans-serif", fontSize: "24px", fontWeight: 700, color: "#032932", lineHeight: 1 },
-    year: { fontFamily: "'Poppins', sans-serif", fontSize: "24px", fontWeight: 900, color: "#032932", lineHeight: 1 },
-    grid: { display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "4px" },
+    header: { display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "clamp(8px, 2vw, 14px)" },
+    month: {
+      fontFamily: "'Poppins', sans-serif",
+      fontSize: "clamp(16px, 4vw, 24px)",
+      fontWeight: 700,
+      color: "#032932",
+      lineHeight: 1,
+    },
+    year: {
+      fontFamily: "'Poppins', sans-serif",
+      fontSize: "clamp(16px, 4vw, 24px)",
+      fontWeight: 900,
+      color: "#032932",
+      lineHeight: 1,
+    },
+    grid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(7, 1fr)",
+      gap: "clamp(2px, 0.5vw, 4px)",
+    },
     dayLabel: {
       fontFamily: "'Poppins', sans-serif",
-      fontSize: "16px",
+      fontSize: "clamp(9px, 2vw, 16px)",
       fontWeight: 700,
       color: "#032932",
       textAlign: "center",
@@ -80,8 +97,7 @@ export default function Calendar({ date, onEventClick }) {
       marginBottom: "2px",
     },
     cell: (isEvent, isHovered, isGray) => ({
-      width: "58px",
-      height: "46px",
+      aspectRatio: "58 / 46",
       background: isEvent && isHovered ? "#5fc6a0" : "#EEEEEE",
       borderRadius: "6px",
       display: "flex",
@@ -91,18 +107,19 @@ export default function Calendar({ date, onEventClick }) {
       gap: "2px",
       cursor: isEvent ? "pointer" : "default",
       transition: "background 0.15s",
+      minWidth: 0,
     }),
     dateText: (gray, isEvent, isHovered) => ({
       fontFamily: "'Poppins', sans-serif",
-      fontSize: "16px",
+      fontSize: "clamp(9px, 2vw, 16px)",
       fontWeight: 700,
       color: isEvent && isHovered ? "#ffffff" : gray ? "#848383" : "#032932",
       lineHeight: 1,
       transition: "color 0.15s",
     }),
     dot: (gray, isHovered) => ({
-      width: "9px",
-      height: "9px",
+      width: "clamp(5px, 1vw, 9px)",
+      height: "clamp(5px, 1vw, 9px)",
       borderRadius: "50%",
       background: isHovered ? "#ffffff" : gray ? "#848383" : "#032932",
       transition: "background 0.15s",

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const mockAnnouncements = [
+export const mockAnnouncements = [
   {
     id: 1,
     facility: "San Isidro Health Center",
@@ -59,7 +59,6 @@ export default function Announcements() {
   const handlePost = async () => {
     if (!title.trim() || !body.trim()) return;
     setPosting(true);
-    // TODO: await api.post("/announcements", { title, body });
     await new Promise((r) => setTimeout(r, 800));
     setAnnouncements((prev) => [
       {
@@ -88,7 +87,6 @@ export default function Announcements() {
     );
 
   const toggleLike = (id) => {
-    // TODO: await api.post(`/announcements/${id}/react`);
     setAnnouncements((prev) =>
       prev.map((a) =>
         a.id === id

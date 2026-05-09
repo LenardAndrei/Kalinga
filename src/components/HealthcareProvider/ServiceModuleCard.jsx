@@ -1,12 +1,3 @@
-// ServiceModuleCard.jsx
-// Props:
-//   image       – imported image asset (e.g. import Lab from "../assets/Laboratory.png")
-//   title       – "Laboratory"
-//   count       – 12
-//   countLabel  – "Tests Available"
-//   description – "Manage tests, fees, turnaround time."
-//   onManage    – () => void   (navigate to sub-page)
-
 export default function ServiceModuleCard({ image, title, count, countLabel, description, onManage }) {
   return (
     <>

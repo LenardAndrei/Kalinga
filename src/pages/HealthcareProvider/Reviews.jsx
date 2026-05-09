@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-// ── Mock Data (replace with API fetch) ─────────────────────────────────────
-const mockReviews = [
+// Mock Data 
+export const mockReviews = [
   {
     id: 1,
     name: "Maria Santos",
@@ -35,9 +35,9 @@ const mockReviews = [
 ];
 
 // Summary stats — replace with API data
-const ratingBreakdown = { 5: 60, 4: 20, 3: 10, 2: 10, 1: 0 };
-const totalReviews = 32;
-const averageRating = 4.5;
+export const ratingBreakdown = { 5: 60, 4: 20, 3: 10, 2: 10, 1: 0 };
+export const totalReviews = 32;
+export const averageRating = 4.5;
 
 // Donut segment colors
 const DONUT_COLORS = {
