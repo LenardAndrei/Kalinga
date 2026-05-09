@@ -69,7 +69,7 @@ function PatientTable() {
               <tr>
                 <th>Name</th>
                 <th>Gender</th>
-                <th>Patients</th>
+                <th>Age</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -79,7 +79,7 @@ function PatientTable() {
                 <tr key={p.id}>
                   <td className="doctor-name">{p.name}</td>
                   <td className="doctor-specialty">{p.gender}</td>
-                  <td>{p.patients}</td>
+                  <td>{p.age}</td>
                   <td>
                     <span className={`status-pill ${p.status.toLowerCase()}`}>
                       {p.status}
