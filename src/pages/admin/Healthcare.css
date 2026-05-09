@@ -318,6 +318,90 @@
   border-color: rgba(3, 41, 50, 0.12);
 }
 
+/* ── suspend button ── */
+.app-modal-btn.suspend {
+  background: #d97706;
+  color: white;
+  margin-right: 12px;
+}
+
+.app-modal-btn.suspend:hover {
+  background: #b45309;
+}
+
+/* ── suspend modal ── */
+.suspend-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.suspend-modal {
+  width: min(500px, 95%);
+  background: white;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.suspend-modal h3 {
+  margin: 0;
+  color: #032932;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.suspend-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.suspend-field label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #385c5f;
+}
+
+.suspend-field textarea,
+.suspend-field input {
+  width: 100%;
+  border: 1px solid #d7e2e2;
+  border-radius: 16px;
+  padding: 14px 16px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+}
+
+.suspend-field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.suspend-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.app-modal-btn.confirm-suspend {
+  background: #c62828;
+  color: white;
+}
+
+.app-modal-btn.confirm-suspend:hover {
+  background: #a61b1b;
+}
+
 @media (max-width: 980px) {
   .healthcare-cards-row {
     grid-template-columns: repeat(2, minmax(160px, 1fr));

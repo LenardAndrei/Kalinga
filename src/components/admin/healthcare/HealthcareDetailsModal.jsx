@@ -1,4 +1,9 @@
+import { useState } from "react"
+
 function HealthcareDetailsModal({ provider, onClose }) {
+  const [showSuspendModal, setShowSuspendModal] = useState(false)
+  const [suspendReason, setSuspendReason] = useState("")
+  const [suspendDays, setSuspendDays] = useState("")
   if (!provider) return null
 
   return (
@@ -67,10 +72,77 @@ function HealthcareDetailsModal({ provider, onClose }) {
         </div>
 
         <div className="app-modal-footer">
+          <button
+            className="app-modal-btn suspend"
+            onClick={() => setShowSuspendModal(true)}
+          >
+            Suspend Healthcare
+          </button>
+
           <button className="app-modal-btn cancel" onClick={onClose}>
             Close
           </button>
         </div>
+        {showSuspendModal && (
+          <div
+            className="suspend-overlay"
+            onClick={() => setShowSuspendModal(false)}
+          >
+            <div
+              className="suspend-modal"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3>Suspend Healthcare Account</h3>
+
+              <div className="suspend-field">
+                <label>Reason for Suspension</label>
+                <textarea
+                  placeholder="Enter suspension reason..."
+                  value={suspendReason}
+                  onChange={(e) => setSuspendReason(e.target.value)}
+                />
+              </div>
+
+              <div className="suspend-field">
+                <label>Suspension Duration (days)</label>
+                <input
+                  type="number"
+                  placeholder="e.g. 7"
+                  value={suspendDays}
+                  onChange={(e) => setSuspendDays(e.target.value)}
+                />
+              </div>
+
+              <div className="suspend-actions">
+                <button
+                  className="app-modal-btn cancel"
+                  onClick={() => setShowSuspendModal(false)}
+                >
+                  Cancel
+                </button>
+
+                <button
+                  className="app-modal-btn confirm-suspend"
+                  onClick={() => {
+                    console.log({
+                      provider: provider.name,
+                      reason: suspendReason,
+                      days: suspendDays,
+                    })
+
+                    alert("Healthcare account suspended.")
+
+                    setShowSuspendModal(false)
+                    setSuspendReason("")
+                    setSuspendDays("")
+                  }}
+                >
+                  Confirm Suspension
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
