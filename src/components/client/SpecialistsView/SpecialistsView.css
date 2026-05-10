@@ -217,28 +217,24 @@
   .sp-search-input {
     font-size: 14px;
   }
-  /* 1. Ensure the container doesn't wrap and allows smooth swiping */
+
   .sp-categories {
     gap: 8px;
-    padding: 10px 5px; /* Give it some "breathing room" */
-    width: 100vw;      /* Occupy full width */
-    margin-left: -10px; /* Offset parent padding to touch screen edges */
+    padding: 10px 5px;
+    width: 100vw;    
+    margin-left: -10px; 
     padding-left: 15px; 
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth momentum scrolling for iOS */
-    mask-image: linear-gradient(to right, black 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-overflow-scrolling: touch; 
   }
 
-  /* 2. Adjust button size for fingers (Touch Target) */
+
   .sp-cat-btn {
-    padding: 10px 20px; /* Taller and wider for easier tapping */
-    font-size: 14px;    /* Keep text legible */
+    padding: 10px 20px; 
+    font-size: 14px;    
     border-width: 1px;
   }
 
-  /* 3. Hide the arrows on mobile */
-  /* Most mobile users prefer swiping over clicking tiny arrows */
   .sp-cat-arrow {
     display: none;
   }
