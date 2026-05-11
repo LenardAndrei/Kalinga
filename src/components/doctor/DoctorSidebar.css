@@ -1,18 +1,6 @@
 /* Hamburger Menu Button */
 .doctor-sidebar__hamburger {
     display: none;
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: 1001;
-    background: transparent;
-    border: none;
-    flex-direction: column;
-    gap: 6px;
-    cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 30px;
 }
 
 .hamburger-line {
@@ -39,13 +27,6 @@
 /* Mobile overlay */
 .doctor-sidebar__overlay {
     display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
 }
 
 /* Sidebar Styles */
@@ -62,7 +43,6 @@
     padding: 0 0.5rem;
     border-radius: 0 20px 20px 0;
     z-index: 1000;
-    transition: transform 0.3s ease;
 }
 
 .doctor-sidebar-logo__container {
@@ -200,130 +180,6 @@
     }
 }
 
-/* Mobile (< 768px) */
-@media (max-width: 768px) {
-    .doctor-sidebar__hamburger {
-        display: flex;
-    }
-
-    .doctor-sidebar__overlay {
-        display: block;
-    }
-
-    .doctor-sidebar {
-        width: 80vw;
-        max-width: 280px;
-        transform: translateX(-100%);
-        border-radius: 0;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .doctor-sidebar--mobile-open {
-        transform: translateX(0);
-    }
-
-    .doctor-sidebar-logo__image {
-        width: 1.5rem;
-        height: 2rem;
-    }
-
-    .doctor-sidebar-logo__text {
-        font-size: 1.2rem;
-    }
-
-    .doctor-sidebar-link__text {
-        font-size: 0.9rem;
-    }
-
-    .doctor-sidebar-link__icon {
-        width: 1.2rem;
-        height: 1.2rem;
-    }
-
-    .doctor-sidebar__link {
-        padding: 0.8rem 0.4rem;
-    }
-
-    .sidebar-footer {
-        padding: 0.6rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .sidebar-footer__title {
-        font-size: 0.7rem;
-    }
-
-    .sidebar-footer__logout-btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-    }
-}
-
-/* Small Mobile (< 480px) */
-@media (max-width: 480px) {
-    .hamburger-line {
-        width: 20px;
-        height: 2.5px;
-    }
-
-    .doctor-sidebar {
-        width: 75vw;
-        max-width: 260px;
-    }
-
-    .doctor-sidebar-logo__container {
-        gap: 0.5rem;
-        margin-top: 0.8rem;
-    }
-
-    .doctor-sidebar-logo__image {
-        width: 1.3rem;
-        height: 1.7rem;
-    }
-
-    .doctor-sidebar-logo__text {
-        font-size: 1rem;
-    }
-
-    .doctor-sidebar-link__text {
-        font-size: 0.8rem;
-    }
-
-    .doctor-sidebar-link__icon {
-        width: 1rem;
-        height: 1rem;
-    }
-
-    .sidebar-footer__title {
-        font-size: 0.65rem;
-    }
-}
-
-.sidebar-footer__title {
-    color: #ffffff;
-    margin: 0;
-    font-size: 1rem;
-    text-align: left;
-    font-weight: 600;
-    line-height: 1.1;
-    max-width: 300px;
-}
-
-.sidebar-footer__logout-btn {
-    align-self: flex-end;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 30px;
-    color: #ffffff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    font-weight: 300;
-    font-style: italic;
-    gap: 10px;
-    padding: 0.3rem 0.5rem;
-}
 
 .sidebar-footer__logout-btn:hover {
     background-color: rgba(255, 255, 255, 0.35);

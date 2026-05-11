@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import Logo from "../../assets/white-logo.svg";
+import Logo from "../../assets/colored-logo.svg";
 import { useLocation } from "react-router-dom";
 
 const navItems = [

@@ -1,6 +1,9 @@
-import { NavLink, useNavigate } from "react-router-dom"
-import logo from "../../assets/white-logo.svg"
+import { NavLink, useNavigate, useLocation } from "react-router-dom"
+import { useState, useEffect, useRef } from "react"
+import logo from "../../assets/colored-logo.svg"
 import "./AdminSideBar.css"
+
+const BREAKPOINT = 768;
 
 const navItems = [
   {
@@ -67,21 +70,72 @@ const navItems = [
 
 function AdminSidebar({ isOpen, onClose }) {
   const navigate = useNavigate()
+  const location = useLocation()
+  const [isMobile, setIsMobile] = useState(window.innerWidth < BREAKPOINT);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const drawerRef = useRef(null);
+
+  // Track window width
+  useEffect(() => {
+    const onResize = () => {
+      const mobile = window.innerWidth < BREAKPOINT;
+      setIsMobile(mobile);
+      if (!mobile) setDrawerOpen(false); // auto-close drawer on expand
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  // Sync with external state for desktop
+  useEffect(() => {
+    if (!isMobile) {
+      setDrawerOpen(isOpen);
+    }
+  }, [isOpen, isMobile]);
+
+  // Close drawer on route change
+  useEffect(() => {
+    setDrawerOpen(false);
+    if (onClose) onClose();
+  }, [location.pathname]);
+
+  // Close on outside click
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const handler = (e) => {
+      if (drawerRef.current && !drawerRef.current.contains(e.target)) {
+        setDrawerOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [drawerOpen]);
 
   const handleLogout = () => {
     navigate("/login")
   }
 
-  return (
-    <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+  const handleNav = () => {
+    setDrawerOpen(false);
+    if (onClose) onClose();
+  };
 
+  // Get active page label
+  const activeItem = navItems.find(item => location.pathname === item.to);
+  const activeLabel = activeItem ? activeItem.label : "Dashboard";
+
+  // ── Shared nav content (used in both sidebar and drawer) ─────────────
+  const NavContent = ({ compact = false }) => (
+    <>
       {/* brand */}
       <div className="sidebar-brand">
         <img src={logo} alt="Kalinga" className="sidebar-logo" />
         <span className="sidebar-brand-name">KALINGA</span>
-        <button className="sidebar-close-btn" type="button" onClick={onClose} aria-label="Close menu">
-          ×
-        </button>
+        {!compact && (
+          <button className="sidebar-close-btn" type="button" onClick={() => { setDrawerOpen(false); if (onClose) onClose(); }} aria-label="Close menu">
+            ×
+          </button>
+        )}
       </div>
 
       {/* nav links */}
@@ -93,6 +147,7 @@ function AdminSidebar({ isOpen, onClose }) {
             className={({ isActive }) =>
               `sidebar-link ${isActive ? "active" : ""}`
             }
+            onClick={handleNav}
           >
             <span className="sidebar-icon">{item.icon}</span>
             {item.label}
@@ -116,6 +171,135 @@ function AdminSidebar({ isOpen, onClose }) {
           </svg>
         </button>
       </div>
+    </>
+  );
+
+  // MOBILE
+  if (isMobile) {
+    return (
+      <>
+        <style>{`
+          @keyframes drawerSlideIn {
+            from { transform: translateX(-100%); opacity: 0.6; }
+            to   { transform: translateX(0);     opacity: 1; }
+          }
+          @keyframes overlayFadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+          }
+          .burger-line {
+            display: block;
+            width: 22px;
+            height: 2.5px;
+            background: white;
+            border-radius: 2px;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+            transform-origin: center;
+          }
+        `}</style>
+
+        {/* Top bar */}
+        <div style={{
+          position: "fixed", top: 0, left: 0, right: 0, zIndex: 900,
+          height: 60,
+          background: "linear-gradient(90deg, #82ACAB 0%, #2A787C 33%, #032932 100%)",
+          display: "flex", alignItems: "center",
+          padding: "0 16px",
+          boxShadow: "0 2px 16px rgba(3,41,50,0.2)",
+          gap: 14,
+        }}>
+          {/* Burger button */}
+          <button
+            onClick={() => setDrawerOpen(o => !o)}
+            style={{
+              background: "none", border: "none", cursor: "pointer",
+              display: "flex", flexDirection: "column", gap: 5,
+              padding: "6px", borderRadius: 8,
+              alignItems: "center", justifyContent: "center",
+              transition: "background 0.15s",
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.15)"}
+            onMouseLeave={e => e.currentTarget.style.background = "none"}
+            aria-label="Open menu"
+          >
+            <span className="burger-line" style={{
+              transform: drawerOpen ? "translateY(7.5px) rotate(45deg)" : "none",
+            }} />
+            <span className="burger-line" style={{
+              opacity: drawerOpen ? 0 : 1,
+              transform: drawerOpen ? "scaleX(0)" : "none",
+            }} />
+            <span className="burger-line" style={{
+              transform: drawerOpen ? "translateY(-7.5px) rotate(-45deg)" : "none",
+            }} />
+          </button>
+
+          {/* Logo + name */}
+          <img src={logo} alt="Kalinga" style={{width: "32px", height: "40px"}} />
+          <span style={{
+            color: "white", fontSize: "20px", fontWeight: 900,
+            fontFamily: "'Poppins', sans-serif", letterSpacing: 0,
+          }}>
+            KALINGA
+          </span>
+
+          {/* Active page label */}
+          <span style={{
+            marginLeft: "auto",
+            color: "rgba(255,255,255,0.75)",
+            fontSize: 13, fontWeight: 600,
+            fontFamily: "'Poppins', sans-serif",
+          }}>
+            {activeLabel}
+          </span>
+        </div>
+
+        {/* Spacer so content doesn't hide under topbar */}
+        <div style={{ height: 60, flexShrink: 0 }} />
+
+        {/* Overlay */}
+        {drawerOpen && (
+          <div
+            onClick={() => setDrawerOpen(false)}
+            style={{
+              position: "fixed", inset: 0, zIndex: 910,
+              background: "rgba(3,41,50,0.45)", backdropFilter: "blur(2px)",
+              animation: "overlayFadeIn 0.2s ease",
+            }}
+          />
+        )}
+
+        {/* Slide-in drawer */}
+        {drawerOpen && (
+          <aside
+            ref={drawerRef}
+            style={{
+              position: "fixed", top: 0, left: 0, bottom: 0,
+              zIndex: 920,
+              width: 280,
+              background: "linear-gradient(to top, #032932, #82ACAB)",
+              borderRadius: "0 24px 24px 0",
+              padding: "28px 16px 24px",
+              boxSizing: "border-box",
+              boxShadow: "4px 0 24px rgba(0,0,0,0.25)",
+              fontFamily: "'Poppins', sans-serif",
+              display: "flex",
+              flexDirection: "column",
+              overflowY: "auto",
+              animation: "drawerSlideIn 0.25s ease",
+            }}
+          >
+            <NavContent compact={false} />
+          </aside>
+        )}
+      </>
+    );
+  }
+
+  // DESKTOP
+  return (
+    <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+      <NavContent compact={false} />
     </aside>
   )
 }

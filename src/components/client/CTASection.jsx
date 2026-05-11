@@ -11,7 +11,7 @@ function CTASection() {
     ...styles.btn,
     transform: isHovered ? "translateY(-5px)" : "translateY(0)",
     boxShadow: isHovered ? "0 10px 20px rgba(0,0,0,0.15)" : "none",
-    background: isHovered ? "#f0f0f0" : "#fff", // Subtle feedback
+    background: isHovered ? "#f0f0f0" : "#fff", 
   });
 
   const styles = {
@@ -46,6 +46,7 @@ function CTASection() {
       borderRadius: "50px",
       fontSize: "clamp(13px, 5vw, 18px)",
       fontWeight: "700",
+      fontFamily: "'Poppins', sans-serif",
       whiteSpace: "nowrap",
       cursor: "pointer", 
       transition: "transform 0.3s ease", 

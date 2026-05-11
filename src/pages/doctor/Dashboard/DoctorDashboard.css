@@ -552,19 +552,19 @@
     }
 
     .doctor-dashboard__appointments-count {
-        gap: 1.5rem;
+        gap: 6rem;
         padding: 10px 16px;
         flex-wrap: wrap;
         justify-content: center;
     }
 
     .doctor-dashboard__appointments-count-num {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 
     .doctor-dashboard__appointments-count-label {
         font-size: 1rem;
-        margin-right: 0;
+        margin-right: 4rem;
     }
 
     .doctor-dashboard__appointment-item {
@@ -728,7 +728,7 @@
 
     .doctor-dashboard__appointments-count {
         gap: 1rem;
-        padding: 8px 12px;
+        padding: 8px 1px;
     }
 
     .doctor-dashboard__appointments-count-num {
