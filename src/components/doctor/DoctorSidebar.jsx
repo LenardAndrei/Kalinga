@@ -164,7 +164,7 @@ function DoctorSidebar() {
             </div>
 
             {/* Footer */}
-            <SidebarFooter name="Brgy. San Isidro Medical Center" onLogout={handleLogout} />
+            <SidebarFooter name="Dr. John Doe" onLogout={handleLogout} />
         </>
     );
 
