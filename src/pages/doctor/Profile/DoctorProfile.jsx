@@ -39,16 +39,16 @@ export default function DoctorProfile() {
         <section className="doctor-profile">
             <h1 className="doctor-profile__title">Doctor Profile</h1>
             <DoctorInfoCard title="Basic Information">
-                <DoctorInfoField label="First Name" value="San"/>
-                <DoctorInfoField label="Last Name" value="Isidro"/>
-                <DoctorInfoField label="Date of Birth" value="Brgy San Isidro, San Isidro, Batangas"/>
+                <DoctorInfoField label="First Name" value="John"/>
+                <DoctorInfoField label="Last Name" value="Doe"/>
+                <DoctorInfoField label="Date of Birth" value="Alangilan, Batangas"/>
                 <DoctorInfoField label="Gender" value="Male"/>
                 <DoctorInfoField label="Nationality" value="Filipino"/>
                 <DoctorInfoImageField label="Profile Photo"/>
             </DoctorInfoCard>
 
             <DoctorInfoCard title="Contact Information">
-                <DoctorInfoField label="Email Address" value="sanisidro-medical@ph.gov"/>
+                <DoctorInfoField label="Email Address" value="johndoe@example.com"/>
                 <DoctorInfoField label="Contact Number" value="0999 987 6767"/>
                 <DoctorInfoField label="Clinic Address" value="Brgy San Isidro, San Isidro, Batangas"/>
                 <DoctorInfoField label="Clinic No." value="0999 987 6767"/>
