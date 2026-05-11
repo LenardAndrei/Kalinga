@@ -130,11 +130,11 @@
 }
 
 .sidebar-footer__title {
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 800;
     color: white;
-    text-align: center;
-    margin: 0;
+    text-align: start;
+    margin-left: 0.5rem;
     line-height: 1.2;
 }
 
