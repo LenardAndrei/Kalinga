@@ -1,0 +1,353 @@
+.app-page {
+  font-family: 'Poppins', sans-serif;
+}
+
+.app-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #032932;
+  margin: 0 0 28px;
+}
+
+/* ── white card ── */
+.app-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+/* ── tabs ── */
+.app-tabs {
+  display: flex;
+  border-bottom: 2px solid #f0f0f0;
+  padding: 5px 24px;
+}
+
+.app-tab {
+  background: none;
+  border: none;
+  padding: 18px 20px;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  color: #888;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.app-tab:hover { color: #2A787C; }
+
+.app-tab.active {
+  color: #2A787C;
+  border-bottom-color: #2A787C;
+}
+
+/* ── tab content ── */
+.app-tab-content { padding: 0; }
+
+/* ── table ── */
+.app-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Poppins', sans-serif;
+}
+
+.app-table thead tr { background: #2A787C; }
+
+.app-table thead th {
+  padding: 14px 24px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.app-table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+}
+
+.app-table tbody tr:last-child { border-bottom: none; }
+.app-table tbody tr:hover { background: #f8fafa; }
+
+.app-table tbody td {
+  padding: 16px 24px;
+  font-size: 14px;
+  color: #444;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.app-name     { font-weight: 700 !important; color: #032932 !important; }
+.app-specialty { color: #888 !important; }
+
+/* ── view button ── */
+.app-view-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  color: #032932;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.app-view-btn:hover { color: #2A787C; }
+
+/* ── loading / coming soon ── */
+.app-loading,
+.app-coming-soon {
+  padding: 48px;
+  text-align: center;
+  color: #999;
+  font-size: 15px;
+}
+/* -- Kalinga-themed modal styles */
+.app-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 41, 50, 0.45);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 30px 20px 20px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.app-modal {
+  width: min(700px, 100%);
+  max-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #f7fdfc 0%, #ffffff 100%);
+  border: 1px solid rgba(42, 120, 124, 0.15);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+}
+
+.app-modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 30px 28px 22px;
+  background: linear-gradient(90deg, rgba(42, 120, 124, 0.12), rgba(3, 41, 50, 0));
+}
+
+.app-modal-header h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  color: #032932;
+}
+
+.app-modal-subtitle {
+  margin: 0;
+  color: #385c5f;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.app-modal-close {
+  border: none;
+  background: #ffffff;
+  color: #032932;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  transition: background 0.2s;
+}
+
+.app-modal-close:hover {
+  background: #e8f5f3;
+}
+
+@media (max-width: 720px) {
+  .app-modal {
+    width: calc(100% - 24px);
+    max-height: calc(100vh - 32px);
+  }
+
+  .app-modal-body {
+    max-height: calc(100vh - 220px);
+  }
+}
+
+.app-modal-body {
+  padding: 0 28px 24px;
+  overflow-y: auto;
+  max-height: calc(100vh - 240px);
+}
+
+.app-modal-section {
+  margin-bottom: 24px;
+  padding: 20px;
+  border: 1px solid rgba(42, 120, 124, 0.12);
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.app-modal-section-title {
+  margin: 0 0 16px;
+  font-size: 16px;
+  color: #032932;
+  font-weight: 700;
+}
+
+.app-modal-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px 24px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(42, 120, 124, 0.1);
+}
+
+.app-modal-row:last-child {
+  border-bottom: none;
+}
+
+.app-modal-row span {
+  color: #5f7d7f;
+  font-size: 14px;
+}
+
+.app-modal-row strong {
+  color: #032932;
+  font-size: 15px;
+  text-align: right;
+}
+
+.app-modal-status-section {
+  padding-bottom: 18px;
+}
+
+.app-modal-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-modal-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.status-pending {
+  background: rgba(42, 120, 124, 0.12);
+  color: #2a787c;
+}
+
+.status-accepted {
+  background: rgba(42, 120, 124, 0.18);
+  color: #032932;
+}
+
+.status-decline {
+  background: rgba(198, 35, 35, 0.12);
+  color: #c62828;
+}
+
+.app-modal-note {
+  margin: 0;
+  color: #4a6a6c;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.app-modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+  padding: 18px 28px 26px;
+  background: #f5fcfb;
+}
+
+.app-modal-btn {
+  min-width: 110px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.app-modal-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.app-modal-btn.accept {
+  background: #2a787c;
+  color: #ffffff;
+}
+
+.app-modal-btn.decline {
+  background: #ffffff;
+  color: #c62828;
+  border-color: #f9d3d3;
+}
+
+.app-modal-btn.cancel {
+  background: #ffffff;
+  color: #032932;
+  border-color: rgba(3, 41, 50, 0.12);
+}
+
+@media (max-width: 980px) {
+  .app-tabs {
+    flex-wrap: wrap;
+    padding: 5px 12px;
+  }
+
+  .app-tab {
+    flex: 1 1 45%;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-tab {
+    flex: 1 1 100%;
+  }
+
+  .app-table {
+    display: block;
+    overflow-x: auto;
+    min-width: 100%;
+  }
+
+  .app-table thead,
+  .app-table tbody,
+  .app-table tr {
+    display: table;
+    width: 100%;
+  }
+
+  .app-table th,
+  .app-table td {
+    padding: 12px 14px;
+  }
+}

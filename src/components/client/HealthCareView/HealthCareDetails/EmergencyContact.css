@@ -1,0 +1,88 @@
+.emergency-card {
+  background: #032932;
+  border-radius: 20px;
+  padding: 28px 36px;
+  margin: 24px 32px;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
+
+.emergency-title {
+  font-size: 32px;
+  font-weight: 900;
+  margin: 0 0 4px;
+}
+
+.emergency-subtitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 24px;
+}
+
+.emergency-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.emergency-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.emergency-icon {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.emergency-label {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.emergency-value {
+  font-size: 22px;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.emergency-distance {
+  font-size: 20px;
+  font-style: italic;
+  margin: 2px 0 0;
+}
+
+@media (max-width: 768px) {
+  .emergency-card {
+    padding: 20px 22px;
+    margin: 20px 18px;
+  }
+
+  .emergency-title {
+    font-size: 1.6rem;
+  }
+
+  .emergency-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .emergency-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .emergency-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .emergency-label,
+  .emergency-value,
+  .emergency-distance {
+    font-size: 1rem;
+  }
+}

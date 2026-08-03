@@ -1,0 +1,121 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  background-image: url(../../assets/building.jpg);
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  border-radius: 0 0 40px 40px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20,60,55,0.88) 3%, rgba(20,60,55,0.2));
+  z-index: 1;
+  border-radius: 0 0 40px 40px;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  padding: 60px clamp(20px, 10vw, 80px);
+  max-width: 800px;
+}
+
+.title {
+  font-size: clamp(2rem, 2.5vw, 5rem);
+  font-weight: 800;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+
+.desc {
+  color: rgba(255,255,255,0.8);
+  font-size: clamp(15px, 1.2vw, 16px);
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-width: 500px;
+}
+
+.tagline {
+  color: rgba(255,255,255,0.8);
+  font-size: clamp(15px, 1.2vw, 16px);
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 36px;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  gap: 10px;
+  background: #fff;
+  color: #1a3a3a;
+  font-weight: 800;
+  font-size: 25px;
+  padding: 14px 28px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .hero {
+    height: 90vh;
+  }
+
+  .content {
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .title {
+    font-size: clamp(1.5rem, 8vw, 3rem);
+    margin-bottom: 20px;
+  }
+
+  .desc {
+    margin-bottom: 15px;
+  }
+
+  .tagline {
+    margin-bottom: 30px;
+  }
+
+  .ctaBtn {
+    font-size: 18px;
+    padding: 12px 24px;
+  }
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .content {
+    padding: 50px clamp(30px, 8vw, 60px);
+  }
+
+  .title {
+    font-size: clamp(2rem, 4vw, 4rem);
+  }
+
+  .ctaBtn {
+    font-size: 22px;
+    padding: 13px 26px;
+  }
+}

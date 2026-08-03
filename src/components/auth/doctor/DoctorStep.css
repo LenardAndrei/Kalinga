@@ -1,0 +1,358 @@
+/* ── page wrapper ── */
+.dr-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #ffffff 0%, #032932 100%);
+    box-sizing: border-box;
+}
+
+/* ── page title ── */
+.dr-page-title {
+    font-size: 1.45rem;
+    font-weight: 900;
+    color: #032932;
+    text-align: center;
+    letter-spacing: 0.5px;
+    margin: 7px auto 16px;
+    text-transform: uppercase;
+    max-width: 860px;
+    width: 100%;
+    padding: 0 24px;
+}
+
+/* ── card ── */
+.dr-card {
+    background: rgb(243 243 243 / 0.92);
+    border-radius: 24px;
+    padding: 33px 40px;
+    max-width: 1060px;
+    width: calc(100% - 48px);
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(3, 41, 50, 0.18);
+}
+
+/* ── narrow card variant (step 4) ── */
+.dr-card-narrow {
+    max-width: 480px;
+}
+
+/* ── section heading ── */
+.dr-section-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #032932;
+    letter-spacing: 0.5px;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+}
+
+/* ── grid layouts ── */
+.dr-row {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.dr-row-2 { grid-template-columns: 1fr 1fr; }
+.dr-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+.dr-row-1 { grid-template-columns: 1fr; }
+
+/* ── section divider ── */
+.dr-divider {
+    height: 1px;
+    background: rgba(3, 41, 50, 0.1);
+    margin: 22px 0 18px;
+}
+
+/* ── label + input group ── */
+.dr-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.dr-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #032932;
+    padding-left: 4px;
+    text-transform: none;
+}
+
+.dr-input {
+    border: 1.5px solid #9f9f9f;
+    border-radius: 50px;
+    padding: 11px 18px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    background: #fff;
+    color: #333;
+    box-sizing: border-box;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.dr-input:focus {
+    border-color: #2A787C;
+    box-shadow: 0 0 0 3px rgba(42, 120, 124, 0.12);
+}
+
+.dr-input::placeholder { color: #bbb; }
+
+/* ── select input ── */
+.dr-select {
+    border: 1.5px solid #9f9f9f;
+    border-radius: 50px;
+    padding: 11px 18px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    background: #fff;
+    color: #333;
+    box-sizing: border-box;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    appearance: auto;
+}
+
+.dr-select:focus {
+    border-color: #2A787C;
+    box-shadow: 0 0 0 3px rgba(42, 120, 124, 0.12);
+}
+
+/* ── password wrapper ── */
+.dr-password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.dr-password-wrapper .dr-input {
+    width: 100%;
+    padding-right: 46px;
+}
+
+.dr-eye-btn {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    color: #999;
+}
+
+/* ── upload box ── */
+.dr-upload-box {
+    width: 110px;
+    height: 110px;
+    border-radius: 14px;
+    background: rgba(3, 41, 50, 0.06);
+    border: 2px dashed rgba(3, 41, 50, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    color: rgba(3, 41, 50, 0.5);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.dr-upload-box:hover {
+    background: rgba(3, 41, 50, 0.1);
+    border-color: #2A787C;
+}
+
+.dr-upload-box input[type="file"] {
+    display: none;
+}
+
+.dr-upload-icon {
+    width: 36px;
+    height: 36px;
+    opacity: 0.5;
+}
+
+/* ── confirm row ── */
+.dr-confirm-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: bold;
+    max-width: 860px;
+    width: 100%;
+    margin: 12px auto 0;
+    padding: 0 4px;
+}
+
+.dr-confirm-row label {
+    cursor: pointer;
+}
+
+.dr-confirm-row input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.dr-confirm-row input[type="checkbox"]:checked {
+    background: #ffffff;
+    border-color: #ffffff;
+}
+
+/* ── footer bar ── */
+.dr-footer {
+    background: transparent;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.dr-footer-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.dr-footer-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ── step dots ── */
+.dr-dots {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.dr-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.dr-dot.active {
+    background: #032932;
+    width: 14px;
+    height: 14px;
+}
+
+/* ── nav buttons ── */
+.dr-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #032932;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 28px;
+    font-size: 16.7px;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dr-nav-btn:hover    { background: #054a5e; }
+.dr-nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── submit button (step 4) ── */
+.dr-submit-btn {
+    display: block;
+    margin: 28px auto 0;
+    background: #032932;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 48px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dr-submit-btn:hover    { background: #054a5e; }
+.dr-submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+
+/* ── professional info two-column grid (Step 3) ── */
+.dr-prof-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.dr-prof-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* upload wrapper — centers upload box inside the right column */
+.dr-upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dr-upload-label-text {
+    text-align: center;
+    padding-left: 0;
+    margin-bottom: 7px;
+}
+
+/* ── responsive ── */
+@media (max-width: 640px) {
+    .dr-page { padding: 16px 16px 0; }
+    .dr-card { padding: 24px 20px; width: calc(100% - 32px); }
+    .dr-card-narrow { max-width: 100%; }
+    .dr-row-2, .dr-row-3, .dr-prof-grid { grid-template-columns: 1fr; }
+    .dr-footer { padding: 28px 24px; margin-bottom: 11mm; }
+
+    .dr-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #032932;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 28px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+    }
+
+}   

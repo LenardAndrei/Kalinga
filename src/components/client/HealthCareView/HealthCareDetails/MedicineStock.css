@@ -1,0 +1,87 @@
+.medicine-wrapper {
+  background: linear-gradient(to right, #82ACAB, #E8FFFE);
+  border-radius: 20px;
+  padding: 28px 28px;
+  margin: 24px 32px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.medicine-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  margin: 0 0 20px;
+}
+
+.medicine-scroll {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.medicine-scroll::-webkit-scrollbar { display: none; }
+
+.medicine-card {
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 20px;
+  padding: 10px 10px;
+  width: 150px;
+  height: 200px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.medicine-img {
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.medicine-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #032932;
+  margin: 0;
+}
+
+.medicine-badge {
+  font-size: 13px;
+  font-weight: 900;
+  padding: 1px 12px;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.medicine-badge.available { background: #A5D07A; color: #313D24; }
+.medicine-badge.out       { background: #D76C6C; color: #313D24; }
+
+@media (max-width: 768px) {
+  .medicine-wrapper {
+    padding: 18px 20px;
+  }
+
+  .medicine-title {
+    font-size: 1.6rem;
+  }
+
+  .medicine-scroll {
+    gap: 16px;
+    padding-bottom: 8px;
+  }
+
+  .medicine-card {
+    width: 160px;
+    height: 190px;
+  }
+
+  .medicine-img {
+    height: 140px;
+  }
+}
