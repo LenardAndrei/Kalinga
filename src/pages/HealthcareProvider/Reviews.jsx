@@ -380,6 +380,7 @@ export default function Reviews() {
                 lineHeight: 1.7,
                 margin: "0 0 16px 0",
                 fontWeight: 500,
+                fontFamily: 'Poppins',
               }}>
                 {rv.body}
               </p>

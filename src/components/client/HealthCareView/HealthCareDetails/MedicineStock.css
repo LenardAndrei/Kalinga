@@ -15,7 +15,7 @@
 
 .medicine-scroll {
   display: flex;
-  gap: 68px;
+  gap: 28px;
   overflow-x: auto;
   padding-bottom: 4px;
   scrollbar-width: none;
@@ -26,9 +26,9 @@
 .medicine-card {
   flex-shrink: 0;
   background: #fff;
-  border-radius: 16px;
-  padding: 8px;
-  width: 180px;
+  border-radius: 20px;
+  padding: 10px 10px;
+  width: 150px;
   height: 200px;
   text-align: center;
   display: flex;
@@ -54,7 +54,7 @@
 .medicine-badge {
   font-size: 13px;
   font-weight: 900;
-  padding: 3px 12px;
+  padding: 1px 12px;
   border-radius: 50px;
   font-family: 'Poppins', sans-serif;
 }

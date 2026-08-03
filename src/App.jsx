@@ -57,6 +57,8 @@ import ProviderStep5 from "./components/auth/provider/ProviderStep5"
 import ProviderStep6 from "./components/auth/provider/ProviderStep6"
 import ProviderStep7 from "./components/auth/provider/ProviderStep7"
 
+import './index.css';
+
 const mockAccount = {
   facilityName: "Brgy. San Isidro Health Center",
 }
